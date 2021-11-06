@@ -69,13 +69,4 @@ public class Graficos implements Serializable {
 	public void setDirImg(String dirImg) {
 		this.dirImg = dirImg;
 	}
-	
-	//Metodo mover vacio
-	protected void mover() {}
-	
-	//Metodo saltar vacio
-	protected void saltar() {}
-	
-	//Metodo animar vacio
-	protected void animar() {}
 }
