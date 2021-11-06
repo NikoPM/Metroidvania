@@ -14,7 +14,7 @@ public class Graficos implements Serializable {
 	protected String dirImg; //Direccion de la imagen en pantalla
 	
 	
-	/**
+	/** Constructor de objetos de clase Graficos
 	 * @param x Posicion X en pantalla
 	 * @param y Posicion Y en pantalla
 	 * @param alt Altura en pantalla
