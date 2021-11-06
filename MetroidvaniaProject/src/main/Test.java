@@ -5,18 +5,18 @@ import javax.swing.*;
 import objetos.pantalla.*;
 
 public class Test {
-
+	//Test de mostrar un consumible por ventana y animarlo un poco
 	public static void main(String[] args) {
 		new Ventana();
 	}
-	//DE MOMENTO NO FUNCIONA LO DE MOSTRAR OBJETO POR PANTALLA
 	static class Ventana extends JFrame {
-		
+		private static final long serialVersionUID = 1L;
+
 		public Ventana() {
 			this.setAlwaysOnTop(true);
 			this.setMinimumSize(new Dimension(500, 500));
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			JLabel obj1 = Consumibles.generar(200, 200, "imagenes/pelota.png", this);
+			Consumibles.generar(40, 100, "imagenes/pelota.png", this);
 			this.setVisible(true);
 		}	
 	}

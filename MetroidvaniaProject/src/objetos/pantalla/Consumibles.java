@@ -1,6 +1,5 @@
 package objetos.pantalla;
 
-import java.awt.*;
 import javax.swing.*;
 
 public class Consumibles extends Graficos {
@@ -8,14 +7,33 @@ public class Consumibles extends Graficos {
 	private static final int ANCHURA = 0;
 	private static final int ALTURA = 0;
 
-	public Consumibles(int x, int y, String dir) {
+	private Consumibles(int x, int y, String dir) {
 		super(x, y, ALTURA, ANCHURA, dir);
 	}
-	//DE MOMENTO ESTO NO FUNCIONA, ES PARA MOSTRAR Y CREAR UNA IMAGEN/OBJETO POR VENTANA
-	public JLabel crear(JFrame vent) {
+	
+	private JLabel crear(JFrame vent) {
 		JLabel label = new JLabel(new ImageIcon(this.dirImg));
-		label.setLocation(new Point(this.posX, this.posY));
 		vent.getContentPane().add(label);
+		Thread hilo = new Thread() {
+			@Override
+			public void run() {
+				for(int i = 0; i< 10; i++) {
+					for(int j = 0; j<5; j++) {
+						label.setLocation(posX, posY+1*j);
+						try {
+							Thread.sleep(70);
+						} catch(InterruptedException e) {}
+					}
+					for(int j = 0; j<5; j++) {
+						label.setLocation(posX, 5+posY-1*j);
+						try {
+							Thread.sleep(70);
+						} catch(InterruptedException e) {}
+					}
+				}
+			}
+		};
+		hilo.start();
 		return label;
 	}
 	
