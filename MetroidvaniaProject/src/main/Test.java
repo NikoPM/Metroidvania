@@ -17,6 +17,7 @@ public class Test {
 			this.setMinimumSize(new Dimension(500, 500));
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			Consumibles.generar(40, 100, "imagenes/pelota.png", this);
+			Consumibles.generar(30, 10, "imagenes/pelota.png", this);
 			this.setVisible(true);
 		}	
 	}

@@ -1,5 +1,7 @@
 package objetos.pantalla;
 
+import java.awt.FlowLayout;
+
 import javax.swing.*;
 
 /**
@@ -22,11 +24,13 @@ public class Consumibles extends Graficos {
 	/** Metodo Privado Crear
 	 * @param vent Ventana en la que se crear el consumible
 	 * @return devuelve el JLabel con la imagen y posicion del consumible
-	 * Tambien crea un hilo con duracion 70 seg(por ahora) 
-	 * que anima el consumible haciendolo subir y bajar 5 pixeles
+	 * Añade el consumible al Contentpane de la ventana, edita su layout a flowlayout 
+	 * y tambien crea un hilo con duracion 70 seg(por ahora) que anima el consumible haciendolo 
+	 * subir y bajar 5 pixeles
 	 */
 	private JLabel crear(JFrame vent) {
 		JLabel label = new JLabel(new ImageIcon(this.dirImg));
+		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
 		Thread hilo = new Thread() {
 			@Override
