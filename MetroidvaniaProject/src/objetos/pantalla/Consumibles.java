@@ -11,7 +11,7 @@ public class Consumibles extends Graficos {
 	public Consumibles(int x, int y, String dir) {
 		super(x, y, ALTURA, ANCHURA, dir);
 	}
-	
+	//DE MOMENTO ESTO NO FUNCIONA, ES PARA MOSTRAR Y CREAR UNA IMAGEN/OBJETO POR VENTANA
 	public JLabel crear(JFrame vent) {
 		JLabel label = new JLabel(new ImageIcon(this.dirImg));
 		label.setLocation(new Point(this.posX, this.posY));
