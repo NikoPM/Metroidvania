@@ -13,7 +13,8 @@ public class Test {
 		
 		public Ventana() {
 			this.setAlwaysOnTop(true);
-			this.setMinimumSize(new Dimension(300, 300));
+			this.setMinimumSize(new Dimension(500, 500));
+			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			this.setVisible(true);
 		}	
 	}
