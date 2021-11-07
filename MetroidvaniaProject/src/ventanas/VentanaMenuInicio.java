@@ -1,8 +1,9 @@
 package ventanas;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.Border;
+import javax.swing.border.*;
 
 
 //Ventana que se mostrará al ejecutar el juego 
@@ -12,6 +13,8 @@ public class VentanaMenuInicio extends JFrame{
 		//Variables que indicarán el tamaño de la ventanas
 	private static int x = 1800;	
 	private static int y = 900;
+		//Variables que comprueban el estado de la ventana
+	private static boolean isOpen = true;
 		//Variables para los botones
 	private static int lx = 700;
 	private static int ly = 100;
@@ -19,7 +22,7 @@ public class VentanaMenuInicio extends JFrame{
 	private static int altura = 100;
 	private static int anchura = 500;
 	private static Color color = Color.LIGHT_GRAY; 
-	private static Font letra = new Font("Arial", Font.BOLD, 17);
+	private static Font letra = new Font("Cambria", Font.BOLD, 17);
 		//Imagenes 
 	private Image logo = new ImageIcon(getClass().getResource("/images/Hexagrama.jpg")).getImage();	
 	
@@ -30,6 +33,15 @@ public class VentanaMenuInicio extends JFrame{
 	}
 	
 	public VentanaMenuInicio() {
+		//WindowOpen o Closed checker
+		addWindowListener(new WindowAdapter() {
+		
+			@Override
+			public void windowClosed(WindowEvent e) {
+				isOpen = false;
+			}
+		});
+		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = this.getSize();
 
@@ -40,7 +52,7 @@ public class VentanaMenuInicio extends JFrame{
 		setSize(x, y);
 		setMinimumSize(new Dimension(x, y));
 		this.setLocationRelativeTo(null);
-		this.setTitle("El sueño de kerman");
+		this.setTitle("El sueerman");
 		 
 		 
 		//Componentes de la pantalla
@@ -93,7 +105,7 @@ public class VentanaMenuInicio extends JFrame{
 		add(bExit);
 		add(panelCentral);
 		
-		 	 
+		new FondoPanel().dream(this);
 	}
 	
 	/**Clase externa que nos permite dibujar el fondo de la paantalla sin que
@@ -112,6 +124,18 @@ public class VentanaMenuInicio extends JFrame{
 	        setOpaque(false);
 	        super.paint(g);
 	    }
+		
+		private void dream(VentanaMenuInicio vent) {
+			Thread hilo = new Thread() {
+				@Override
+				public void run() {
+					while(vent.isOpen) {
+						vent.setTitle("El sueño de kerman");
+					}
+				}
+			};
+			hilo.start();
+		}
 
 	}
 	
