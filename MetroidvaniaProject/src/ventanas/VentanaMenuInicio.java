@@ -26,11 +26,13 @@ public class VentanaMenuInicio extends JFrame{
 		//Imagenes 
 	private Image logo = new ImageIcon(getClass().getResource("/images/Hexagrama.jpg")).getImage();	
 	
+	/*
 	public static void main(String[] args) {
 		//Main provisional para hacer pruebas
 		VentanaMenuInicio v = new VentanaMenuInicio();
 		v.setVisible(true);
 	}
+	*/
 	
 	public VentanaMenuInicio() {
 		//WindowOpen o Closed checker
