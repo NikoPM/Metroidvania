@@ -44,9 +44,7 @@ public class VentanaMenuInicio extends JFrame{
 			}
 		});
 		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = this.getSize();
-
+		new FondoPanel().dream(this);
 
 		//Características de la ventana
 		 
@@ -107,7 +105,15 @@ public class VentanaMenuInicio extends JFrame{
 		add(bExit);
 		add(panelCentral);
 		
-		new FondoPanel().dream(this);
+		//ActionListeners
+		bExit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 	}
 	
 	/**Clase externa que nos permite dibujar el fondo de la paantalla sin que
