@@ -9,8 +9,6 @@ public class Graficos implements Serializable {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	protected int posX; //Posicion X en pantalla
 	protected int posY; //Posicion Y en pantalla
-	protected int altura; //Altura en pantalla
-	protected int anchura; //Anchura en pantalla
 	protected String dirImg; //Direccion de la imagen en pantalla
 	
 	
@@ -21,11 +19,9 @@ public class Graficos implements Serializable {
 	 * @param anch Anchura en pantalla
 	 * Crea un objeto de tipo grafico con unos valores introducidos
 	 */
-	protected Graficos(int x, int y, int alt, int anch, String dir) {
+	protected Graficos(int x, int y, String dir) {
 		this.setPosX(x);
 		this.setPosY(y);
-		this.setAltura(alt);
-		this.setAnchura(anch);
 		this.setDirImg(dir);
 	}
 	
@@ -38,14 +34,6 @@ public class Graficos implements Serializable {
 		return posY;
 	}
 	
-	protected int getAltura() {
-		return altura;
-	}
-	
-	protected int getAnchura() {
-		return anchura;
-	}
-	
 	public String getDirImg() {
 		return dirImg;
 	}
@@ -56,14 +44,6 @@ public class Graficos implements Serializable {
 	
 	protected void setPosY(int posY) {
 		this.posY = posY;
-	}
-	
-	protected void setAltura(int altura) {
-		this.altura = altura;
-	}
-	
-	protected void setAnchura(int anchura) {
-		this.anchura = anchura;
 	}
 	
 	public void setDirImg(String dirImg) {

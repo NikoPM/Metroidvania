@@ -9,8 +9,6 @@ import javax.swing.*;
  */
 public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
-	private static final int ANCHURA = 0; //Anchura objeto
-	private static final int ALTURA = 0; //Altura objeto
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -18,7 +16,7 @@ public class Consumibles extends Graficos {
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 */
 	private Consumibles(int x, int y, String dir) {
-		super(x, y, ALTURA, ANCHURA, dir);
+		super(x, y, dir);
 	}
 	
 	/** Metodo Privado Crear
