@@ -10,7 +10,7 @@ abstract public class Objeto {
 	protected int velocidadY = 0;
 	protected int radioHitbox = 0;
 	protected String imagen;
-	
+	//XD
 	public Objeto(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String imagen) {
 		super();
 		this.x = x;

@@ -10,7 +10,7 @@ import utils.ventanas.ventanaBitmap.VentanaGrafica;
 
 public class VentanaNivelPrueba {
 	
-	
+	//XD
 	//puntuaciones usando treemapssffewfsaf
 	
 	public static int puntos = 0;
