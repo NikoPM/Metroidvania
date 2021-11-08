@@ -49,7 +49,6 @@ public class VentanaMenuInicio extends JFrame{
 		//Características de la ventana
 		 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(x, y);
 		setMinimumSize(new Dimension(x, y));
 		this.setLocationRelativeTo(null);
 		this.setTitle("El sueerman");
