@@ -18,7 +18,7 @@ public class Test {
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			Consumibles.generar(40, 100, "src/images/pelota.png", this);
 			Consumibles.generar(30, 10, "src/images/pelota.png", this);
-			Consumibles.generar(60, 20, "src/images/Hexagrama.jpg", this);
+			Consumibles.generar(60, 22, "src/images/Hexagrama.png", this);
 			this.setVisible(true);
 		}	
 	}
