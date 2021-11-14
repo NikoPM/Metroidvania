@@ -18,7 +18,7 @@ import java.util.*;
  * v 1.1.4 - Incorpora métodos para pedir datos desde teclado
  */
 public class VentanaGrafica {
-	
+	//XD
 	// ====================================================
 	//   Parte estática - pruebas de funcionamiento
 	// ====================================================

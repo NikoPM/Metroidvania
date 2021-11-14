@@ -16,7 +16,7 @@ public class Personaje extends Objeto {
 	protected int disparoDisponible;
 	protected ArrayList<Magia> disparos;
 	
-	
+	//XD
 	public Personaje(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String imagen, int Derecha, int Izquierda,int Arriba ,int Abajo, int disparo, int disparoDisponible, ArrayList<Magia> disparos  ) {
 		super(x, y, velocidadX, velocidadY, radioHitbox, imagen);
 		

@@ -16,7 +16,7 @@ public class Enemigo extends Objeto /**implements Destruible**/{
 		
 		//this.explosion="/imagenes/explosion.jpg";
 	}
-	
+	//XD
 	//public String getExplosion() {
 	//return explosion;
 	//}

@@ -7,7 +7,7 @@ public class Magia extends Objeto {
 	public Magia(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String imagen) {
 		super(x, y, velocidadX, velocidadY, radioHitbox, imagen);
 	}
-	
+	//XD
 	public Magia(int x, int y) {
 		this.x = x;
 		this.y = y;
