@@ -18,7 +18,7 @@ public class Consumibles extends Graficos {
 		super(x, y, dir);
 	}
 	
-	//TODO Comentar
+	//TODO Comentar  
 	private static void editarLabel(final JLabel label, final int posX, final int posY) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
