@@ -13,6 +13,9 @@ public class VentanaMenuInicio extends JFrame{
 		//Variables que indicarán el tamaño de la ventanas
 	private static int x = 1800;	
 	private static int y = 900;
+		//Botones
+	private static JButton nuevaPartida;
+	private static JButton bExit;
 		//Variables que comprueban el estado de la ventana
 	private static boolean isOpen = true;
 		//Variables para los botones
@@ -114,6 +117,15 @@ public class VentanaMenuInicio extends JFrame{
 				
 			}
 		});
+	}
+	
+	//Métodos get
+	public static JButton getNuevaPartida() {
+		return nuevaPartida;
+	}
+	
+	public static JButton getbExit() {
+		return bExit;
 	}
 	
 	/**Clase externa que nos permite dibujar el fondo de la paantalla sin que
