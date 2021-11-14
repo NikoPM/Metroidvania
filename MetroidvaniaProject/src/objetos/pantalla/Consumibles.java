@@ -18,51 +18,58 @@ public class Consumibles extends Graficos {
 		super(x, y, dir);
 	}
 	
-	
+	/** Metodo Estatico Privado EditarLabel
+	 * @param label el label que se edita
+	 * @param posX la posicion en el eje X del label
+	 * @param posY la posicion en el eje Y del label
+	 * Anima el label haciendolo bajar y subir 5 pixeles durante 70*5*2*10 miliseg (por ahora) 
+	 * o hasta que el hilo sea interrumpido
+	 */
 	private static void editarLabel(final JLabel label, final int posX, final int posY) {
-		SwingUtilities.invokeLater(new Runnable() {
+		Thread hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				for(int j = 0; j<5; j++) {
-					label.setLocation(posX, posY+1*j);
-					try {
-						Thread.sleep(70);
-					} catch(InterruptedException e) {
-						Thread.currentThread().interrupt();
+				for(int i = 0; !Thread.interrupted() && i< 10; i++) {
+					for(int j = 0; j<5; j++) {
+						label.setLocation(posX, posY+1*j);
+						try {
+							Thread.sleep(70);
+						} catch(InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
 					}
-				}
-				for(int j = 0; j<5; j++) {
-					label.setLocation(posX, 5+posY-1*j);
-					try {
-						Thread.sleep(70);
-					} catch(InterruptedException e) {
-						Thread.currentThread().interrupt();
+					for(int j = 0; j<5; j++) {
+						label.setLocation(posX, 5+posY-1*j);
+						try {
+							Thread.sleep(70);
+						} catch(InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
 					}
 				}
 			}
 		});
+		hilo.start();
 	}
 	
 	/** Metodo Privado Crear
 	 * @param vent Ventana en la que se crear el consumible
 	 * @return devuelve el JLabel con la imagen y posicion del consumible
 	 * Añade el consumible al Contentpane de la ventana, edita su layout a flowlayout 
-	 * y tambien crea un hilo con duracion 70 seg(por ahora) que anima el consumible haciendolo 
+	 * y llama a la funcion editarLabel que anima el consumible haciendolo 
 	 * subir y bajar 5 pixeles
 	 */
-	private void crear(JFrame vent) {
+	private JLabel crear(JFrame vent) {
 		JLabel label = new JLabel(new ImageIcon(this.dirImg));
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
-		Thread hilo = new Thread(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				for(int i = 0; !Thread.interrupted() && i< 10; i++) {
-					editarLabel(label, posX, posY);
-				}
+				editarLabel(label, posX, posY);
 			}
 		});
-		hilo.start();
+		return label;
 	}
 	
 	/** Metodo Estatico Generar

@@ -7,7 +7,12 @@ import objetos.pantalla.*;
 public class Test {
 	//Test de mostrar un consumible por ventana y animarlo un poco
 	public static void main(String[] args) {
-		new Ventana();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new Ventana();
+			}
+		});
 	}
 	static class Ventana extends JFrame {
 		private static final long serialVersionUID = 1L;
@@ -18,7 +23,6 @@ public class Test {
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			Consumibles.generar(40, 100, "src/images/pelota.png", this);
 			Consumibles.generar(30, 10, "src/images/pelota.png", this);
-			Consumibles.generar(60, 22, "src/images/Hexagrama.png", this);
 			this.setVisible(true);
 		}	
 	}
