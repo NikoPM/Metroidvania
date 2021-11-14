@@ -1,7 +1,6 @@
 package objetos.pantalla;
 
-import java.awt.FlowLayout;
-
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -19,6 +18,30 @@ public class Consumibles extends Graficos {
 		super(x, y, dir);
 	}
 	
+	private static void editarLabel(final JLabel label, final int posX, final int posY) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				for(int j = 0; j<5; j++) {
+					label.setLocation(posX, posY+1*j);
+					try {
+						Thread.sleep(70);
+					} catch(InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+				}
+				for(int j = 0; j<5; j++) {
+					label.setLocation(posX, 5+posY-1*j);
+					try {
+						Thread.sleep(70);
+					} catch(InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+				}
+			}
+		});
+	}
+	
 	/** Metodo Privado Crear
 	 * @param vent Ventana en la que se crear el consumible
 	 * @return devuelve el JLabel con la imagen y posicion del consumible
@@ -26,31 +49,19 @@ public class Consumibles extends Graficos {
 	 * y tambien crea un hilo con duracion 70 seg(por ahora) que anima el consumible haciendolo 
 	 * subir y bajar 5 pixeles
 	 */
-	private JLabel crear(JFrame vent) {
+	private void crear(JFrame vent) {
 		JLabel label = new JLabel(new ImageIcon(this.dirImg));
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
-		Thread hilo = new Thread() {
+		Thread hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				for(int i = 0; i< 10; i++) {
-					for(int j = 0; j<5; j++) {
-						label.setLocation(posX, posY+1*j);
-						try {
-							Thread.sleep(70);
-						} catch(InterruptedException e) {}
-					}
-					for(int j = 0; j<5; j++) {
-						label.setLocation(posX, 5+posY-1*j);
-						try {
-							Thread.sleep(70);
-						} catch(InterruptedException e) {}
-					}
+				for(int i = 0; !Thread.interrupted() && i< 10; i++) {
+					editarLabel(label, posX, posY);
 				}
 			}
-		};
+		});
 		hilo.start();
-		return label;
 	}
 	
 	/** Metodo Estatico Generar
@@ -62,8 +73,13 @@ public class Consumibles extends Graficos {
 	 * y devuelve el JLabel con la imagen y posicion del consumible
 	 * LLama al constructor y al metodo crear
 	 */
-	public static JLabel generar(int x, int y, String dir, JFrame vent) {
-		Consumibles cons = new Consumibles(x, y, dir);
-		return cons.crear(vent);
+	public static void generar(int x, int y, String dir, JFrame vent) {
+		SwingUtilities.invokeLater(new Runnable() {	
+			@Override
+			public void run() {
+				Consumibles cons = new Consumibles(x, y, dir);
+				cons.crear(vent);
+			}
+		});
 	}
 }
