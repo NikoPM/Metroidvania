@@ -28,12 +28,12 @@ public class Enemigo extends Objeto /**implements Destruible**/{
 	//modificar parametros para ajustar la velocidad
 	public void mover(VentanaGrafica juego) {    
 		
-		this.x += this.velocidadX;
-		this.y += this.velocidadY;
-		if (this.x < 0 || this.x > juego.getAnchura()) {
+		posX += this.velocidadX;
+		posY += this.velocidadY;
+		if (posX < 0 || posX > juego.getAnchura()) {
 			this.velocidadX = - this.velocidadX;
 		}
-		if (this.y < 0 || this.y > juego.getAltura()) {
+		if (posY < 0 || posY > juego.getAltura()) {
 			this.velocidadY = - this.velocidadY;
 		}
 	}

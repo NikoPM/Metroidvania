@@ -81,7 +81,7 @@ public class VentanaNivelPrueba {
 				//System.out.println("abajo prueba");
 			}
 			if (juego.isTeclaPulsada(personaje.getDisparo())) {
-					personaje.getDisparos().add(new Magia(personaje.getPosX(), personaje.getY()));
+					personaje.getDisparos().add(new Magia(personaje.getPosX(), personaje.getPosY()));
 
 
 					
@@ -94,7 +94,7 @@ public class VentanaNivelPrueba {
 				if (pers.impacto(personaje)) {
 					personaje.setRadioHitbox(0);
 					personaje.setPosX(640);
-					personaje.setY(720);
+					personaje.setPosY(720);
 					cont+=1;
 					personaje.setRadioHitbox(10);
 					
@@ -130,7 +130,7 @@ public class VentanaNivelPrueba {
 						Enemigo enemigo = (Enemigo) pers;
 						magiaBorrar.add(magia);
 							enemigosBorrar.add(enemigo);
-							explosiones.add(new Explosion(enemigo.getX(), enemigo.getY(), 0, 0, 0, "explosion.png"));
+							explosiones.add(new Explosion(enemigo.getPosX(), enemigo.getPosY(), 0, 0, 0, "explosion.png"));
 							for (int j = 0; j < 1; j++) {
 								puntos+=1;
 								if(puntos == 3) {
@@ -144,7 +144,7 @@ public class VentanaNivelPrueba {
 						
 					}
 				}
-				if (magia.getY() < 0) {
+				if (magia.getPosY() < 0) {
 					magiaBorrar.add(magia);
 				}
 			}

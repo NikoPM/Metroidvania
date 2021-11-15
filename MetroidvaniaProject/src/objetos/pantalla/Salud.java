@@ -14,8 +14,8 @@ public class Salud extends Objeto {
 
 	public void mover(VentanaGrafica juego) {
 		//movimientos lineales en los ejes x e y, por defecto esta hecho para que dispare hacia arriba
-		this.x += this.velocidadX;
-		this.y += this.velocidadY;
+		posX+= this.velocidadX;
+		posY += this.velocidadY;
 	}
 
 }
