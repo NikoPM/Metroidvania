@@ -3,6 +3,8 @@ package test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import javax.swing.JButton;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +23,9 @@ public class MenuIniTest {
 	
 	@Test
 	public void probar() {
-		assertNotNull(v);	
+		assertNotNull(v);
+		//Comprobacion del metodo que contiene los ActionListeners de los botones
+		v.funcionBotones();
 	}
 
 }

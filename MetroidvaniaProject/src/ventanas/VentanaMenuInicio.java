@@ -15,7 +15,7 @@ public class VentanaMenuInicio extends JFrame{
 	private static int y = 900;
 		//Botones
 	private static JButton nuevaPartida;
-	private static JButton bExit;
+	private static JButton bExit = new JButton("Volver al escritorio");
 		//Variables que comprueban el estado de la ventana
 	private static boolean isOpen = true;
 		//Variables para los botones
@@ -108,14 +108,7 @@ public class VentanaMenuInicio extends JFrame{
 		add(panelCentral);
 		
 		//ActionListeners
-		bExit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-		});
+		funcionBotones(); 
 	}
 	
 	//Métodos get
@@ -125,6 +118,21 @@ public class VentanaMenuInicio extends JFrame{
 	
 	public static JButton getbExit() {
 		return bExit;
+	}
+	
+	//Métodos y clases que ayudan al correcto comportamiento del programa
+	
+	/**Añade los action listeners con sus respectivas funciones a cada JButton
+	 * de la ventana
+	 */
+	public void funcionBotones() {
+		bExit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();				
+			}
+		});
 	}
 	
 	/**Clase externa que nos permite dibujar el fondo de la paantalla sin que
@@ -143,6 +151,7 @@ public class VentanaMenuInicio extends JFrame{
 	        setOpaque(false);
 	        super.paint(g);
 	    }
+		
 		
 		private void dream(VentanaMenuInicio vent) {
 			Thread hilo = new Thread() {
