@@ -27,7 +27,7 @@ public class VentanaMenuInicio extends JFrame{
 	private static Color color = Color.LIGHT_GRAY; 
 	private static Font letra = new Font("Cambria", Font.BOLD, 17);
 		//Imagenes 
-	private Image logo = new ImageIcon(getClass().getResource("/images/Hexagrama.jpg")).getImage();	
+	private Image logo = new ImageIcon("src/imagenes/Hexagrama.jpg").getImage();	
 	
 	/*
 	public static void main(String[] args) {
@@ -136,7 +136,7 @@ public class VentanaMenuInicio extends JFrame{
 		@Override
 	    public void paint(Graphics g) {
 			
-			imagen = new ImageIcon(getClass().getResource("/images/Fondo1.jpg")).getImage();
+			imagen = new ImageIcon("src/imagenes/Fondo1.jpg").getImage();
 	        g.drawImage(imagen, 0, 0, getWidth(), getHeight(),
 	                        this);
 	 

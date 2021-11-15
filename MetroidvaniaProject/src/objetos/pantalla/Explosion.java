@@ -9,12 +9,7 @@ public class Explosion extends Objeto {
 	}
 	//XD
 	public Explosion(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.velocidadX = 0;
-		this.velocidadY = 0;
-		this.radioHitbox = 0;
-		this.imagen = "explosion.png";
+		super(x, y, 0, 0, 0, "explosion.png");
 	}
 
 	public void mover(VentanaGrafica juego) {

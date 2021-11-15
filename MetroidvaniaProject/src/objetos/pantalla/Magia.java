@@ -9,18 +9,13 @@ public class Magia extends Objeto {
 	}
 	//XD
 	public Magia(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.velocidadX = 0;
-		this.velocidadY = -35;
-		this.radioHitbox = 5;
-		this.imagen = "magia.png";
+		super(x, y, 0, -35, 5, "magia.png");
 	}
 
 	public void mover(VentanaGrafica juego) {
 		//movimientos lineales en los ejes x e y, por defecto esta hecho para que dispare hacia arriba
-		this.x += this.velocidadX;
-		this.y += this.velocidadY;
+		posX += this.velocidadX;
+		posY += this.velocidadY;
 	}
 
 }

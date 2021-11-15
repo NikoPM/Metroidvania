@@ -31,11 +31,6 @@ public class Personaje extends Objeto {
 	
 	}
 	
-	public Personaje() {
-		super();
-		this.disparos = new ArrayList<Magia>();
-	}
-	
 	public Personaje(int x, int y, int Izquierda, int Derecha, int Arriba, int Abajo, int disparo ) {
 		super(x, y, 0, 0, 10, "personaje.png");
 		this.Izquierda = Izquierda;
@@ -112,24 +107,24 @@ public class Personaje extends Objeto {
 	
 //movimiento del personaje usando las variables de posicion, velocidad y las dimensiones del mapa
 	public void mover(VentanaGrafica juego) {
-		if (this.x < 0) {
-			this.x = 0;
+		if (posX < 0) {
+			posX = 0;
 			this.velocidadX = 0;
-		} else if (this.x > juego.getAnchura()) {
-			this.x = juego.getAnchura();
+		} else if (posX> juego.getAnchura()) {
+			posX = juego.getAnchura();
 			this.velocidadX = 0;
 		} else {
-			this.x += this.velocidadX;
+			posX += this.velocidadX;
 		}
 		
-		if (this.y < 0) {
-			this.y = 0;
+		if (posY< 0) {
+			posY = 0;
 			this.velocidadY = 0;
-		} else if (this.y > juego.getAltura()) {
-			this.y = juego.getAltura();
+		} else if (posY > juego.getAltura()) {
+			posY = juego.getAltura();
 			this.velocidadY = 0;
 		} else {
-			this.y += this.velocidadY;
+			posY += this.velocidadY;
 		}
 	}
 	

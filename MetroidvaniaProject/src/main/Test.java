@@ -21,8 +21,8 @@ public class Test {
 			this.setAlwaysOnTop(true);
 			this.setMinimumSize(new Dimension(500, 500));
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			Consumibles.generar(40, 100, "src/images/pelota.png", this);
-			Consumibles.generar(30, 10, "src/images/pelota.png", this);
+			Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
+			Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
 			this.setVisible(true);
 		}	
 	}

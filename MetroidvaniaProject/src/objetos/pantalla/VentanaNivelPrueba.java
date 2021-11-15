@@ -81,7 +81,7 @@ public class VentanaNivelPrueba {
 				//System.out.println("abajo prueba");
 			}
 			if (juego.isTeclaPulsada(personaje.getDisparo())) {
-					personaje.getDisparos().add(new Magia(personaje.getX(), personaje.getY()));
+					personaje.getDisparos().add(new Magia(personaje.getPosX(), personaje.getY()));
 
 
 					
@@ -93,7 +93,7 @@ public class VentanaNivelPrueba {
 				pers.mover(juego);
 				if (pers.impacto(personaje)) {
 					personaje.setRadioHitbox(0);
-					personaje.setX(640);
+					personaje.setPosX(640);
 					personaje.setY(720);
 					cont+=1;
 					personaje.setRadioHitbox(10);

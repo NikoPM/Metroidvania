@@ -9,12 +9,7 @@ public class Salud extends Objeto {
 	}
 	//XD
 	public Salud(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.velocidadX = 0;
-		this.velocidadY = 0;
-		this.radioHitbox = 0;
-		this.imagen = "magia.png";
+		super(x, y, 0, 0, 0, "magia.png");
 	}
 
 	public void mover(VentanaGrafica juego) {
