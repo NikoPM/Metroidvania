@@ -7,6 +7,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/kerma/Downloads/sqlite-jdbc-3.36.0.3.jar"/>
+=======
+	<classpathentry kind="src" path="Test"/>
+>>>>>>> branch 'master' of https://github.com/NikoPM/Metroidvania.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>

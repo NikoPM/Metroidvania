@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 
 
+
 public class BaseDeDatos {
 	private static Connection conexion;
 	private static Logger logger = Logger.getLogger( "BaseDatos" );

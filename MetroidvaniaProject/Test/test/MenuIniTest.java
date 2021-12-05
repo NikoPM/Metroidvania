@@ -22,7 +22,7 @@ public class MenuIniTest {
 	}
 	
 	@Test
-	public void probar() {
+	public void funcionBotonesTest() {
 		assertNotNull(v);
 		//Comprobacion del metodo que contiene los ActionListeners de los botones
 		v.funcionBotones();

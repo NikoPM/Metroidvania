@@ -18,18 +18,18 @@ public class Graficos implements Serializable {
 	 * @param anch Anchura en pantalla
 	 * Crea un objeto de tipo grafico con unos valores introducidos
 	 */
-	protected Graficos(int x, int y, String dir) {
+	public Graficos(int x, int y, String dir) {
 		this.setPosX(x);
 		this.setPosY(y);
 		this.setDirImg(dir);
 	}
 	
 	//Setters y Getters basicos
-	protected int getPosX() {
+	public int getPosX() {
 		return posX;
 	}
 	
-	protected int getPosY() {
+	public int getPosY() {
 		return posY;
 	}
 	
@@ -37,11 +37,11 @@ public class Graficos implements Serializable {
 		return dirImg;
 	}
 	
-	protected void setPosX(int posX) {
+	public void setPosX(int posX) {
 		this.posX = posX;
 	}
 	
-	protected void setPosY(int posY) {
+	public void setPosY(int posY) {
 		this.posY = posY;
 	}
 	
