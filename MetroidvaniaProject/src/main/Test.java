@@ -26,8 +26,8 @@ public class Test {
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
 			Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
-			Plataformas.generar(50, 100, "src/imagenes/plataforma.png", this);
-			JLabel label = Character.generar(50, 50, "src/imagenes/pelota.png", this);
+			//Plataformas.generar(50, 100, "src/imagenes/plataforma.png", this);
+			//JLabel label = Character.generar(50, 50, "src/imagenes/pelota.png", this);
 			addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
@@ -39,7 +39,7 @@ public class Test {
 					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
 						hilo = Character.mover(label, true);
 						hilo.start();
-					} else if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
+					} else if(KeyEvent.VK_DOWN == e.getKeyCode()) {
 						hilo = Character.mover(label, false);
 						hilo.start();
 					}

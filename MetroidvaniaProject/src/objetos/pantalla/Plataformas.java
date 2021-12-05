@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
+	private static final int HITBOX = 1;
 	//TODO Añadir los atributos de altura t anchura de la plataforma cuando Alvaro y Miguel cambien 
 	//algunas cosas de la clase Graficos y otras
 	
@@ -18,7 +19,7 @@ public class Plataformas extends Graficos {
 	 * @param dir	String con la dirección a la imagen del 
 	 */
 	private Plataformas (int x, int y, String dir) {
-		super(x, y, dir);
+		super(x, y, dir, 0, 0, HITBOX);
 	}
 	
 	/** Metodo Privado Crear

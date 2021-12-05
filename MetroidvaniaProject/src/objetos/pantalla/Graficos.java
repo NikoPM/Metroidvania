@@ -10,18 +10,26 @@ public class Graficos implements Serializable {
 	protected int posX; //Posicion X en pantalla
 	protected int posY; //Posicion Y en pantalla
 	protected String dirImg; //Direccion de la imagen en pantalla
+	protected int velX; //Velocidad en el eje X
+	protected int velY; //Velocidad en el eje X
+	protected int hitbox; //Tamaño de la hitbox
 	
 	/** Constructor de objetos de clase Graficos
 	 * @param x Posicion X en pantalla
 	 * @param y Posicion Y en pantalla
-	 * @param alt Altura en pantalla
-	 * @param anch Anchura en pantalla
+	 * @param dir Dirección donde se encuentra la imagen
+	 * @param velX Velocidad en el eje X
+	 * @param velY Velocidad en el eje Y
+	 * @param hitB Tamaño de la hitbox
 	 * Crea un objeto de tipo grafico con unos valores introducidos
 	 */
-	public Graficos(int x, int y, String dir) {
+	public Graficos(int x, int y, String dir, int velX, int velY, int hitB) {
 		this.setPosX(x);
 		this.setPosY(y);
 		this.setDirImg(dir);
+		this.setVelX(velX);
+		this.setVelY(velY);
+		this.setHitbox(hitB);
 	}
 	
 	//Setters y Getters basicos
@@ -37,6 +45,18 @@ public class Graficos implements Serializable {
 		return dirImg;
 	}
 	
+	public int getVelX() {
+		return velX;
+	}
+	
+	public int getVelY() {
+		return velY;
+	}
+	
+	public int getHitbox() {
+		return hitbox;
+	}
+	
 	public void setPosX(int posX) {
 		this.posX = posX;
 	}
@@ -47,5 +67,17 @@ public class Graficos implements Serializable {
 	
 	public void setDirImg(String dirImg) {
 		this.dirImg = dirImg;
+	}
+	
+	public void setVelX(int velX) {
+		this.velX = velX;
+	}
+	
+	public void setVelY(int velY) {
+		this.velY = velY;
+	}
+	
+	public void setHitbox(int hitbox) {
+		this.hitbox = hitbox;
 	}
 }

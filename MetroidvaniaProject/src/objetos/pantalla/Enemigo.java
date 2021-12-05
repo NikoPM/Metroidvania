@@ -5,14 +5,14 @@ import java.util.Random;
 import utils.ventanas.ventanaBitmap.VentanaGrafica;
 
 
-public class Enemigo extends Objeto /**implements Destruible**/{
+public class Enemigo extends Graficos /**implements Destruible**/{
 	
 	//protected String explosion;
 	
 	private static Random random = new Random();
 	
 	public Enemigo(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String imagen /**,String explosion**/) {
-		super(x, y, velocidadX, velocidadY, radioHitbox, "enemigo.png");
+		super(x, y, "enemigo.png", velocidadX, velocidadY, radioHitbox);
 		
 		//this.explosion="/imagenes/explosion.jpg";
 	}
@@ -28,13 +28,13 @@ public class Enemigo extends Objeto /**implements Destruible**/{
 	//modificar parametros para ajustar la velocidad
 	public void mover(VentanaGrafica juego) {    
 		
-		posX += this.velocidadX;
-		posY += this.velocidadY;
+		posX += this.velX;
+		posY += this.velY;
 		if (posX < 0 || posX > juego.getAnchura()) {
-			this.velocidadX = - this.velocidadX;
+			this.velX = - this.velX;
 		}
 		if (posY < 0 || posY > juego.getAltura()) {
-			this.velocidadY = - this.velocidadY;
+			this.velY = - this.velY;
 		}
 	}
 	

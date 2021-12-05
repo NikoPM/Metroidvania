@@ -3,14 +3,14 @@ package objetos.pantalla;
 import java.awt.*;
 import javax.swing.*;
 
-public class Character extends Objeto {
+public class Character extends Graficos {
 	
 	private static final int VEL_X = 0;
 	private static final int VEL_Y = 0;
 	private static final int HITBOX = 0;
 	
 	private Character(int x, int y, String imagen) {
-		super(x, y, VEL_X, VEL_Y, HITBOX, imagen);
+		super(x, y, imagen, VEL_X, VEL_Y, HITBOX);
 	}
 	
 	/** Metodo Privado Generar
