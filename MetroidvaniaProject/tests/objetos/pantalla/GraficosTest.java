@@ -8,7 +8,7 @@ import objetos.pantalla.Graficos;
 
 public class GraficosTest {
 	private static Graficos graficos = new Graficos(12, 22, " ");
-	
+	 
 	@Test
 	public void testGetPosX() {
 		assertEquals(12, graficos.getPosX());

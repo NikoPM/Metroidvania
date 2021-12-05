@@ -9,7 +9,7 @@ import ventanas.VentanaJuego;
 
 public class VentanaJuegoTest {
 	private VentanaJuego v;
-	
+	 
 	@Before
 	public void setUp() {
 		v = new VentanaJuego();

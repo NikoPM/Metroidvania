@@ -14,7 +14,7 @@ import ventanas.VentanaMenuInicio.FondoPanel;
 
 public class MenuIniTest {
 	private VentanaMenuInicio v;
-	
+	 
 	//Inicialización de las clases que vamos a testear
 	@Before
 	public void setUp() {
