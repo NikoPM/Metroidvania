@@ -32,7 +32,7 @@ public class Test {
 						Thread hilo = Character.mover(label, true);
 						hilo.start();
 					}
-				}
+				} 
 				
 				@Override
 				public void keyPressed(KeyEvent e) {

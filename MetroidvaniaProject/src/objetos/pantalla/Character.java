@@ -36,7 +36,7 @@ public class Character extends Objeto {
 			}
 		});
 	}
-	
+	 
 	public static Thread mover(JLabel label, boolean eje) {
 		Thread hilo = new Thread(new Runnable() {
 			@Override
