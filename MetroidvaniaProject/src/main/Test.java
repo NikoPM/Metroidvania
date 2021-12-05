@@ -23,6 +23,7 @@ public class Test {
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
 			Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
+			Plataformas.generar(50, 100, "src/imagenes/plataforma.png", this);
 			this.setVisible(true);
 		}	
 	}
