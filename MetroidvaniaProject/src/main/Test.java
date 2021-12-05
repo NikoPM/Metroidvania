@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import objetos.pantalla.Character;
-
+ 
 public class Test {
 	//Test de mostrar un consumible por ventana y animarlo un poco
 	public static void main(String[] args) {

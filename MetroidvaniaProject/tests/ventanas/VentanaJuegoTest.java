@@ -1,4 +1,4 @@
-package test;
+package ventanas;
 
 import static org.junit.Assert.assertNotNull;
 

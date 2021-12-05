@@ -1,4 +1,4 @@
-package test;
+package objetos.pantalla;
 
 import static org.junit.Assert.*;
 
