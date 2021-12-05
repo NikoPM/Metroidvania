@@ -13,4 +13,6 @@ public class Plataformas extends Graficos {
 	private Plataformas (int x, int y, String dir) {
 		super(x, y, dir);
 	}
+	
+	
 }
