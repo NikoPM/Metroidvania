@@ -41,7 +41,7 @@ public class Character extends Objeto {
 		Thread hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while(!Thread.interrupted()) {
+				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
 					try {
 						moverCharacter(label, eje);
 						Thread.sleep(100);

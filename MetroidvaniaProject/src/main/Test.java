@@ -4,8 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import objetos.pantalla.Character;
-import objetos.pantalla.Consumibles;
-import objetos.pantalla.Plataformas;
+import objetos.pantalla.*;
 
 public class Test {
 	//Test de mostrar un consumible por ventana y animarlo un poco
@@ -25,13 +24,9 @@ public class Test {
 			this.setAlwaysOnTop(true);
 			this.setMinimumSize(new Dimension(500, 500));
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
 			Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
 			Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
 			Plataformas.generar(50, 100, "src/imagenes/plataforma.png", this);
-
-			//Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
-			//Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
 			JLabel label = Character.generar(50, 50, "src/imagenes/pelota.png", this);
 			addKeyListener(new KeyAdapter() {
 				@Override
