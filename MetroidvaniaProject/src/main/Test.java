@@ -17,6 +17,7 @@ public class Test {
 	}
 	static class Ventana extends JFrame {
 		private static final long serialVersionUID = 1L;
+		private static Thread hilo;
 
 		public Ventana() {
 			this.setAlwaysOnTop(true);
@@ -28,15 +29,18 @@ public class Test {
 			addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
-						Thread hilo = Character.mover(label, true);
-						hilo.start();
-					}
+					hilo.interrupt();
 				} 
 				
 				@Override
 				public void keyPressed(KeyEvent e) {
-					
+					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
+						hilo = Character.mover(label, true);
+						hilo.start();
+					} else if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
+						hilo = Character.mover(label, false);
+						hilo.start();
+					}
 				}
 			});
 			this.setVisible(true);
