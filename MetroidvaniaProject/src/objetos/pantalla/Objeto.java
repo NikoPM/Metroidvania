@@ -40,7 +40,7 @@ abstract public class Objeto extends Graficos {
 		this.radioHitbox = radioHitbox;
 	}
 	//TODO eliminar ventanagrafica
-	
+	/*
 	//ajustes de la ventana grafica
 	public void dibujar(VentanaGrafica juego) {
 		juego.dibujaImagen( "/imagenes/"+dirImg, posX, posY, 1.0, 0.0, 1.0f);
@@ -52,5 +52,6 @@ abstract public class Objeto extends Graficos {
 		double d = Math.sqrt((posX-p.getPosX())*(posX-p.getPosX()) + (posY-p.getPosY())*(posY-p.getPosY()));
 		return (d < this.radioHitbox + p.radioHitbox);
 	}
+	*/
 
 }
