@@ -51,20 +51,22 @@ public class Personaje extends Graficos {
 		Thread hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				salto = true;
-				for(int i = 0; i< 20; i++) {
-					try {
-						LabelMoveY(getPersonaje(), label, null, true);
-						Thread.sleep(15);
-						if(i==19) {
-							Thread.sleep(250);
+				if(!salto) {
+					salto = true;
+					for(int i = 0; i< 20; i++) {
+						try {
+							LabelMoveY(getPersonaje(), label, null, true);
+							Thread.sleep(15);
+							if(i==19) {
+								Thread.sleep(100);
+							}
+						} catch (InterruptedException e) {
+							salto = false;
+							Thread.currentThread().interrupt();
 						}
-					} catch (InterruptedException e) {
-						salto = false;
-						Thread.currentThread().interrupt();
 					}
+					salto = false;
 				}
-				salto = false;
 			}
 		});
 		hilo.start();
