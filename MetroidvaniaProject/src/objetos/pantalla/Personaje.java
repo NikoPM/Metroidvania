@@ -12,7 +12,6 @@ public class Personaje extends Graficos {
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje yo; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica si el personaje esta saltando
-	private static boolean fall = false; //Boolean que indica si el personaje esta cayendose
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -56,11 +55,9 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				if(pers.getPosY()<100 && !salto) { //<vent.getHeight()
-					fall = true;
 					pers.setPosY(pers.getPosY() + pers.getVelY());
 					label.setLocation(pers.getPosX(), pers.getPosY());
 				}
-				fall = false;
 			}
 		});
 	}
@@ -79,19 +76,17 @@ public class Personaje extends Graficos {
 						}
 					}
 				} else {
-					if(!fall) {
-						for (int i = 0; i<10; i++) {
-							try {
-								salto = true;
-								labelMove(getCharacter(), label, b);
-								Thread.sleep(10);
-							} catch (InterruptedException e) {
-								salto = false;
-								Thread.currentThread().interrupt();
-							}
+					for (int i = 0; i<10; i++) {
+						try {
+							salto = true;
+							labelMove(getCharacter(), label, b);
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							salto = false;
+							Thread.currentThread().interrupt();
 						}
-						salto = false;
 					}
+					salto = false;			
 				}
 			}
 		});
