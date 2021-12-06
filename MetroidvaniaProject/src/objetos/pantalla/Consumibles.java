@@ -8,6 +8,9 @@ import javax.swing.*;
  */
 public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
+	private static final int VEL = 1; //Velocidad del consumible
+	private static final int HITBOX = 1; //Hitbox del consumible
+	private static Thread hilo; //Hilo de consumible
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -15,52 +18,48 @@ public class Consumibles extends Graficos {
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 */
 	private Consumibles(int x, int y, String dir) {
-		super(x, y, dir);
+		super(x, y, dir, VEL, VEL, HITBOX);
 	}
 	
 	/** Metodo Estatico Privado LabelMove
+	 * @param cons Consumible que se anima y del cual se recibe la posicion en pantalla
 	 * @param label JLabel que se edita
-	 * @param posX posicion en el eje X del label
-	 * @param posY posicion en el eje X del label
-	 * @param j int que se suma o resta a la posY
 	 * @param b boolean que indica si realizar la operacion de suma o resta
 	 * Establece y edita la posicion del label
 	 */
-	private static void labelMove(final JLabel label, final int posX, final int posY, final int j, final boolean b) {
+	private static void labelMove(final Consumibles cons, final JLabel label, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				if(b) {
-					label.setLocation(posX, posY+1*j);
+					cons.setPosY(cons.getPosY() + cons.getVelY());
 				} else {
-					label.setLocation(posX, 5+posY-1*j);		
+					cons.setPosY(cons.getPosY() - cons.getVelY());	
 				}
+				label.setLocation(cons.getPosX(), cons.getPosY());
 			}
 		});
 	}
 	
-	/** Metodo Privado Crear
+	/** Metodo Privado Animar
 	 * @param label JLabel con la imagen del consumible
-	 * @param vent Ventana en la que se crear el consumible
-	 * Añade el consumible al Contentpane de la ventana, edita su layout a flowlayout 
-	 * y crea un hilo que llama a la funcion labelMove que anima el consumible haciendolo 
-	 * subir o bajar 5 pixeles
+	 * Crea un hilo que llama a la funcion labelMove que anima el consumible haciendolo 
+	 * subir o bajar n pixeles
 	 */
-	private void crear(JLabel label, JFrame vent) {
-		vent.getContentPane().setLayout(new FlowLayout());
-		vent.getContentPane().add(label);
-		Thread hilo = new Thread(new Runnable() {
+	private void animar(JLabel label) {
+		Consumibles cons = this;
+		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				for(int i = 0; !Thread.interrupted() && i< 10; i++) {
 					for(int j = 0; j<10; j++) {
 						if(j<5) {
-							labelMove(label, posX, posY, j, true);
+							labelMove(cons, label, true);
 						} else {
-							labelMove(label, posX, posY, j-5, false);
+							labelMove(cons, label, false);
 						}
 						try {
-							Thread.sleep(70);
+							Thread.sleep(1000/(10*cons.getVelY()));
 						} catch(InterruptedException e) {
 							Thread.currentThread().interrupt();
 						}
@@ -71,8 +70,15 @@ public class Consumibles extends Graficos {
 		hilo.start();
 	}
 	
+	/**Metodo Estatico StopAnimar
+	 * Interrumpe el hilo
+	 */
+	public static void stopAnimar() {
+		hilo.interrupt();
+	}
+	
 	/** Metodo Estatico Generar
-	  * @param x Posicion X del consumible en pantalla
+	 * @param x Posicion X del consumible en pantalla
 	 * @param y Posicion Y del consumible en pantalla
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 * @param vent Ventana en la que se crear el consumible
@@ -83,10 +89,12 @@ public class Consumibles extends Graficos {
 	public static JLabel generar(int x, int y, String dir, JFrame vent) {
 		Consumibles cons = new Consumibles(x, y, dir);
 		JLabel label = new JLabel(new ImageIcon(cons.dirImg));
+		vent.getContentPane().setLayout(new FlowLayout());
+		vent.getContentPane().add(label);
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
 			public void run() {
-				cons.crear(label, vent);
+				cons.animar(label);
 			}
 		});
 		return label;

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import objetos.pantalla.Graficos;
-
+//TODO EDITAR LOS TESTS RELATIVOS A 3 NUEVOS ATRIBUTOS CAMBIOS 
 public class GraficosTest {
 	private static Graficos graficos = new Graficos(12, 22, " ");
 	 
