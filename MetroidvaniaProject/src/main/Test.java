@@ -3,10 +3,6 @@ package main;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
-import objetos.pantalla.Character;
 import objetos.pantalla.*;
 
 public class Test {
@@ -29,26 +25,26 @@ public class Test {
 			this.addWindowListener(new WindowAdapter() {
 				@Override
 				public void windowClosed(WindowEvent e) {
-					Character.stopAll();
+					Personaje.stopAll();
 				}
 			});
 			Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
 			Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
 			Plataformas.generar(50, 100, "src/imagenes/plataforma.png", this);
-			JLabel label = Character.generar(50, 50, "src/imagenes/pelota.png", this);
+			JLabel label = Personaje.generar(50, 50, "src/imagenes/pelota.png", this);
 			this.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					Character.stopAnimar();
+					Personaje.stopAnimar();
 				} 
 				@Override
 				public void keyPressed(KeyEvent e) {
 					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
-						Character.animar(label, true);
+						Personaje.animar(label, true);
 					} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
-						Character.animar(label, false);
+						Personaje.animar(label, false);
 					} else if(KeyEvent.VK_UP == e.getKeyCode()) {
-						Character.animar(label, null);
+						Personaje.animar(label, null);
 					}
 				}
 			});
