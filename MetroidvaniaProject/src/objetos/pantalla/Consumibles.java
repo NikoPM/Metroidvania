@@ -8,8 +8,9 @@ import javax.swing.*;
  */
 public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
-	private static final int VEL = 1;
-	private static final int HITBOX = 1;
+	private static final int VEL = 1; //Velocidad del consumible
+	private static final int HITBOX = 1; //Hitbox del consumible
+	private static Thread hilo; //Hilo de consumible
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -40,18 +41,14 @@ public class Consumibles extends Graficos {
 		});
 	}
 	
-	/** Metodo Privado Crear
+	/** Metodo Privado Animar
 	 * @param label JLabel con la imagen del consumible
-	 * @param vent Ventana en la que se crear el consumible
-	 * Añade el consumible al Contentpane de la ventana, edita su layout a flowlayout 
-	 * y crea un hilo que llama a la funcion labelMove que anima el consumible haciendolo 
-	 * subir o bajar 5 pixeles
+	 * Crea un hilo que llama a la funcion labelMove que anima el consumible haciendolo 
+	 * subir o bajar n pixeles
 	 */
-	private void crear(JLabel label, JFrame vent) {
+	private void animar(JLabel label) {
 		Consumibles cons = this;
-		vent.getContentPane().setLayout(new FlowLayout());
-		vent.getContentPane().add(label);
-		Thread hilo = new Thread(new Runnable() {
+		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				for(int i = 0; !Thread.interrupted() && i< 10; i++) {
@@ -62,7 +59,7 @@ public class Consumibles extends Graficos {
 							labelMove(cons, label, false);
 						}
 						try {
-							Thread.sleep(cons.getVelY() * 10);
+							Thread.sleep(1000/(10*cons.getVelY()));
 						} catch(InterruptedException e) {
 							Thread.currentThread().interrupt();
 						}
@@ -73,8 +70,15 @@ public class Consumibles extends Graficos {
 		hilo.start();
 	}
 	
+	/**Metodo Estatico StopAnimar
+	 * Interrumpe el hilo
+	 */
+	public static void stopAnimar() {
+		hilo.interrupt();
+	}
+	
 	/** Metodo Estatico Generar
-	  * @param x Posicion X del consumible en pantalla
+	 * @param x Posicion X del consumible en pantalla
 	 * @param y Posicion Y del consumible en pantalla
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 * @param vent Ventana en la que se crear el consumible
@@ -85,10 +89,12 @@ public class Consumibles extends Graficos {
 	public static JLabel generar(int x, int y, String dir, JFrame vent) {
 		Consumibles cons = new Consumibles(x, y, dir);
 		JLabel label = new JLabel(new ImageIcon(cons.dirImg));
+		vent.getContentPane().setLayout(new FlowLayout());
+		vent.getContentPane().add(label);
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
 			public void run() {
-				cons.crear(label, vent);
+				cons.animar(label);
 			}
 		});
 		return label;
