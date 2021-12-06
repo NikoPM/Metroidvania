@@ -12,6 +12,9 @@ public class Personaje extends Graficos {
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje yo; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica el salto
+	private static String[] frames = {
+			"src/imagenes/pers1.png", "src/imagenes/pers2.png"
+			};
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -19,7 +22,7 @@ public class Personaje extends Graficos {
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 */
 	private Personaje(int x, int y, String dir) {
-		super(x, y, dir, VEL_X, VEL_Y, HITBOX);
+		super(x, y, frames[0], VEL_X, VEL_Y, HITBOX);
 		yo = this; //Se asigna a si mismo su valor
 	}
 	
@@ -93,7 +96,7 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				if(!b) {
-					if(pers.getPosY()<vent.getHeight()-50 && !salto) { //<vent.getHeight()
+					if(pers.getPosY()<50 && !salto) { //<vent.getHeight()-50
 						pers.setPosY(pers.getPosY() + pers.getVelY());
 						label.setLocation(pers.getPosX(), pers.getPosY());
 					}
@@ -101,7 +104,21 @@ public class Personaje extends Graficos {
 					pers.setPosY(pers.getPosY() - pers.getVelY());
 					label.setLocation(pers.getPosX(), pers.getPosY());
 				}
-				vent.repaint();
+			}
+		});
+	}
+	
+	private static void animar(final Personaje pers, final JLabel label, boolean b) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				if(pers.getDirImg().equals(frames[0])) {
+					pers.setDirImg(frames[1]);
+				} else {
+					pers.setDirImg(frames[0]);
+				}
+				label.setIcon(new ImageIcon(pers.getDirImg()));
+				labelMoveX(pers, label, b);
 			}
 		});
 	}
@@ -111,14 +128,13 @@ public class Personaje extends Graficos {
 	 * @param b indica si mover a la izquierda o derecha
 	 * Crea un hilo que mueve al personaje en el eje Xs
 	 */
-	public static void mover(JLabel label, JFrame vent, boolean b) {
+	public static void mover(JLabel label, boolean b) {
 		hiloX = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
 					try {
-						labelMoveX(getPersonaje(), label, b);
-						vent.repaint();
+						animar(getPersonaje(), label, b);
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
