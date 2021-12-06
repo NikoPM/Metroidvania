@@ -145,8 +145,8 @@ public class Personaje extends Graficos {
 			public void run() {
 				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
 					try {
-						animar(getPersonaje(), label, vent, b);
-						//labelMoveX(getPersonaje(), label, vent, b);
+						//animar(getPersonaje(), label, vent, b);
+						labelMoveX(getPersonaje(), label, vent, b);
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
