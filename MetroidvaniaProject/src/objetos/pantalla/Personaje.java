@@ -12,16 +12,14 @@ public class Personaje extends Graficos {
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje yo; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica el salto
-	private static String[] frames = {
-			"src/imagenes/pers1.png", "src/imagenes/pers2.png"
-			};
+	private static String[] frames = //Direccion de las imagenes que componen la animacion del personaje
+	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
 	 * @param y Posicion Y del consumible en pantalla
-	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 */
-	private Personaje(int x, int y, String dir) {
+	private Personaje(int x, int y) {
 		super(x, y, frames[0], VEL_X, VEL_Y, HITBOX);
 		yo = this; //Se asigna a si mismo su valor
 	}
@@ -98,15 +96,16 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				if(!b) {
-					if(pers.getPosY()<50 && !salto) { //<vent.getHeight()-50
+					if(pers.getPosY()<450 && !salto) { //<vent.getHeight()-50
 						pers.setPosY(pers.getPosY() + pers.getVelY());
-						label.setLocation(pers.getPosX(), pers.getPosY());
 					}
 				} else {
 					pers.setPosY(pers.getPosY() - pers.getVelY());
-					label.setLocation(pers.getPosX(), pers.getPosY());
 				}
-				vent.repaint();
+				label.setLocation(pers.getPosX(), pers.getPosY());
+				try {
+					vent.repaint();
+				} catch (NullPointerException e) {}
 			}
 		});
 	}
@@ -193,8 +192,8 @@ public class Personaje extends Graficos {
 	 * Llama al constructor y crea un personaje, un label con la imagen del personaje
 	 * lo introduce en la ventana y crea un hilo que se encarga de las caidas del personaje
 	 */
-	public static JLabel generar(int x, int y, String dir, JFrame vent) {
-		Personaje pers = new Personaje(x, y, dir);
+	public static JLabel generar(int x, int y, JFrame vent) {
+		Personaje pers = new Personaje(x, y);
 		JLabel label = new JLabel(new ImageIcon(pers.dirImg));
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
