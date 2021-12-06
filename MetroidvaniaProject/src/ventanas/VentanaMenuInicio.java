@@ -2,8 +2,12 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.*;
 import javax.swing.border.*;
+
 
 
 //Ventana que se mostrará al ejecutar el juego 
@@ -14,7 +18,7 @@ public class VentanaMenuInicio extends JFrame{
 	private static int x = 1800;	
 	private static int y = 900;
 		//Botones
-	private static JButton nuevaPartida;
+	private static JButton bNuevaPartida = new JButton("Nueva partida");
 	private static JButton bExit = new JButton("Volver al escritorio");
 		//Variables que comprueban el estado de la ventana
 	private static boolean isOpen = true;
@@ -27,7 +31,9 @@ public class VentanaMenuInicio extends JFrame{
 	private static Color color = Color.LIGHT_GRAY; 
 	private static Font letra = new Font("Cambria", Font.BOLD, 17);
 		//Imagenes 
-	private Image logo = new ImageIcon("src/imagenes/Hexagrama.jpg").getImage();	
+	private Image logo = new ImageIcon("src/imagenes/Hexagrama.jpg").getImage();
+		//Logger de la ventana principal
+	private static Logger logger = Logger.getLogger("VentanaMenuInicio");
 	
 	/*
 	public static void main(String[] args) {
@@ -40,10 +46,10 @@ public class VentanaMenuInicio extends JFrame{
 	public VentanaMenuInicio() {
 		//WindowOpen o Closed checker
 		addWindowListener(new WindowAdapter() {
-		
 			@Override
 			public void windowClosed(WindowEvent e) {
 				isOpen = false;
+				logger.log(Level.INFO, "Ventana cerrada");
 			}
 		});
 		
@@ -61,10 +67,8 @@ public class VentanaMenuInicio extends JFrame{
 		JPanel p = new JPanel();
 		JPanel panelBotones = new JPanel();
 		JPanel panelCentral = new FondoPanel();
-		JButton bNuevaPartida = new JButton("Nueva Partida");
 		JButton bRanking = new JButton("Ranking");
 		JButton bControles = new JButton("Controles");
-		JButton bExit = new JButton("Volver al escritorio");
 		Border bordeBoton = BorderFactory.createLineBorder(Color.RED);
 		 
 		//Formato de los componentes
@@ -108,12 +112,12 @@ public class VentanaMenuInicio extends JFrame{
 		add(panelCentral);
 		
 		//ActionListeners
-		funcionBotones(); 
+		funcionBotones();
 	}
 	
 	//Métodos get
 	public static JButton getNuevaPartida() {
-		return nuevaPartida;
+		return bNuevaPartida;
 	}
 	
 	public static JButton getbExit() {
@@ -126,11 +130,30 @@ public class VentanaMenuInicio extends JFrame{
 	 * de la ventana
 	 */
 	public void funcionBotones() {
+		//Permite acceder al juego y crea un usuario
+		bNuevaPartida.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "Botón accionado: Nueva Partida");
+				String nombre = JOptionPane.showInputDialog("Nombre de Usuario");
+				
+			}
+		});
+		
+		//Cierra la ventana y vuelve al escritorio
 		bExit.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();				
+				logger.log(Level.INFO, "Botón accionado: bExit");
+				try {
+					logger.log(Level.INFO, "Juego terminado");
+					dispose();
+				}catch (Exception error) {
+					logger.log(Level.SEVERE, "No se puede cerrar la ventana");
+				}
+										
 			}
 		});
 	}
