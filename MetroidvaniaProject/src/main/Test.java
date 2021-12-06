@@ -44,7 +44,7 @@ public class Test {
 					} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
 						Personaje.mover(label, false);
 					} else if(KeyEvent.VK_UP == e.getKeyCode()) {
-						//TODO RELLENAR
+						Personaje.salto(label);
 					}
 				}
 			});

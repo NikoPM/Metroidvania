@@ -11,6 +11,7 @@ public class Personaje extends Graficos {
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje yo; //Mismo personaje
+	private static boolean salto = false; //Boolean que indica el salto
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -22,7 +23,7 @@ public class Personaje extends Graficos {
 		yo = this;
 	}
 	
-	public static Personaje getCharacter() {
+	public static Personaje getPersonaje() {
 		return yo;
 	}
 
@@ -32,7 +33,7 @@ public class Personaje extends Graficos {
 	 * @param b boolean que indica si realizar la operacion de suma o resta
 	 * Establece y edita la posicion del label
 	 */
-	private static void labelMove(final Personaje pers, final JLabel label, final boolean b) {
+	private static void labelMoveX(final Personaje pers, final JLabel label, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -46,12 +47,40 @@ public class Personaje extends Graficos {
 		});
 	}
 	
-	private static void LabelFall(final Personaje pers, final JLabel label, final JFrame vent) {
+	public static void salto(JLabel label) {
+		Thread hilo = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				salto = true;
+				for(int i = 0; i< 20; i++) {
+					try {
+						LabelMoveY(getPersonaje(), label, null, true);
+						Thread.sleep(15);
+						if(i==19) {
+							Thread.sleep(250);
+						}
+					} catch (InterruptedException e) {
+						salto = false;
+						Thread.currentThread().interrupt();
+					}
+				}
+				salto = false;
+			}
+		});
+		hilo.start();
+	}
+	
+	private static void LabelMoveY(final Personaje pers, final JLabel label, final JFrame vent, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
 			public void run() {
-				if(pers.getPosY()<100) { //<vent.getHeight()
-					pers.setPosY(pers.getPosY() + pers.getVelY());
+				if(!b) {
+					if(pers.getPosY()<100 && !salto) { //<vent.getHeight()
+						pers.setPosY(pers.getPosY() + pers.getVelY());
+						label.setLocation(pers.getPosX(), pers.getPosY());
+					}
+				} else {
+					pers.setPosY(pers.getPosY() - pers.getVelY());
 					label.setLocation(pers.getPosX(), pers.getPosY());
 				}
 			}
@@ -64,7 +93,7 @@ public class Personaje extends Graficos {
 			public void run() {
 				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
 					try {
-						labelMove(getCharacter(), label, b);
+						labelMoveX(getPersonaje(), label, b);
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
@@ -102,7 +131,7 @@ public class Personaje extends Graficos {
 			public void run() {
 				while(!Thread.interrupted()) {
 					try {
-						LabelFall(pers, label, vent);
+						LabelMoveY(pers, label, vent, false);
 						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
