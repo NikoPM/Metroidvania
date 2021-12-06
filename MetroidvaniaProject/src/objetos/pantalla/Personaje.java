@@ -39,7 +39,7 @@ public class Personaje extends Graficos {
 	 * @param b boolean que indica si realizar la operacion de suma o resta
 	 * Establece y edita la posicion del label
 	 */
-	private static void labelMoveX(final Personaje pers, final JLabel label, final boolean b) {
+	private static void labelMoveX(final Personaje pers, final JLabel label, final JFrame vent, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -49,6 +49,7 @@ public class Personaje extends Graficos {
 					pers.setPosX(pers.getPosX() - pers.getVelX());	
 				}
 				label.setLocation(pers.getPosX(), pers.getPosY());
+				vent.repaint();
 			}
 		});
 	}
@@ -108,7 +109,7 @@ public class Personaje extends Graficos {
 		});
 	}
 	
-	private static void animar(final Personaje pers, final JLabel label, boolean b) {
+	private static void animar(final Personaje pers, final JLabel label, final JFrame vent, boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -118,7 +119,8 @@ public class Personaje extends Graficos {
 					pers.setDirImg(frames[0]);
 				}
 				label.setIcon(new ImageIcon(pers.getDirImg()));
-				labelMoveX(pers, label, b);
+				vent.repaint();
+				labelMoveX(pers, label, vent, b);
 			}
 		});
 	}
@@ -128,13 +130,13 @@ public class Personaje extends Graficos {
 	 * @param b indica si mover a la izquierda o derecha
 	 * Crea un hilo que mueve al personaje en el eje Xs
 	 */
-	public static void mover(JLabel label, boolean b) {
+	public static void mover(JLabel label, JFrame vent, boolean b) {
 		hiloX = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
 					try {
-						animar(getPersonaje(), label, b);
+						animar(getPersonaje(), label, vent, b);
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();

@@ -17,6 +17,7 @@ public class Test {
 	}
 	static class Ventana extends JFrame {
 		private static final long serialVersionUID = 1L;
+		private Ventana vent = this;
 		
 		public Ventana() {
 			this.setAlwaysOnTop(true);
@@ -40,14 +41,11 @@ public class Test {
 				@Override
 				public void keyPressed(KeyEvent e) {
 					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
-						Personaje.mover(label, true);
-						repaint();
+						Personaje.mover(label, vent, true);
 					} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
-						Personaje.mover(label, false);
-						repaint();
+						Personaje.mover(label, vent, false);
 					} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 						Personaje.salto(label);
-						repaint();
 					}
 				}
 			});
