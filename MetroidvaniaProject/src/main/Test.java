@@ -35,16 +35,16 @@ public class Test {
 			this.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					Personaje.stopAnimar();
-				} 
+					Personaje.stopMover();
+				}  
 				@Override
 				public void keyPressed(KeyEvent e) {
 					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
-						Personaje.animar(label, true);
+						Personaje.mover(label, true);
 					} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
-						Personaje.animar(label, false);
+						Personaje.mover(label, false);
 					} else if(KeyEvent.VK_UP == e.getKeyCode()) {
-						Personaje.animar(label, null);
+						//TODO RELLENAR
 					}
 				}
 			});
