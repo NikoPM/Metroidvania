@@ -2,7 +2,7 @@ package objetos.pantalla;
 
 import java.awt.*;
 import javax.swing.*;
-
+ 
 public class Personaje extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL_X = 1; //Velocidad en el eje X
