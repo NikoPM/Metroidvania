@@ -10,16 +10,14 @@ import javax.swing.SwingUtilities;
 
 import utils.ventanas.ventanaBitmap.VentanaGrafica;
 
-public class Enemigo extends Character /** implements Destruible **/
+public class Enemigo extends Graficos /** implements Destruible **/
 {
 	private static final long serialVersionUID = 1L;
 
 	private static Random random = new Random();
 
-	public Enemigo(int x, int y, int velocidadX, int velocidadY, int radioHitbox,
-			String imagen /** ,String explosion **/
-	) {
-		super(x, y, velocidadX, velocidadY, radioHitbox, "enemigo.png");
+	public Enemigo(int x, int y, int velocidadX, int velocidadY, int radioHitbox,String imagen /** ,String explosion **/) {
+		super(x, y,"enemigo.png",velocidadX, velocidadY, radioHitbox);
 	}
 
 	private static void movimiento(final JLabel label, final int posX, final int posY, final int j, final int k) {
