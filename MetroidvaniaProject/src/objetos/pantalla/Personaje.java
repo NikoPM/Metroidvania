@@ -95,9 +95,7 @@ public class Personaje extends Graficos {
 	
 	public static void stopAnimar() {
 		try {
-			if(!salto) {
-				hiloX.interrupt();
-			}
+			if(!salto) hiloX.interrupt();
 		} catch (NullPointerException e) {}
 	}
 	
