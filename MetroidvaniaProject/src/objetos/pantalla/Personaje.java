@@ -36,6 +36,7 @@ public class Personaje extends Graficos {
 	/** Metodo Estatico Privado LabelMove
 	 * @param pers Personaje que se anima y del cual se recibe la posicion en pantalla
 	 * @param label JLabel que se edita
+	 * @param vent Ventana en la que se edita
 	 * @param b boolean que indica si realizar la operacion de suma o resta
 	 * Establece y edita la posicion del label
 	 */
@@ -105,10 +106,18 @@ public class Personaje extends Graficos {
 					pers.setPosY(pers.getPosY() - pers.getVelY());
 					label.setLocation(pers.getPosX(), pers.getPosY());
 				}
+				vent.repaint();
 			}
 		});
 	}
 	
+	/** Metodo Estatico Privado Animar
+	 * @param pers Personaje que se edita
+	 * @param label label que se edita
+	 * @param vent ventana en la que se edita
+	 * @param b boolean que se introduce en el metodo labelMoveX
+	 * Edita la imagen del label del personaje y llama al metodo labelMoveX
+	 */
 	private static void animar(final Personaje pers, final JLabel label, final JFrame vent, boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -127,6 +136,7 @@ public class Personaje extends Graficos {
 	
 	/** Metodo Estatico Mover
 	 * @param label label que se edita
+	 * @param vent Ventana en la que se edita
 	 * @param b indica si mover a la izquierda o derecha
 	 * Crea un hilo que mueve al personaje en el eje Xs
 	 */
@@ -137,6 +147,7 @@ public class Personaje extends Graficos {
 				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
 					try {
 						animar(getPersonaje(), label, vent, b);
+						//labelMoveX(getPersonaje(), label, vent, b);
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
