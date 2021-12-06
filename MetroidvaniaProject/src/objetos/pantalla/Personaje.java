@@ -11,6 +11,7 @@ public class Personaje extends Graficos {
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje yo; //Mismo personaje
+	private static boolean salto = false;
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -37,12 +38,12 @@ public class Personaje extends Graficos {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				if(b==null) {
-					pers.setPosY(pers.getPosY() - pers.getVelY());
-				} else if(b==false){
-					pers.setPosX(pers.getPosX() - pers.getVelX());	
-				} else if(b==true) {
+				if(b==null){
+					pers.setPosY(pers.getPosY() - 3*pers.getVelY());	
+				} else if(b==true ){
 					pers.setPosX(pers.getPosX() + pers.getVelX());
+				} else if(b==false) {
+					pers.setPosX(pers.getPosX() - pers.getVelX());	
 				}
 				label.setLocation(pers.getPosX(), pers.getPosY());
 			}
@@ -53,10 +54,10 @@ public class Personaje extends Graficos {
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
 			public void run() {
-				if(pers.getPosY()<100) { //<vent.getHeight()
+				if(pers.getPosY()<100 && !salto) { //<vent.getHeight()
 					pers.setPosY(pers.getPosY() + 3*pers.getVelY());
+					label.setLocation(pers.getPosX(), pers.getPosY());
 				}
-				label.setLocation(pers.getPosX(), pers.getPosY());
 			}
 		});
 	}
@@ -65,13 +66,27 @@ public class Personaje extends Graficos {
 		hiloX = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
-					try {
-						labelMove(getCharacter(), label, b);
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
+				if(b!=null) {
+					for(int i = 0; i<10 && !Thread.interrupted(); i++) {
+						try {
+							labelMove(getCharacter(), label, b);
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
 					}
+				} else {
+					for (int i = 0; i<10; i++) {
+						try {
+							salto = true;
+							labelMove(getCharacter(), label, b);
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							salto = false;
+							Thread.currentThread().interrupt();
+						}
+					}
+					salto = false;
 				}
 			}
 		});
@@ -80,7 +95,9 @@ public class Personaje extends Graficos {
 	
 	public static void stopAnimar() {
 		try {
-		hiloX.interrupt();
+			if(!salto) {
+				hiloX.interrupt();
+			}
 		} catch (NullPointerException e) {}
 	}
 	

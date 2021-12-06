@@ -28,8 +28,8 @@ public class Test {
 					Personaje.stopAll();
 				}
 			});
-			Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
-			Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
+			//Consumibles.generar(40, 100, "src/imagenes/pelota.png", this);
+			//Consumibles.generar(30, 10, "src/imagenes/pelota.png", this);
 			Plataformas.generar(50, 100, "src/imagenes/plataforma.png", this);
 			JLabel label = Personaje.generar(50, 50, "src/imagenes/pelota.png", this);
 			this.addKeyListener(new KeyAdapter() {
