@@ -72,7 +72,7 @@ public class Consumibles extends Graficos {
 		});
 		hilo.start();
 	}
-	
+	 
 	/** Metodo StopAnimar
 	 * @param i indice del consumible interrumpido
 	 * Interrumpe el hilo de un consumible
@@ -80,7 +80,7 @@ public class Consumibles extends Graficos {
 	public static void stopAnimar(int i) {
 		listaCons.get(i).hilo.interrupt();
 	}
-	
+	 
 	/** Metodo StopAll
 	 *  Interrumpe el hilo de todos los consumibles
 	 */
@@ -89,7 +89,7 @@ public class Consumibles extends Graficos {
 			cons.hilo.interrupt();
 		}
 	}
-	
+
 	/** Metodo Estatico Generar
 	 * @param x Posicion X del consumible en pantalla
 	 * @param y Posicion Y del consumible en pantalla
