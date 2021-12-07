@@ -10,7 +10,7 @@ public class Personaje extends Graficos {
 	private static final int HITBOX = 1; //HitBox del personaje
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
-	private static Personaje yo; //Mismo personaje
+	private static Personaje self; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica el salto
 	private static boolean fall = false; //Boolean que indica la caida
 	private static String[] frames = //Direccion de las imagenes que componen la animacion del personaje
@@ -23,7 +23,7 @@ public class Personaje extends Graficos {
 	 */
 	private Personaje(int x, int y) {
 		super(x, y, frames[0], VEL_X, VEL_Y, HITBOX);
-		yo = this; //Se asigna a si mismo su valor
+		self = this; //Se asigna a si mismo su valor
 	}
 	
 	/** Metodo GetVida
@@ -65,7 +65,7 @@ public class Personaje extends Graficos {
 	 * @return se devuelve a si mismo
 	 */
 	public static Personaje getPersonaje() {
-		return yo;
+		return self;
 	}
 
 	/** Metodo Estatico Privado LabelMove
