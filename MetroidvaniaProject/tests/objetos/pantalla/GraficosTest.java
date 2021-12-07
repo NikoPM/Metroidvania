@@ -7,7 +7,7 @@ import org.junit.Test;
 import objetos.pantalla.Graficos;
 //TODO EDITAR LOS TESTS RELATIVOS A 3 NUEVOS ATRIBUTOS CAMBIOS 
 public class GraficosTest {
-	private static Graficos graficos = new Graficos(12, 22, " ");
+	private static Graficos graficos = new Graficos(12, 22, " ", 1 , 1, 1);
 	 
 	@Test
 	public void testGetPosX() {
@@ -43,4 +43,18 @@ public class GraficosTest {
 		assertEquals("Cambio", graficos.getDirImg());
 	}
 
+	@Test
+	public void testGetVelX() {
+		assertEquals(1, graficos.getVelX());
+	}
+	
+	@Test
+	public void testGetVelY() {
+		assertEquals(1, graficos.getVelY());
+	}
+	
+	@Test
+	public void testGetHitbox() {
+		assertEquals(1, graficos.getHitbox());
+	}
 }

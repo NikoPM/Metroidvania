@@ -136,7 +136,8 @@ public class VentanaMenuInicio extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Botón accionado: Nueva Partida");
-				String nombre = JOptionPane.showInputDialog("Nombre de Usuario");
+				VentanaJuego v = new VentanaJuego();
+				v.setVisible(true);
 				
 			}
 		});
