@@ -49,6 +49,7 @@ public class VentanaJuego extends JFrame{
 		hpBar.setPreferredSize(new Dimension(150,20));
 		hpBar.setForeground(Color.green);
 		hpBar.setBackground(Color.red);
+		
 
 		con.add(barraDeVida);
 		con.add(hp);

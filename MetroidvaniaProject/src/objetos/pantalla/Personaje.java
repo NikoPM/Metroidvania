@@ -88,6 +88,7 @@ public class Personaje extends Graficos {
 		}
 	}
 	
+	
 	/** Metodo Estatico Privado LabelMoveY
 	 * @param pers Personaje que se edita
 	 * @param label label que se edita

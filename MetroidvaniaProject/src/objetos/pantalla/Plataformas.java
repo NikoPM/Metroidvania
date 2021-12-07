@@ -11,6 +11,7 @@ public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 1;
 	
+	
 	/**Constructor privado de la clase Platafromas
 	 * @param x	Posicion X de la plataforma en pantalla
 	 * @param y	Posicion Y de la plataforma en pantalla
