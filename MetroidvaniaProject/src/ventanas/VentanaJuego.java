@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 
 import objetos.pantalla.Consumibles;
 import objetos.pantalla.Personaje;
@@ -84,6 +85,7 @@ public class VentanaJuego extends JFrame{
 				}
 			}
 		});
+		hilo.start();
 		
 		this.addKeyListener(new KeyAdapter() {
 			@Override
@@ -107,6 +109,11 @@ public class VentanaJuego extends JFrame{
 	}
 	
 	private static void setVida() {
-		hpBar.setValue(Personaje.getVida());
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				hpBar.setValue(Personaje.getVida());
+			}
+		});
 	}
 }
