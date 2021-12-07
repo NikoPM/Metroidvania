@@ -5,7 +5,7 @@ import javax.swing.*;
  
 public class Personaje extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
-	private static final int VEL_X = 1; //Velocidad en el eje X
+	private static final int VEL_X = 5; //Velocidad en el eje X
 	private static final int VEL_Y = 3; //Velocidad en el eje Y
 	private static final int HITBOX = 1; //HitBox del personaje
 	private static Thread hiloX; //Hilo para el eje X del personaje
@@ -95,7 +95,7 @@ public class Personaje extends Graficos {
 			}
 		});
 	}
-	
+	 
 	/** Metodo Estatico Salto
 	 * @param label label que se edita
 	 * @param vent Ventana en la que se edita
@@ -188,21 +188,23 @@ public class Personaje extends Graficos {
 	 * Crea un hilo que mueve al personaje en el eje Xs
 	 */
 	public static void mover(JLabel label, JFrame vent, boolean b) {
-		hiloX = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for(int i = 0; i<10 && !Thread.interrupted(); i++) {
-					try {
-						animar(getPersonaje(), label, vent, b);
-						//labelMoveX(getPersonaje(), label, vent, b);
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
+		if(hiloX == null) {
+			hiloX = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					while(!Thread.interrupted()) {
+						try {
+							animar(getPersonaje(), label, vent, b);
+							//labelMoveX(getPersonaje(), label, vent, b);
+							Thread.sleep(35);
+						} catch (InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
 					}
 				}
-			}
-		});
-		hiloX.start();
+			});
+			hiloX.start();
+		}
 	}
 	
 	private static void shootLabel(final JLabel label, int i) {
@@ -233,9 +235,19 @@ public class Personaje extends Graficos {
 	 * Detiene el hilo que mueve al personaje en el eje X
 	 */
 	public static void stopMover() {
-		try {
-			hiloX.interrupt();
-		} catch (NullPointerException e) {}
+		Thread hilo = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(400);
+					hiloX.interrupt();
+					hiloX = null;
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				} catch (NullPointerException e) {}
+			}
+		});
+		hilo.start();
 	}
 	
 	/** Metodo Estatico stopFall
