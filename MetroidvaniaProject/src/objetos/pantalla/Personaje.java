@@ -14,7 +14,7 @@ public class Personaje extends Graficos {
 	private static boolean salto = false; //Boolean que indica el salto
 	private static String[] frames = //Direccion de las imagenes que componen la animacion del personaje
 	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
-	private static final int vida = 100;//Vida del personaje inicializada a 100
+	private static final int vida = 100; //Vida del personaje inicializada a 100
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla

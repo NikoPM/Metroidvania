@@ -14,7 +14,7 @@ public class Consumibles extends Graficos {
 	private static final int HITBOX = 1; //Hitbox del consumible
 	private Thread hilo; //Hilo de consumible
 	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles
-
+ 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
 	 * @param y Posicion Y del consumible en pantalla
