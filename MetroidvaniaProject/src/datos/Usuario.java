@@ -1,15 +1,12 @@
 package datos;
 
-import java.util.ArrayList;
-
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 
 	private int idUsuario;
 	private String nombre; 
 	private double tiempo;
 	
 	public Usuario(int idUsuario, String nombre, double tiempo) {
-		super();
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.tiempo = tiempo;
@@ -20,7 +17,7 @@ public class Usuario {
 	}
 
 	public void setId(int id) {
-		this.idUsuario = idUsuario;
+		this.idUsuario = id;
 	}
 
 	public String getNombre() {
@@ -38,9 +35,6 @@ public class Usuario {
 	public void setTiempo(double tiempo) {
 		this.tiempo = tiempo;
 	}
-
-	
-	
 	
 	@Override
 	public String toString() {
@@ -54,6 +48,13 @@ public class Usuario {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public int compareTo(Usuario u) {
+		if(this.idUsuario > u.getIdUsuario()) return 1;
+		if(this.idUsuario < u.getIdUsuario()) return -1;
+		return 0;
 	}
 }
 
