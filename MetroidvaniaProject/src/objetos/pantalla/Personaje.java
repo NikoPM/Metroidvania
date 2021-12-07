@@ -96,7 +96,7 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				if(!b) {
-					if(pers.getPosY()<450 && !salto) { //<vent.getHeight()-50
+					if(pers.getPosY()<50 && !salto) { //<vent.getHeight()-50
 						pers.setPosY(pers.getPosY() + pers.getVelY());
 					}
 				} else {
@@ -155,6 +155,26 @@ public class Personaje extends Graficos {
 			}
 		});
 		hiloX.start();
+	}
+	
+	private static void shootLabel(final JLabel label, int i) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				label.setLocation(i, getPersonaje().getPosY());
+			}
+		});
+	}
+	
+	public static void shoot(JFrame vent) {
+		Thread hilo = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				//TODO RELLENAR
+				//shootLabel(label, i);
+			}
+		});
+		hilo.start();
 	}
 	
 	/** Metodo Estatico stopMover

@@ -46,6 +46,8 @@ public class Test {
 						Personaje.mover(label, vent, false);
 					} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 						Personaje.salto(label);
+					} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
+						//Personaje.shoot(vent);
 					}
 				}
 			});
