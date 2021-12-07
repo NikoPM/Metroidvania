@@ -80,7 +80,7 @@ public class VentanaJuego extends JFrame{
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
-					setVida();
+					hpBar.setValue(Personaje.getVida());
 					repaint();
 				}
 			}
@@ -106,14 +106,5 @@ public class VentanaJuego extends JFrame{
 			}
 		});
 		this.setVisible(true);
-	}
-	
-	private static void setVida() {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				hpBar.setValue(Personaje.getVida());
-			}
-		});
 	}
 }
