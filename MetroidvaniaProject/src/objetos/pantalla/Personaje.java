@@ -96,7 +96,7 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				if(!b) {
-					if(pers.getPosY()<50 && !salto) { //<vent.getHeight()-50
+					if(pers.getPosY()<vent.getHeight()-100 && !salto) { //<vent.getHeight()-50
 						pers.setPosY(pers.getPosY() + pers.getVelY());
 					}
 				} else {

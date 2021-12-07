@@ -2,6 +2,8 @@ package objetos.pantalla;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
+import java.util.List;
 
 /**
  * Clase Consumibles de los objetos que aparcen por pantalla
@@ -10,7 +12,8 @@ public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL = 1; //Velocidad del consumible
 	private static final int HITBOX = 1; //Hitbox del consumible
-	private static Thread hilo; //Hilo de consumible
+	private Thread hilo; //Hilo de consumible
+	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles
 
 	/** Constructor Privado de objetos de clase Consumibles
 	 * @param x Posicion X del consumible en pantalla
@@ -51,7 +54,7 @@ public class Consumibles extends Graficos {
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				for(int i = 0; !Thread.interrupted() && i< 10; i++) {
+				while(!Thread.interrupted()) {
 					for(int j = 0; j<10; j++) {
 						if(j<5) {
 							labelMove(cons, label, true);
@@ -70,11 +73,21 @@ public class Consumibles extends Graficos {
 		hilo.start();
 	}
 	
-	/**Metodo Estatico StopAnimar
-	 * Interrumpe el hilo
+	/** Metodo StopAnimar
+	 * @param i indice del consumible interrumpido
+	 * Interrumpe el hilo de un consumible
 	 */
-	public static void stopAnimar() {
-		hilo.interrupt();
+	public static void stopAnimar(int i) {
+		listaCons.get(i).hilo.interrupt();
+	}
+	
+	/** Metodo StopAll
+	 *  Interrumpe el hilo de todos los consumibles
+	 */
+	public static void stopAll() {
+		for(Consumibles cons: listaCons) {
+			cons.hilo.interrupt();
+		}
 	}
 	
 	/** Metodo Estatico Generar
@@ -84,10 +97,11 @@ public class Consumibles extends Graficos {
 	 * @param vent Ventana en la que se crear el consumible
 	 * @return Crear un objeto de la clase consumible y un JLabel del mismo, 
 	 * lo introduce en la ventana animandolo y devuelve el JLabel con la imagen y posicion del consumible
-	 * LLama al constructor y al metodo crear
+	 * LLama al constructor y al metodo crear e introduce el consumible en la lista
 	 */
 	public static JLabel generar(int x, int y, String dir, JFrame vent) {
 		Consumibles cons = new Consumibles(x, y, dir);
+		listaCons.add(cons);
 		JLabel label = new JLabel(new ImageIcon(cons.dirImg));
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
