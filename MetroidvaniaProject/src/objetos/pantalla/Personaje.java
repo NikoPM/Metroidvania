@@ -35,26 +35,30 @@ public class Personaje extends Graficos {
 	
 	/** Metodo DecVida
 	 * @param i cantidad que se decrementa
+	 * @return vida del personaje 
 	 * Decrementa la vida del personaje en i
 	 */
-	public static void decVida(int i) {
+	public static int decVida(int i) {
 		if(vida - 1 < 0) {
 			vida = 0;
 		} else {
 			vida -= 1;
 		}
+		return vida;
 	}
 	
 	/** Metodo IncVida
 	 * @param i cantidad que se incrementa
+	 * @return vida del personaje 
 	 * Incrementa la vida del personaje en i
 	 */
-	public static void incVida(int i) {
+	public static int incVida(int i) {
 		if(vida + 1 > 100) {
 			vida = 100;
 		} else {
 			vida += 1;
 		}
+		return vida;
 	}
 	
 	/** Metodo Estatico GetPersonaje
