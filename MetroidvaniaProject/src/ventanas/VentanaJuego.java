@@ -18,14 +18,14 @@ public class VentanaJuego extends JFrame {
 	public static void main(String[] args) {
 		new VentanaJuego();
 	}
-	
+	 
 	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 500));
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		
-		this.addWindowListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
@@ -72,7 +72,9 @@ public class VentanaJuego extends JFrame {
 		this.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				Personaje.stopMover();
+				if(KeyEvent.VK_RIGHT == e.getKeyCode() || KeyEvent.VK_LEFT == e.getKeyCode()) {
+					Personaje.stopMover();
+				}
 			}  
 			@Override
 			public void keyPressed(KeyEvent e) {

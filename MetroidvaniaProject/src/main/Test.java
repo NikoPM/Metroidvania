@@ -15,6 +15,7 @@ public class Test {
 			}
 		});
 	} 
+	
 	static class Ventana extends JFrame {
 		private static final long serialVersionUID = 1L;
 		private Ventana vent = this;
