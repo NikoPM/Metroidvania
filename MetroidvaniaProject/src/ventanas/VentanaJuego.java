@@ -74,7 +74,7 @@ public class VentanaJuego extends JFrame{
 		
 		JLabel label = Personaje.generar(500, 50, this);
 		pers = Personaje.getPersonaje();
-
+ 
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
