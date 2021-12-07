@@ -103,7 +103,7 @@ public class BaseDeDatos {
 	
 	public static void borrarUsuario( Usuario usuario ) throws SQLException {
 		Statement statement = conexion.createStatement();
-		String sent = "delete from compra where idUsuario=" + usuario.getIdUsuario() + ";";
+		String sent = "delete from usuario  where idUsuario=" + usuario.getIdUsuario() + ";";
 		logger.log( Level.INFO, "Statement: " + sent );
 		int borrados = statement.executeUpdate( sent );
 		if (borrados==0) throw new SQLException( "No se ha borrado ningun usuario con idUsuario=" + usuario.getIdUsuario() );

@@ -10,8 +10,7 @@ import javax.swing.SwingUtilities;
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 1;
-	//TODO Añadir los atributos de altura t anchura de la plataforma cuando Alvaro y Miguel cambien 
-	//algunas cosas de la clase Graficos y otras
+	
 	
 	/**Constructor privado de la clase Platafromas
 	 * @param x	Posicion X de la plataforma en pantalla
@@ -22,6 +21,39 @@ public class Plataformas extends Graficos {
 		super(x, y, dir, 0, 0, HITBOX);
 	}
 	
+	//Getters y setters 
+	@Override
+	public int getPosX() {
+		return super.getPosX();
+	}
+	
+	@Override
+	public int getHitbox() {
+		return super.getHitbox();
+	}
+	
+	@Override
+	public int getPosY() {
+		return super.getPosY();
+	}
+	
+	@Override
+	public void setPosY(int posY) {
+		super.setPosY(posY);
+	}
+	
+	@Override
+	public void setPosX(int posX) {
+		super.setPosX(posX);
+	}
+	
+	@Override
+	public void setHitbox(int hitbox) {
+		super.setHitbox(hitbox);
+	}
+	
+	//Metodos de la clase
+	
 	/** Metodo Privado Crear
 	 * @param label JLabel con la imagen de la plataforma
 	 * @param vent Ventana en la que se crear la plataforma
@@ -31,7 +63,6 @@ public class Plataformas extends Graficos {
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
 	}
-	
 	
 	/** Metodo Estatico Generar
 	  * @param x Posicion X de la plataforma en pantalla
