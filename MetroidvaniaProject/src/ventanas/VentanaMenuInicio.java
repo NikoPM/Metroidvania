@@ -37,13 +37,6 @@ public class VentanaMenuInicio extends JFrame {
 		//Logger de la ventana principal
 	private static Logger logger = Logger.getLogger("VentanaMenuInicio");
 	
-	/*
-	public static void main(String[] args) {
-		//Main provisional para hacer pruebas
-		VentanaMenuInicio v = new VentanaMenuInicio();
-		v.setVisible(true);
-	}
-	*/
 	
 	public VentanaMenuInicio() {
 		//WindowOpen o Closed checker

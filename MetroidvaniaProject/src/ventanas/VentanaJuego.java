@@ -2,6 +2,9 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JFrame;
 import javax.swing.*;
 import objetos.pantalla.*;
@@ -15,9 +18,7 @@ public class VentanaJuego extends JFrame {
 	private static Thread hilo;
 	private static JProgressBar hpBar;
 	
-	public static void main(String[] args) {
-		new VentanaJuego();
-	}
+	private static Logger logger = Logger.getLogger("VentanaJuego");
 	 
 	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -30,34 +31,34 @@ public class VentanaJuego extends JFrame {
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
 				hilo.interrupt();
+				logger.log(Level.INFO, "Juego terminado");
 			}
 		}); 
 	
+		//Creacion de los componentes
 		con = getContentPane();
 		barraDeVida = new JPanel();
 		hp = new JPanel();
 		hpBar = new JProgressBar(0,100);
 		JLabel lHp = new JLabel("HP");
 		
-		
+		//Atributos de los componentes
 		lHp.setFont(new Font("Cambria", Font.BOLD, 17));
-		
-		
-		
 		hp.setBounds(150, -5, 40, 40);
 		hpBar.setBounds(-100, 80, 150, 20);
 		hpBar.setForeground(Color.green);
 		hpBar.setBackground(Color.red);
 		
+		
+		//Add
 		barraDeVida.add(hpBar);
 		con.add(barraDeVida);
-		con.add(hp);
-		
-		
+		con.add(hp);	
 		hp.add(lHp);
 		
+		//Creacion del personaje
 		JLabel label = Personaje.generar(500, 50, this);
- 
+		
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -69,11 +70,19 @@ public class VentanaJuego extends JFrame {
 		});
 		hilo.start();
 		
+		//Listeners de teclado 
 		this.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(KeyEvent.VK_RIGHT == e.getKeyCode() || KeyEvent.VK_LEFT == e.getKeyCode()) {
 					Personaje.stopMover();
+					logger.log(Level.INFO, "Tecla direccion izda. pulsada");
+				} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
+					logger.log(Level.INFO, "Tecla direccion izda. pulsada");
+				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
+					logger.log(Level.INFO, "Tecla direccion arriba pulsada");
+				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
+					logger.log(Level.INFO, "Tecla espacio pulsada");
 				}
 			}  
 			@Override
