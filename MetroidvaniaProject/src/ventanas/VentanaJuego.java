@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
@@ -59,18 +60,17 @@ public class VentanaJuego extends JFrame{
 		lHp.setFont(new Font("Cambria", Font.BOLD, 17));
 		
 		
-		barraDeVida.setBounds(0, -2,150 ,20);
-		//barraDeVida.setBackground(Color.green);
+		
 		hp.setBounds(150, -5, 40, 40);
-		hpBar.setPreferredSize(new Dimension(150,20));
+		hpBar.setBounds(-100, 80, 150, 20);
 		hpBar.setForeground(Color.green);
 		hpBar.setBackground(Color.red);
 		
-
+		barraDeVida.add(hpBar);
 		con.add(barraDeVida);
 		con.add(hp);
 		
-		barraDeVida.add(hpBar);
+		
 		hp.add(lHp);
 		
 		JLabel label = Personaje.generar(500, 50, this);
@@ -107,4 +107,5 @@ public class VentanaJuego extends JFrame{
 		});
 		this.setVisible(true);
 	}
+	
 }

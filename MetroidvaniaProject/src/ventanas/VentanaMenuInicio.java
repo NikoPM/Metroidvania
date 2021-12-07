@@ -30,6 +30,7 @@ public class VentanaMenuInicio extends JFrame{
 	private static int anchura = 500;
 	private static Color color = Color.LIGHT_GRAY; 
 	private static Font letra = new Font("Cambria", Font.BOLD, 17);
+	private static String nombre;
 		//Imagenes 
 	private Image logo = new ImageIcon("src/imagenes/Hexagrama.jpg").getImage();
 		//Logger de la ventana principal
@@ -136,8 +137,10 @@ public class VentanaMenuInicio extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Botón accionado: Nueva Partida");
+				String nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
 				VentanaJuego v = new VentanaJuego();
 				v.setVisible(true);
+				dispose();
 				
 			}
 		});
@@ -189,6 +192,13 @@ public class VentanaMenuInicio extends JFrame{
 			hilo.start();
 		}
 
+	}
+	
+	 /**Metodo getNombre de VentanaMenuInicio
+	  * @return nombre del usuario que se ha pedido al iniciar partida
+	  */
+	 public static String getNombre() {
+		return nombre;
 	}
 	
 }
