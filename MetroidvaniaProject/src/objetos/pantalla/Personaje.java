@@ -81,7 +81,9 @@ public class Personaje extends Graficos {
 					pers.setPosX(pers.getPosX() - pers.getVelX());	
 				}
 				label.setLocation(pers.getPosX(), pers.getPosY());
-				vent.repaint();
+				try {
+					vent.repaint();
+				} catch (NullPointerException e) {}
 			}
 		});
 	}
@@ -163,7 +165,9 @@ public class Personaje extends Graficos {
 					pers.setDirImg(frames[0]);
 				}
 				label.setIcon(new ImageIcon(pers.getDirImg()));
-				vent.repaint();
+				try {
+					vent.repaint();
+				} catch (NullPointerException e) {}
 				labelMoveX(pers, label, vent, b);
 			}
 		});

@@ -4,14 +4,18 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import objetos.pantalla.Consumibles;
 import objetos.pantalla.Personaje;
 
 
@@ -21,22 +25,33 @@ public class VentanaJuego extends JFrame{
 	private static JPanel barraDeVida;//Barra de vida del personaje
 	private static Container con;//Contenedor donde se meterán todos los aspectos que se muestren por pantalla
 	private static JPanel hp;
+	private VentanaJuego vent;
+	private static Thread hilo;
+	private static JProgressBar hpBar;
+	private static Personaje pers;
 	
 	public static void main(String[] args) {
 		VentanaJuego v = new VentanaJuego();
-		v.setVisible(true);
 	}
 	
 	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(600, 500);
+		setMinimumSize(new Dimension(600, 500));
 		this.setLocationRelativeTo(null);
+		this.setAlwaysOnTop(true);
 		
-		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				Personaje.stopAll();
+				hilo.interrupt();
+			}
+		}); 
+	
 		con = new Container();
 		barraDeVida = new JPanel();
 		hp = new JPanel();
-		JProgressBar hpBar = new JProgressBar(0,100);
+		hpBar = new JProgressBar(0,100);
 		JLabel lHp = new JLabel("HP");
 		
 		
@@ -59,28 +74,41 @@ public class VentanaJuego extends JFrame{
 		
 		add(con);
 		
-		
-		//
-		addKeyListener(new KeyListener() {	
+		JLabel label = Personaje.generar(500, 50, this);
+		pers = Personaje.getPersonaje();
+
+		hilo = new Thread(new Runnable() {
 			@Override
-			public void keyTyped(KeyEvent e) {	
-			}
-	
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
-					hpBar.setValue(70);
+			public void run() {
+				while(!Thread.interrupted()) {
+					setVida();
 					repaint();
-				}else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
-					hpBar.setValue(25);
 				}
-				
 			}
 		});
 		
+		this.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				Personaje.stopMover();
+			}  
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
+					Personaje.mover(label, vent, true);
+				} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
+					Personaje.mover(label, vent, false);
+				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
+					Personaje.salto(label);
+				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
+					//Personaje.shoot(vent);
+				}
+			}
+		});
+		this.setVisible(true);
+	}
+	
+	private static void setVida() {
+		hpBar.setValue(Personaje.getVida());
 	}
 }
