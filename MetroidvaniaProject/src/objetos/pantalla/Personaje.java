@@ -218,7 +218,11 @@ public class Personaje extends Graficos {
 		Thread hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				//TODO RELLENAR
+				try {
+					JLabel label = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
+					vent.getContentPane().setLayout(new FlowLayout());
+					vent.getContentPane().add(label);
+				} catch (NullPointerException e) {}
 				//shootLabel(label, i);
 			}
 		});
@@ -261,24 +265,28 @@ public class Personaje extends Graficos {
 	 * lo introduce en la ventana y crea un hilo que se encarga de las caidas del personaje
 	 */
 	public static JLabel generar(int x, int y, JFrame vent) {
-		Personaje pers = new Personaje(x, y);
-		JLabel label = new JLabel(new ImageIcon(pers.dirImg));
-		vent.getContentPane().setLayout(new FlowLayout());
-		vent.getContentPane().add(label);
-		hiloY = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while(!Thread.interrupted()) {
-					try {
-						LabelMoveY(pers, label, vent, false);
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
+		try {
+			Personaje pers = new Personaje(x, y);
+			JLabel label = new JLabel(new ImageIcon(pers.dirImg));
+			vent.getContentPane().setLayout(new FlowLayout());
+			vent.getContentPane().add(label);
+			hiloY = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					while(!Thread.interrupted()) {
+						try {
+							LabelMoveY(pers, label, vent, false);
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
 					}
 				}
-			}
-		});
-		hiloY.start();
-		return label;
+			});
+			hiloY.start();
+			return label;
+		} catch (NullPointerException e) {
+			return generar(x, y, vent);
+		}
 	}
 }
