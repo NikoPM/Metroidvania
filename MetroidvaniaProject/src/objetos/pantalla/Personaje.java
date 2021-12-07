@@ -79,14 +79,18 @@ public class Personaje extends Graficos {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				if(b){
-					pers.setPosX(pers.getPosX() + pers.getVelX());
-				} else {
-					pers.setPosX(pers.getPosX() - pers.getVelX());	
-				}
-				label.setLocation(pers.getPosX(), pers.getPosY());
 				try {
-					vent.repaint();
+						if(b){
+							if(pers.getPosX()<540) {
+								pers.setPosX(pers.getPosX() + pers.getVelX());
+							}
+						} else {
+							if(pers.getPosX()>0) {
+								pers.setPosX(pers.getPosX() - pers.getVelX());
+							}
+						}
+						label.setLocation(pers.getPosX(), pers.getPosY());
+						vent.repaint();
 				} catch (NullPointerException e) {}
 			}
 		});
