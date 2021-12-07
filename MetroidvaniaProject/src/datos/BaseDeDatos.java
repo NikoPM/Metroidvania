@@ -29,7 +29,7 @@ public class BaseDeDatos {
 				logger.log( Level.INFO, "Statement: " + sent );
 				statement.executeUpdate( sent );
 				try {
-					Scanner scanner = new Scanner( BaseDeDatos.class.getResourceAsStream("productos-inic.txt") );
+					Scanner scanner = new Scanner( BaseDeDatos.class.getResourceAsStream("data.txt") );
 					while (scanner.hasNextLine()) {
 						String linea = scanner.nextLine();
 						String[] datos = linea.split( "\t" );

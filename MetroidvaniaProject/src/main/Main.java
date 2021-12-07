@@ -7,6 +7,6 @@ public class Main {
 		//Main provisional para hacer pruebas
 		VentanaMenuInicio v = new VentanaMenuInicio();
 		v.setVisible(true);  
-	}
+	} 
 
 }
