@@ -235,19 +235,10 @@ public class Personaje extends Graficos {
 	 * Detiene el hilo que mueve al personaje en el eje X
 	 */
 	public static void stopMover() {
-		Thread hilo = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(400);
-					hiloX.interrupt();
-					hiloX = null;
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
-				} catch (NullPointerException e) {}
-			}
-		});
-		hilo.start();
+		try {
+			hiloX.interrupt();
+			hiloX = null;
+		} catch (NullPointerException e) {}
 	}
 	
 	/** Metodo Estatico stopFall
