@@ -48,7 +48,7 @@ public class VentanaJuego extends JFrame{
 			}
 		}); 
 	
-		con = new Container();
+		con = getContentPane();
 		barraDeVida = new JPanel();
 		hp = new JPanel();
 		hpBar = new JProgressBar(0,100);
@@ -71,8 +71,6 @@ public class VentanaJuego extends JFrame{
 		
 		barraDeVida.add(hpBar);
 		hp.add(lHp);
-		
-		add(con);
 		
 		JLabel label = Personaje.generar(500, 50, this);
 		pers = Personaje.getPersonaje();
