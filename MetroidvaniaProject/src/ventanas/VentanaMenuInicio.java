@@ -12,7 +12,8 @@ import javax.swing.border.*;
 
 //Ventana que se mostrará al ejecutar el juego 
 //Permite iniciar la partida, ver los controles del juego, volver al escritorio y ver el ranking
-public class VentanaMenuInicio extends JFrame{
+public class VentanaMenuInicio extends JFrame {
+	private static final long serialVersionUID = 1L;
 	//Atributos de la clase
 		//Variables que indicarán el tamaño de la ventanas
 	private static int x = 1800;	
@@ -137,7 +138,7 @@ public class VentanaMenuInicio extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Botón accionado: Nueva Partida");
-				String nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
+				nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
 				VentanaJuego v = new VentanaJuego();
 				v.setVisible(true);
 				dispose();
@@ -167,6 +168,7 @@ public class VentanaMenuInicio extends JFrame{
 	 * @author Nicolás
 	 */
 	public class FondoPanel extends JPanel{
+		private static final long serialVersionUID = 1L;
 		private Image imagen;
 		@Override
 	    public void paint(Graphics g) {
@@ -184,7 +186,7 @@ public class VentanaMenuInicio extends JFrame{
 			Thread hilo = new Thread() {
 				@Override
 				public void run() {
-					while(vent.isOpen) {
+					while(isOpen) {
 						vent.setTitle("El sueño de kerman");
 					}
 				}

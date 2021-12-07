@@ -1,39 +1,22 @@
 package ventanas;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import objetos.pantalla.*;
 
-import objetos.pantalla.Consumibles;
-import objetos.pantalla.Personaje;
-
-
-
-public class VentanaJuego extends JFrame{
-	
+public class VentanaJuego extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private static JPanel barraDeVida;//Barra de vida del personaje
 	private static Container con;//Contenedor donde se meterán todos los aspectos que se muestren por pantalla
 	private static JPanel hp;
 	private VentanaJuego vent;
 	private static Thread hilo;
 	private static JProgressBar hpBar;
-	private static Personaje pers;
 	
 	public static void main(String[] args) {
-		VentanaJuego v = new VentanaJuego();
+		new VentanaJuego();
 	}
 	
 	public VentanaJuego() {
@@ -74,7 +57,6 @@ public class VentanaJuego extends JFrame{
 		hp.add(lHp);
 		
 		JLabel label = Personaje.generar(500, 50, this);
-		pers = Personaje.getPersonaje();
  
 		hilo = new Thread(new Runnable() {
 			@Override
