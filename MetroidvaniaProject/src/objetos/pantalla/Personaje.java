@@ -12,6 +12,7 @@ public class Personaje extends Graficos {
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje yo; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica el salto
+	private static boolean fall = false; //Boolean que indica la caida
 	private static String[] frames = //Direccion de las imagenes que componen la animacion del personaje
 	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
 	private static int vida = 100; //Vida del personaje inicializada a 100
@@ -25,10 +26,17 @@ public class Personaje extends Graficos {
 		yo = this; //Se asigna a si mismo su valor
 	}
 	
+	/** Metodo GetVida
+	 * @return devuelve la vida del personaje
+	 */
 	public static int getVida() {
 		return vida;
 	}
 	
+	/** Metodo DecVida
+	 * @param i cantidad que se decrementa
+	 * Decrementa la vida del personaje en i
+	 */
 	public static void decVida(int i) {
 		if(vida - 1 < 0) {
 			vida = 0;
@@ -37,6 +45,10 @@ public class Personaje extends Graficos {
 		}
 	}
 	
+	/** Metodo IncVida
+	 * @param i cantidad que se incrementa
+	 * Incrementa la vida del personaje en i
+	 */
 	public static void incVida(int i) {
 		if(vida + 1 > 100) {
 			vida = 100;
@@ -76,10 +88,11 @@ public class Personaje extends Graficos {
 	
 	/** Metodo Estatico Salto
 	 * @param label label que se edita
+	 * @param vent Ventana en la que se edita
 	 * Si el personaje no esta saltando crea un hilo que llama a LabelMoveY para saltar
 	 */
 	public static void salto(JLabel label) {
-		if(!salto) {
+		if(!salto && !fall) {
 			Thread hilo = new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -98,12 +111,10 @@ public class Personaje extends Graficos {
 					}
 					salto = false;
 				}
-				
 			});
 			hilo.start();
 		}
 	}
-	
 	
 	/** Metodo Estatico Privado LabelMoveY
 	 * @param pers Personaje que se edita
@@ -120,6 +131,9 @@ public class Personaje extends Graficos {
 				if(!b) {
 					if(pers.getPosY()<vent.getHeight()-100 && !salto) { //<vent.getHeight()-50
 						pers.setPosY(pers.getPosY() + pers.getVelY());
+						fall = true;
+					}  else {
+						fall = false;
 					}
 				} else {
 					pers.setPosY(pers.getPosY() - pers.getVelY());
