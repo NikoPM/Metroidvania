@@ -62,7 +62,7 @@ public class BaseDeDatos {
 	
 	public static boolean insertarUsuario( Usuario usuario ) {
 		try (Statement statement = conexion.createStatement()) {
-			String sent = "insert into usuario (idUsuario, nombre, tiempo) values (" + usuario.getIdUsuario() + ",'" + usuario.getNombre() + "'," + usuario.getTiempo() + ");";
+			String sent = "insert into usuario (nombre, tiempo) values ('" + usuario.getNombre() + "'," + usuario.getTiempo() + ");";
 			logger.log( Level.INFO, "Statement: " + sent );
 			int insertados = statement.executeUpdate( sent );
 			if (insertados!=1) return false;  // Error en inserción
