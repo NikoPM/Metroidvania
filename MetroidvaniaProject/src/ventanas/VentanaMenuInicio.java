@@ -2,11 +2,21 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.table.DefaultTableModel;
+
+import datos.BaseDeDatos;
+import datos.Usuario;
+
+
 
 
 
@@ -20,6 +30,7 @@ public class VentanaMenuInicio extends JFrame {
 	private static int y = 900;
 		//Botones
 	private static JButton bNuevaPartida = new JButton("Nueva partida");
+	private static JButton bRanking = new JButton("Ranking");
 	private static JButton bExit = new JButton("Volver al escritorio");
 		//Variables que comprueban el estado de la ventana
 	private static boolean isOpen = true;
@@ -32,19 +43,30 @@ public class VentanaMenuInicio extends JFrame {
 	private static Color color = Color.LIGHT_GRAY; 
 	private static Font letra = new Font("Cambria", Font.BOLD, 17);
 	private static String nombre;
+		//JTable
+	private static DefaultTableModel mClasificacion;
+	private static JTable tClasificacion;
+	private static ArrayList<Usuario> listaUsu;
 		//Imagenes 
 	private Image logo = new ImageIcon("src/imagenes/Hexagrama.jpg").getImage();
 		//Logger de la ventana principal
 	private static Logger logger = Logger.getLogger("VentanaMenuInicio");
 	
+	//Formateador de fechas a horas, minutos y segundos
+	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
 	
 	public VentanaMenuInicio() {
 		//WindowOpen o Closed checker
 		addWindowListener(new WindowAdapter() {
 			@Override
+			public void windowOpened(WindowEvent e) {
+				BaseDeDatos.abrirConexion("usuarios.db", false);
+			}
+			@Override
 			public void windowClosed(WindowEvent e) {
 				isOpen = false;
 				logger.log(Level.INFO, "Ventana cerrada");
+				BaseDeDatos.cerrarConexion();
 			}
 		});
 		
@@ -62,7 +84,6 @@ public class VentanaMenuInicio extends JFrame {
 		JPanel p = new JPanel();
 		JPanel panelBotones = new JPanel();
 		JPanel panelCentral = new FondoPanel();
-		JButton bRanking = new JButton("Ranking");
 		JButton bControles = new JButton("Controles");
 		Border bordeBoton = BorderFactory.createLineBorder(Color.RED);
 		 
@@ -139,6 +160,15 @@ public class VentanaMenuInicio extends JFrame {
 			}
 		});
 		
+		bRanking.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//verClasificacion();
+				
+			}
+		});
+		
 		//Cierra la ventana y vuelve al escritorio
 		bExit.addActionListener(new ActionListener() {
 			
@@ -195,5 +225,29 @@ public class VentanaMenuInicio extends JFrame {
 	 public static String getNombre() {
 		return nombre;
 	}
-	
+	 
+	 
+	/*
+	 private void verClasificacion() {
+			Vector<String> cabeceras = new Vector<String>( Arrays.asList( "ID", "Nombre", "Tiempo" ) );
+			mClasificacion = new DefaultTableModel(  // Inicializa el modelo
+				new Vector<Vector<Object>>(),  // Datos de la jtable (vector de vectores) - vacíos de momento
+				cabeceras  // Cabeceras de la jtable
+			);
+			listaUsu = new ArrayList<>();
+			listaUsu = BaseDeDatos.getUsuarios();
+			for (Usuario u : listaUsu) {
+				mClasificacion.addRow( new Object[] { u.getIdUsuario(), u.getNombre(), u.getTiempo() } );
+			}
+			tClasificacion.setModel( mClasificacion );
+			// Pone tamaños a las columnas de la tabla
+			tClasificacion.getColumnModel().getColumn(0).setMinWidth(40);
+			tClasificacion.getColumnModel().getColumn(0).setMaxWidth(40);
+			tClasificacion.getColumnModel().getColumn(2).setMinWidth(60);
+			tClasificacion.getColumnModel().getColumn(2).setMaxWidth(60);
+			JFrame vRanking = new JFrame();
+			vRanking.getContentPane().add( new JScrollPane(tClasificacion), BorderLayout.CENTER );
+			vRanking.setVisible(true);
+		}*/
+	 
 }

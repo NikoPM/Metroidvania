@@ -2,10 +2,15 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
+
+import datos.BaseDeDatos;
+import datos.Usuario;
+
 import javax.swing.*;
 import objetos.pantalla.*;
 
@@ -17,6 +22,9 @@ public class VentanaJuego extends JFrame {
 	private VentanaJuego vent;
 	private static Thread hilo;
 	private static JProgressBar hpBar;
+	//Fecha de inicio y fin para calcular el tiempo de partida
+	private static long fechaIni;
+	private static long fechaFin;
 	
 	private static Logger logger = Logger.getLogger("VentanaJuego");
 	 
@@ -28,9 +36,18 @@ public class VentanaJuego extends JFrame {
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
+			public void windowOpened(WindowEvent e) {
+				fechaIni = new Date().getTime();
+			}
+			@Override
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
 				hilo.interrupt();
+				fechaFin = new Date().getTime();
+				Usuario usuario = new Usuario(1, VentanaMenuInicio.getNombre(), fechaFin-fechaIni);
+				BaseDeDatos.abrirConexion("usuarios.db", true);
+				BaseDeDatos.insertarUsuario(usuario);
+				BaseDeDatos.cerrarConexion();
 				logger.log(Level.INFO, "Juego terminado");
 			}
 		}); 
