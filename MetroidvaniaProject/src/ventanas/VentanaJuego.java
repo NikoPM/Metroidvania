@@ -45,7 +45,7 @@ public class VentanaJuego extends JFrame {
 				hilo.interrupt();
 				fechaFin = new Date().getTime();
 				Usuario usuario = new Usuario(1, VentanaMenuInicio.getNombre(), fechaFin-fechaIni);
-				BaseDeDatos.abrirConexion("usuarios.db", true);
+				BaseDeDatos.abrirConexion("usuarios.db", false);
 				BaseDeDatos.insertarUsuario(usuario);
 				BaseDeDatos.cerrarConexion();
 				logger.log(Level.INFO, "Juego terminado");
