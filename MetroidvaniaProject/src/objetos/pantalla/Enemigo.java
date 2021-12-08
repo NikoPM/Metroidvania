@@ -52,6 +52,10 @@ public class Enemigo extends Graficos /** implements Destruible **/
 		});
 		hilo.start();
 	}
+	
+	public void explotar() {
+		this.dirImg="src/imagenes/explosion.png";
+	}
 
 	public static JLabel generar(int x, int y,int velocidadX, int velocidadY, int radioHitbox, String dir, JFrame vent) {
 		Enemigo e = new Enemigo(x, y, velocidadX, velocidadY, radioHitbox, dir);
