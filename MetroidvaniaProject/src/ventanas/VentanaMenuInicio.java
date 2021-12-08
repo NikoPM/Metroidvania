@@ -129,6 +129,8 @@ public class VentanaMenuInicio extends JFrame {
 		
 		//ActionListeners
 		funcionBotones();
+		
+		this.setVisible(true);
 	}
 	
 	//Métodos get
