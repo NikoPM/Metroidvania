@@ -88,7 +88,7 @@ public class BaseDeDatos {
 			while( rs.next() ) { // Leer el resultset
 				int idUsuario = rs.getInt("idUsuario");
 				String nombre = rs.getString("nombre");
-				double tiempo = rs.getDouble("tiempo");
+				long tiempo = rs.getLong("tiempo");
 				ret.add( new Usuario ( idUsuario, nombre, tiempo) );
 			}
 			return ret;

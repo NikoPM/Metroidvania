@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,14 +54,14 @@ public class VentanaMenuInicio extends JFrame {
 	private static Logger logger = Logger.getLogger("VentanaMenuInicio");
 	
 	//Formateador de fechas a horas, minutos y segundos
-	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
+	private static SimpleDateFormat sdf = new SimpleDateFormat( "HH:mm:ss" );
 	
 	public VentanaMenuInicio() {
 		//WindowOpen o Closed checker
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				BaseDeDatos.abrirConexion("usuarios.db", false);
+				BaseDeDatos.abrirConexion("usuarios.db", true);
 			}
 			@Override
 			public void windowClosed(WindowEvent e) {
@@ -166,7 +167,7 @@ public class VentanaMenuInicio extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//verClasificacion();
+				verClasificacion();
 				
 			}
 		});
@@ -229,27 +230,39 @@ public class VentanaMenuInicio extends JFrame {
 	}
 	 
 	 
-	/*
-	 private void verClasificacion() {
-			Vector<String> cabeceras = new Vector<String>( Arrays.asList( "ID", "Nombre", "Tiempo" ) );
-			mClasificacion = new DefaultTableModel(  // Inicializa el modelo
-				new Vector<Vector<Object>>(),  // Datos de la jtable (vector de vectores) - vacíos de momento
-				cabeceras  // Cabeceras de la jtable
-			);
-			listaUsu = new ArrayList<>();
-			listaUsu = BaseDeDatos.getUsuarios();
-			for (Usuario u : listaUsu) {
-				mClasificacion.addRow( new Object[] { u.getIdUsuario(), u.getNombre(), u.getTiempo() } );
+	    /**
+		 * Crea una nueva ventana que muestra los datos de los usuarios por pantalla
+		 */
+		 private void verClasificacion() {
+			 	tClasificacion = new JTable();
+				Vector<String> cabeceras = new Vector<String>( Arrays.asList( "ID", "Nombre", "Tiempo" ) );
+				mClasificacion = new DefaultTableModel(  // Inicializa el modelo
+					new Vector<Vector<Object>>(),  // Datos de la jtable (vector de vectores) - vacíos de momento
+					cabeceras  // Cabeceras de la jtable
+				);
+				listaUsu = new ArrayList<>();
+				listaUsu = BaseDeDatos.getUsuarios();
+				for (Usuario u : listaUsu) {
+					String tiempo = sdf.format( new Date( u.getTiempo() ) );
+					mClasificacion.addRow( new Object[] { u.getIdUsuario(), u.getNombre(), tiempo } );
+				}
+				tClasificacion.setModel( mClasificacion );
+				// Pone tamaños a las columnas de la tabla
+				tClasificacion.getColumnModel().getColumn(0).setMinWidth(40);
+				tClasificacion.getColumnModel().getColumn(0).setMaxWidth(40);
+				tClasificacion.getColumnModel().getColumn(2).setMinWidth(200);
+				tClasificacion.getColumnModel().getColumn(2).setMaxWidth(200);
+				tClasificacion.getColumnModel().getColumn(2).setMinWidth(200);
+				tClasificacion.getColumnModel().getColumn(2).setMaxWidth(200);
+				JFrame vRanking = new JFrame();
+				vRanking.setSize(700, 500);
+				vRanking.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vRanking.setLocationRelativeTo(null);
+				vRanking.setIconImage(logo);
+				vRanking.setTitle("Ranking");
+				vRanking.getContentPane().add( new JScrollPane(tClasificacion), BorderLayout.CENTER );
+				vRanking.setVisible(true);
 			}
-			tClasificacion.setModel( mClasificacion );
-			// Pone tamaños a las columnas de la tabla
-			tClasificacion.getColumnModel().getColumn(0).setMinWidth(40);
-			tClasificacion.getColumnModel().getColumn(0).setMaxWidth(40);
-			tClasificacion.getColumnModel().getColumn(2).setMinWidth(60);
-			tClasificacion.getColumnModel().getColumn(2).setMaxWidth(60);
-			JFrame vRanking = new JFrame();
-			vRanking.getContentPane().add( new JScrollPane(tClasificacion), BorderLayout.CENTER );
-			vRanking.setVisible(true);
-		}*/
+		 
 	 
 }

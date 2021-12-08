@@ -4,9 +4,9 @@ public class Usuario implements Comparable<Usuario> {
 
 	private int idUsuario;
 	private String nombre; 
-	private double tiempo;
+	private long tiempo;
 	
-	public Usuario(int idUsuario, String nombre, double tiempo) {
+	public Usuario(int idUsuario, String nombre, long tiempo) {
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.tiempo = tiempo;
@@ -28,11 +28,11 @@ public class Usuario implements Comparable<Usuario> {
 		this.nombre = nombre;
 	}
 
-	public double getTiempo() {
+	public long getTiempo() {
 		return tiempo;
 	}
 
-	public void setTiempo(double tiempo) {
+	public void setTiempo(long tiempo) {
 		this.tiempo = tiempo;
 	}
 	
