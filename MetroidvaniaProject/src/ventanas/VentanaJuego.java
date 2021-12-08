@@ -110,6 +110,10 @@ public class VentanaJuego extends JFrame {
 					Personaje.mover(label, vent, false);
 				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 					Personaje.salto(label);
+					Personaje.decVida(1);
+					if(Personaje.getVida() == 0) {
+						dispose();
+					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					//Personaje.shoot(vent);
 				}
