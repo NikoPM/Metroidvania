@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-import utils.ventanas.ventanaBitmap.VentanaGrafica;
+
 
 public class Enemigo extends Graficos /** implements Destruible **/
 {
