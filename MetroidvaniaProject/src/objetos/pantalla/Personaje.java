@@ -7,6 +7,8 @@ public class Personaje extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL_X = 5; //Velocidad en el eje X
 	private static final int VEL_Y = 3; //Velocidad en el eje Y
+	private static final int VEL_SHOOT = 10; //Velocidad del disparo
+	private static final int DIST_SHOOT = 15; //Distancia del disparo
 	private static final int HITBOX = 1; //HitBox del personaje
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
@@ -247,12 +249,12 @@ public class Personaje extends Graficos {
 			public void run() {
 				if(!shoot) {
 					shoot = true;
-					for(int i = 0; i<15; i++) {
+					for(int i = 0; i<DIST_SHOOT; i++) {
 						try {
 							if(i == 0) {
-								shootLabel(label, getPersonaje().getPosX() + 10); 
+								shootLabel(label, getPersonaje().getPosX() + VEL_SHOOT); 
 							} else {
-								shootLabel(label, label.getX() + 10 + i);
+								shootLabel(label, label.getX() + VEL_SHOOT + i);
 							}
 							Thread.sleep(20);
 						} catch (InterruptedException e) {
