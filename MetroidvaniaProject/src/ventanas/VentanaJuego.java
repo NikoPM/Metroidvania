@@ -121,5 +121,4 @@ public class VentanaJuego extends JFrame {
 		});
 		this.setVisible(true);
 	}
-	
 }
