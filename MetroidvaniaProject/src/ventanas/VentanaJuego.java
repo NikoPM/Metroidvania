@@ -109,9 +109,9 @@ public class VentanaJuego extends JFrame {
 					Personaje.mover(label, vent, false);
 				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 					Personaje.salto(label);
-					Personaje.decVida(1);
-					if(Personaje.getVida() == 0) {
-						dispose();
+					Personaje.decVida(1); //Prueba de que funciona
+					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
+						dispose(); //Si llega a 0 se cierra la ventana y acaba el juego
 					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(vent, label2);
