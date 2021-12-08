@@ -208,15 +208,25 @@ public class Personaje extends Graficos {
 		}
 	}
 	
-	private static void shootLabel(final JLabel label, int i) {
+	/** Metodo Privado Estatico ShootLabel
+	 * @param label label que se edita
+	 * @param x nueva posicion en el eje X del label
+	 * Mueve el label a una posicion en el eje X y la posicion en el eje Y del personaje
+	 */
+	private static void shootLabel(final JLabel label, int x) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				label.setLocation(i, getPersonaje().getPosY());
+				label.setLocation(x, getPersonaje().getPosY());
 			}
 		});
 	}
 	
+	/** Metodo Estatico GenerarShoot
+	 * @param vent Ventana en la que se edita
+	 * @return devuelve el label creado
+	 * Crea un label con una imagen, lo introduce en la ventana y lo vuelve invisible
+	 */
 	public static JLabel generarShoot(JFrame vent) {
 		JLabel label = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
 		vent.getContentPane().setLayout(new FlowLayout());
@@ -225,6 +235,11 @@ public class Personaje extends Graficos {
 		return label;
 	}
 	 
+	/** Metodo Estatico Shoot
+	 * @param vent Ventana en la que se edita
+	 * @param label label que se edita
+	 * Vuelve el label visible y lo dispara hacia delante del personaje para luego hacerlo desaparecer
+	 */
 	public static void shoot(JFrame vent, JLabel label) {
 		label.setVisible(true);
 		Thread hilo = new Thread(new Runnable() {
