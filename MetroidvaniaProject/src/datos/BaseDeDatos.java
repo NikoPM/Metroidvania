@@ -107,4 +107,12 @@ public class BaseDeDatos {
 		statement.close();
 	}
 	
+	public static void borrarAll() {
+		for(Usuario u: getUsuarios()) {
+			try {
+			borrarUsuario(u);
+			} catch (SQLException e) {}
+		}
+	}
+	
 }
