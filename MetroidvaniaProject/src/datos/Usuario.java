@@ -5,17 +5,11 @@ public class Usuario implements Comparable<Usuario> {
 	private int idUsuario;
 	private String nombre; 
 	private long tiempo;
-	private static int id = Integer.MIN_VALUE;
 	
 	public Usuario(int idUsuario, String nombre, long tiempo) {
-		this.idUsuario = id;
+		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.tiempo = tiempo;
-		if(id == Integer.MAX_VALUE) {
-			id = Integer.MIN_VALUE;
-		} else {
-			id += 1;
-		}
 	}
 
 	public int getIdUsuario() {
