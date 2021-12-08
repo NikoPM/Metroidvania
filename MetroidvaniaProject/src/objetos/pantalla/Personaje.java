@@ -224,7 +224,7 @@ public class Personaje extends Graficos {
 		label.setVisible(false);
 		return label;
 	}
-	
+	 
 	public static void shoot(JFrame vent, JLabel label) {
 		label.setVisible(true);
 		Thread hilo = new Thread(new Runnable() {
