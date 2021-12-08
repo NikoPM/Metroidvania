@@ -54,7 +54,7 @@ public class VentanaMenuInicio extends JFrame {
 	private static Logger logger = Logger.getLogger("VentanaMenuInicio");
 	
 	//Formateador de fechas a horas, minutos y segundos
-	private static SimpleDateFormat sdf = new SimpleDateFormat( "HH:mm:ss" );
+	private static SimpleDateFormat sdf = new SimpleDateFormat( "mm:ss" );
 	
 	public VentanaMenuInicio() {
 		//WindowOpen o Closed checker
@@ -248,8 +248,8 @@ public class VentanaMenuInicio extends JFrame {
 				}
 				tClasificacion.setModel( mClasificacion );
 				// Pone tamaños a las columnas de la tabla
-				tClasificacion.getColumnModel().getColumn(0).setMinWidth(40);
-				tClasificacion.getColumnModel().getColumn(0).setMaxWidth(40);
+				tClasificacion.getColumnModel().getColumn(0).setMinWidth(100);
+				tClasificacion.getColumnModel().getColumn(0).setMaxWidth(100);
 				tClasificacion.getColumnModel().getColumn(2).setMinWidth(200);
 				tClasificacion.getColumnModel().getColumn(2).setMaxWidth(200);
 				tClasificacion.getColumnModel().getColumn(2).setMinWidth(200);
