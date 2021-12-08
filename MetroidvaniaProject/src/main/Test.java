@@ -13,7 +13,7 @@ public class Test {
 			public void run() {
 				new Ventana();
 			}
-		});
+		}); 
 	} 
 	
 	static class Ventana extends JFrame {

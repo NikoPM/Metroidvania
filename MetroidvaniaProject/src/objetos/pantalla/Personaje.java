@@ -10,14 +10,14 @@ public class Personaje extends Graficos {
 	private static final int VEL_SHOOT = 10; //Velocidad del disparo
 	private static final int DIST_SHOOT = 15; //Distancia del disparo
 	private static final int HITBOX = 1; //HitBox del personaje
+	private static final String[] FRAMES = //Direccion de las imagenes que componen la animacion del personaje
+	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje self; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica el salto
 	private static boolean fall = false; //Boolean que indica la caida
 	private static boolean shoot = false; //Boolean que indica el disparo
-	private static String[] frames = //Direccion de las imagenes que componen la animacion del personaje
-	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
 	private static int vida = 100; //Vida del personaje inicializada a 100
 
 	/** Constructor Privado de objetos de clase Consumibles
@@ -25,7 +25,7 @@ public class Personaje extends Graficos {
 	 * @param y Posicion Y del consumible en pantalla
 	 */
 	private Personaje(int x, int y) {
-		super(x, y, frames[0], VEL_X, VEL_Y, HITBOX);
+		super(x, y, FRAMES[0], VEL_X, VEL_Y, HITBOX);
 		self = this; //Se asigna a si mismo su valor
 	}
 	
@@ -170,10 +170,10 @@ public class Personaje extends Graficos {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				if(pers.getDirImg().equals(frames[0])) {
-					pers.setDirImg(frames[1]);
+				if(pers.getDirImg().equals(FRAMES[0])) {
+					pers.setDirImg(FRAMES[1]);
 				} else {
-					pers.setDirImg(frames[0]);
+					pers.setDirImg(FRAMES[0]);
 				}
 				label.setIcon(new ImageIcon(pers.getDirImg()));
 				try {
