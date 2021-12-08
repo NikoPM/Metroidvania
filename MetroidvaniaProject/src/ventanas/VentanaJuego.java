@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JFrame;
-
 import datos.BaseDeDatos;
 import datos.Usuario;
 
@@ -75,6 +73,7 @@ public class VentanaJuego extends JFrame {
 		
 		//Creacion del personaje
 		JLabel label = Personaje.generar(500, 50, this);
+		JLabel label2 = Personaje.generarShoot(this);
 		
 		hilo = new Thread(new Runnable() {
 			@Override
@@ -115,7 +114,7 @@ public class VentanaJuego extends JFrame {
 						dispose();
 					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
-					//Personaje.shoot(vent);
+					Personaje.shoot(vent, label2);
 				}
 			}
 		});

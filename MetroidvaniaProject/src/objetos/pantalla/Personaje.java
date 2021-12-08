@@ -13,6 +13,7 @@ public class Personaje extends Graficos {
 	private static Personaje self; //Mismo personaje
 	private static boolean salto = false; //Boolean que indica el salto
 	private static boolean fall = false; //Boolean que indica la caida
+	private static boolean shoot = false; //Boolean que indica el disparo
 	private static String[] frames = //Direccion de las imagenes que componen la animacion del personaje
 	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
 	private static int vida = 100; //Vida del personaje inicializada a 100
@@ -216,16 +217,36 @@ public class Personaje extends Graficos {
 		});
 	}
 	
-	public static void shoot(JFrame vent) {
+	public static JLabel generarShoot(JFrame vent) {
+		JLabel label = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
+		vent.getContentPane().setLayout(new FlowLayout());
+		vent.getContentPane().add(label);
+		label.setVisible(false);
+		return label;
+	}
+	
+	public static void shoot(JFrame vent, JLabel label) {
+		label.setVisible(true);
 		Thread hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					JLabel label = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
-					vent.getContentPane().setLayout(new FlowLayout());
-					vent.getContentPane().add(label);
-				} catch (NullPointerException e) {}
-				//shootLabel(label, i);
+				if(!shoot) {
+					shoot = true;
+					for(int i = 0; i<15; i++) {
+						try {
+							if(i == 0) {
+								shootLabel(label, getPersonaje().getPosX() + 10); 
+							} else {
+								shootLabel(label, label.getX() + 10 + i);
+							}
+							Thread.sleep(20);
+						} catch (InterruptedException e) {
+							shoot = false;
+						}
+					}
+					shootLabel(label, -1000);
+					shoot = false;
+				} 
 			}
 		});
 		hilo.start();
