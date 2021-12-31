@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class PanelImagen extends javax.swing.JPanel {
- public PanelImagen() {
+private static final long serialVersionUID = 1L;
+public PanelImagen() {
   this.setSize(1280, 720);
  }
 
