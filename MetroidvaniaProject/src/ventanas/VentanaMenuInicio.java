@@ -177,6 +177,7 @@ public class VentanaMenuInicio extends JFrame {
 				PanelImagen p = new PanelImagen();
 				JFrame j = new JFrame();
 				j.setSize(1280,720);
+				j.setLocationRelativeTo(null);
 				j.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				j.getContentPane().add(new JScrollPane(p), BorderLayout.CENTER);
 				j.setVisible(true);
