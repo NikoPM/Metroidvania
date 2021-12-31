@@ -1,9 +1,7 @@
 package ventanas;
 
-
-import java.awt.Dimension;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
+import java.awt.*;
+import javax.swing.*;
 
 public class PanelImagen extends javax.swing.JPanel {
  public PanelImagen() {
