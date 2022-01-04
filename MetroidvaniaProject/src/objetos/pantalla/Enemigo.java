@@ -20,13 +20,13 @@ public class Enemigo extends Graficos /** implements Destruible **/
 		super(x, y, "enemigo.png", velocidadX, velocidadY, radioHitbox);
 	}
 
-	private static void movimientoX(final Enemigo e, final JLabel label, final JFrame vent, final boolean b) {
+	private static void movimientoX(final Enemigo e, final JLabel label, final JFrame vent, final boolean dinamico) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					if (b) {
-						if (e.getPosX() != 540) {
+					if (dinamico) {
+						if (e.getPosX() <= 600) {
 							e.setPosX(e.getPosX() + e.getVelX());
 						}
 					} else {
@@ -40,20 +40,20 @@ public class Enemigo extends Graficos /** implements Destruible **/
 		});
 	}
 
-	private static void movimientoY(final Enemigo e, final JLabel label, final JFrame vent, final boolean b) {
+	private static void movimientoY(final Enemigo e, final JLabel label, final JFrame vent, final boolean dinamico) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					if (b) {
-						if (e.getPosY() != 540) {
+					if (dinamico) {
+						if (e.getPosY() != 500) {
 							e.setPosY(e.getPosY() + e.getVelY());
 						}
 					} else {
 						e.setPosX(e.getPosY() - e.getVelY());
 
 					}
-					label.setLocation(e.getPosY(), e.getPosY());
+					label.setLocation(e.getPosX(), e.getPosY());
 					vent.repaint();
 				} catch (NullPointerException e) {
 				}
@@ -61,7 +61,30 @@ public class Enemigo extends Graficos /** implements Destruible **/
 		});
 	}
 
-	private void crear(Enemigo e, JLabel label, JFrame vent) {
+	private static void persecucion(final Personaje pers, final Enemigo e, final JLabel label, final JFrame vent,final boolean persiguiendo) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					if (persiguiendo) {
+						if (e.getPosX()!=pers.getPosX()&&e.getPosY()!=pers.getPosY()) {
+							e.setPosY(e.getPosX() + e.getVelX());
+							e.setPosY(e.getPosY() + e.getVelY());
+						}
+					} else {
+						e.movimientoX(e, label, vent, true);
+						e.movimientoY(e, label, vent, true);
+					}
+					label.setLocation(e.getPosX(), e.getPosY());
+					vent.repaint();
+
+				} catch (NullPointerException e) {
+				}
+
+			}
+		});
+	}
+
+	private void crear(/**Personaje pers ,**/Enemigo e, JLabel label, JFrame vent) {
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
 		Thread hilo = new Thread(new Runnable() {
@@ -72,6 +95,7 @@ public class Enemigo extends Graficos /** implements Destruible **/
 						for (int k = 0; k < 500; k++) {
 							movimientoX(e, label, vent, true);
 							movimientoY(e, label, vent, true);
+							/**persecucion(pers,e,label,vent,true);**/
 
 							try {
 								Thread.sleep(3);
@@ -92,12 +116,13 @@ public class Enemigo extends Graficos /** implements Destruible **/
 
 	public static JLabel generar(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String dir,
 			JFrame vent) {
+		//Personaje pers = new Personaje(x,y);
 		Enemigo e = new Enemigo(x, y, velocidadX, velocidadY, radioHitbox, dir);
 		JLabel label = new JLabel(new ImageIcon("src/imagenes/enemigo.png"));
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				e.crear(e, label, vent);
+				e.crear(/**pers,**/e, label, vent);
 			}
 		});
 		return label;
