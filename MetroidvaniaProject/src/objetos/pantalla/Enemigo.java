@@ -8,28 +8,60 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
-
-
 public class Enemigo extends Graficos /** implements Destruible **/
 {
 	private static final long serialVersionUID = 1L;
 
 	private static Random random = new Random();
 
-	public Enemigo(int x, int y, int velocidadX, int velocidadY, int radioHitbox,String imagen /** ,String explosion **/) {
-		super(x, y,"enemigo.png",velocidadX, velocidadY, radioHitbox);
+	public Enemigo(int x, int y, int velocidadX, int velocidadY, int radioHitbox,
+			String imagen /** ,String explosion **/
+	) {
+		super(x, y, "enemigo.png", velocidadX, velocidadY, radioHitbox);
 	}
 
-	private static void movimiento(final JLabel label, final int posX, final int posY, final int j, final int k) {
+	private static void movimientoX(final Enemigo e, final JLabel label, final JFrame vent, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				label.setLocation(posX+j, posY+k);
+				try {
+					if (b) {
+						if (e.getPosX() != 540) {
+							e.setPosX(e.getPosX() + e.getVelX());
+						}
+					} else {
+						e.setPosX(e.getPosX() - e.getVelX());
+					}
+					label.setLocation(e.getPosX(), e.getPosY());
+					vent.repaint();
+				} catch (NullPointerException e) {
+				}
 			}
 		});
 	}
 
-	private void crear(JLabel label, JFrame vent) {
+	private static void movimientoY(final Enemigo e, final JLabel label, final JFrame vent, final boolean b) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					if (b) {
+						if (e.getPosY() != 540) {
+							e.setPosY(e.getPosY() + e.getVelY());
+						}
+					} else {
+						e.setPosX(e.getPosY() - e.getVelY());
+
+					}
+					label.setLocation(e.getPosY(), e.getPosY());
+					vent.repaint();
+				} catch (NullPointerException e) {
+				}
+			}
+		});
+	}
+
+	private void crear(Enemigo e, JLabel label, JFrame vent) {
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
 		Thread hilo = new Thread(new Runnable() {
@@ -38,10 +70,11 @@ public class Enemigo extends Graficos /** implements Destruible **/
 				for (int i = 0; !Thread.interrupted() && i < 500; i++) {
 					for (int j = 0; j < 500; j++) {
 						for (int k = 0; k < 500; k++) {
-							movimiento(label, posX, posY, j, k);
+							movimientoX(e, label, vent, true);
+							movimientoY(e, label, vent, true);
 
 							try {
-								Thread.sleep(1);
+								Thread.sleep(3);
 							} catch (InterruptedException e) {
 								Thread.currentThread().interrupt();
 							}
@@ -52,18 +85,19 @@ public class Enemigo extends Graficos /** implements Destruible **/
 		});
 		hilo.start();
 	}
-	
+
 	public void explotar() {
-		this.dirImg="src/imagenes/explosion.png";
+		this.dirImg = "src/imagenes/explosion.png";
 	}
 
-	public static JLabel generar(int x, int y,int velocidadX, int velocidadY, int radioHitbox, String dir, JFrame vent) {
+	public static JLabel generar(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String dir,
+			JFrame vent) {
 		Enemigo e = new Enemigo(x, y, velocidadX, velocidadY, radioHitbox, dir);
 		JLabel label = new JLabel(new ImageIcon("src/imagenes/enemigo.png"));
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				e.crear(label, vent);
+				e.crear(e, label, vent);
 			}
 		});
 		return label;

@@ -21,10 +21,10 @@ public class TestEnemigo {
 			this.setAlwaysOnTop(true);
 			this.setMinimumSize(new Dimension(1280, 720));
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-			Enemigo.generar(250, 0,2,2,3,"src/imagenes/enemigo.png", this);
-			Enemigo.generar(500, 100,4,4,3,"src/imagenes/enemigo.png", this);
-			Enemigo.generar(750, 0,2,2,3,"src/imagenes/enemigo.png", this);
-			Enemigo.generar(1000, 100,2,2,3,"src/imagenes/enemigo.png", this);
+			Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
+			Enemigo.generar(250, 100,4,4,3,"src/imagenes/enemigo.png", this);
+			Enemigo.generar(250, 300,2,2,3,"src/imagenes/enemigo.png", this);
+			Enemigo.generar(250, 200,2,2,3,"src/imagenes/enemigo.png", this);
 			this.setVisible(true);
 		}	
 	}

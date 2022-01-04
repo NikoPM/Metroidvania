@@ -32,6 +32,7 @@ public class Graficos implements Serializable {
 		this.setHitbox(hitB);
 	}
 	
+
 	//Setters y Getters basicos
 	public int getPosX() {
 		return posX;
