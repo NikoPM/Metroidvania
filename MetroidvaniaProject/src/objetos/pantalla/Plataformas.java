@@ -1,6 +1,8 @@
 package objetos.pantalla;
 
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -10,6 +12,7 @@ import javax.swing.SwingUtilities;
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 1;
+	public static List<Plataformas> listaPlat = new ArrayList<>();
 	
 	
 	/**Constructor privado de la clase Platafromas
@@ -62,6 +65,7 @@ public class Plataformas extends Graficos {
 	private void crear(JLabel label, JFrame vent) {
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
+		label.setLocation(this.getPosX(), this.getPosY());
 	}
 	
 	/** Metodo Estatico Generar
@@ -75,13 +79,9 @@ public class Plataformas extends Graficos {
 	 */
 	public static JLabel generar(int x, int y, String dir, JFrame vent) {
 		Plataformas plat = new Plataformas(x, y, dir);
+		listaPlat.add(plat);
 		JLabel label = new JLabel(new ImageIcon(plat.dirImg));
-		SwingUtilities.invokeLater(new Runnable() {	
-			@Override
-			public void run() {
-				plat.crear(label, vent);
-			}
-		});
+		plat.crear(label, vent);
 		return label;
 	}
 }
