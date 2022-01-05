@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 1;
+	private static final String FRAME = "src/imagenes/plataforma.png";
 	public static List<Plataformas> listaPlat = new ArrayList<>();
 	
 	
@@ -20,8 +21,8 @@ public class Plataformas extends Graficos {
 	 * @param y	Posicion Y de la plataforma en pantalla
 	 * @param dir	String con la dirección a la imagen del 
 	 */
-	private Plataformas (int x, int y, String dir) {
-		super(x, y, dir, 0, 0, HITBOX);
+	private Plataformas (int x, int y) {
+		super(x, y, FRAME, 0, 0, HITBOX);
 	}
 	
 	//Getters y setters 
@@ -62,10 +63,10 @@ public class Plataformas extends Graficos {
 	 * @param vent Ventana en la que se crear la plataforma
 	 * Añade el consumible al Contentpane de la ventana, edita su layout a flowlayout 
 	 */
-	private void crear(JLabel label, JFrame vent) {
+	private static void crear(Plataformas plat, JLabel label, JFrame vent) {
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
-		label.setLocation(this.getPosX(), this.getPosY());
+		label.setLocation(plat.getPosX(), plat.getPosY());
 	}
 	
 	/** Metodo Estatico Generar
@@ -77,11 +78,14 @@ public class Plataformas extends Graficos {
 	 * lo introduce en la ventana animandolo y devuelve el JLabel con la imagen y posicion de la plataforma
 	 * LLama al constructor y al metodo crear
 	 */
-	public static JLabel generar(int x, int y, String dir, JFrame vent) {
-		Plataformas plat = new Plataformas(x, y, dir);
+	public static JLabel generar(int x, int y, JFrame vent) {
+		Plataformas plat = new Plataformas(x, y);
 		listaPlat.add(plat);
 		JLabel label = new JLabel(new ImageIcon(plat.dirImg));
-		plat.crear(label, vent);
+		vent.getContentPane().setLayout(new FlowLayout());
+		vent.getContentPane().add(label);
+		label.setLocation(plat.getPosX(), plat.getPosY());
+		//crear(plat, label, vent);
 		return label;
 	}
 }

@@ -74,8 +74,10 @@ public class VentanaJuego extends JFrame {
 		//Creacion del personaje
 		JLabel label = Personaje.generar(500, 50, this);
 		JLabel label2 = Personaje.generarShoot(this);
-		JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
-		JLabel plataforma = Plataformas.generar(0, 0, "src/imagenes/plataforma.png" , this);
+		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
+		//Hilo sin terminar
+		JLabel plataforma = Plataformas.generar(0, 500 , this);
+		JLabel plataforma2 = Plataformas.generar(0, 250 , this);
 		
 		hilo = new Thread(new Runnable() {
 			@Override
