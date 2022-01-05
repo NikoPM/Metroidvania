@@ -11,6 +11,7 @@ public class Plataformas extends Graficos {
 	private static final int HITBOX = 1;
 	private static final String FRAME = "src/imagenes/plataforma.png";
 	private Thread hilo;
+	private JLabel label;
 	public static List<Plataformas> listaPlat = new ArrayList<>();
 	
 	
@@ -55,7 +56,7 @@ public class Plataformas extends Graficos {
 	}
 	
 	//Metodos de la clase
-	private void crear(final JLabel label, final JFrame vent) {
+	private void crear(final JFrame vent) {
 		Plataformas plat = this;
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -64,11 +65,25 @@ public class Plataformas extends Graficos {
 			}
 		});
 	}
-
-	public static void stopThread() {
-		for(Plataformas plat: listaPlat) {
-			plat.hilo.interrupt();
-		}
+	
+	public void startThread(JFrame vent) {
+		hilo = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(!Thread.interrupted()) {
+					try {
+						for(int i = 0; i<3; i++) {
+							crear(vent);
+							Thread.sleep(1000);
+						}
+						Thread.currentThread().interrupt();
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+				}
+			}
+		});
+		hilo.start();
 	}
 	
 	/** Metodo Estatico Generar
@@ -83,9 +98,11 @@ public class Plataformas extends Graficos {
 	public static JLabel generar(int x, int y, JFrame vent) {
 		Plataformas plat = new Plataformas(x, y);
 		JLabel label = new JLabel(new ImageIcon(plat.dirImg));
+		plat.label = label;
 		listaPlat.add(plat);
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
+		plat.startThread(vent);
 		return label;
 	}
 }

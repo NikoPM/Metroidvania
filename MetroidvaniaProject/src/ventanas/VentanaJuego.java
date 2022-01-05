@@ -23,6 +23,7 @@ public class VentanaJuego extends JFrame {
 	//Fecha de inicio y fin para calcular el tiempo de partida
 	private static long fechaIni;
 	private static long fechaFin;
+	private JFrame ventana = this;
 	
 	private static Logger logger = Logger.getLogger("VentanaJuego");
 	 
@@ -118,6 +119,15 @@ public class VentanaJuego extends JFrame {
 					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(vent, label2);
+					Thread hilo2 = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							for(Plataformas plat: Plataformas.listaPlat) {
+								plat.startThread(ventana);
+							}
+						}
+					});
+					hilo2.start();
 				}
 			}
 		});
