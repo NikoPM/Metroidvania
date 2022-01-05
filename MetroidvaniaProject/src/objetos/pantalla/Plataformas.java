@@ -1,18 +1,16 @@
 package objetos.pantalla;
 
-import java.awt.FlowLayout;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
+import javax.swing.*;
+import java.awt.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 1;
 	private static final String FRAME = "src/imagenes/plataforma.png";
+	private Thread hilo;
 	public static List<Plataformas> listaPlat = new ArrayList<>();
 	
 	
@@ -57,16 +55,20 @@ public class Plataformas extends Graficos {
 	}
 	
 	//Metodos de la clase
+	private void crear(final JLabel label, final JFrame vent) {
+		Plataformas plat = this;
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				label.setLocation(plat.getPosX(), plat.getPosY());
+			}
+		});
+	}
 	
-	/** Metodo Privado Crear
-	 * @param label JLabel con la imagen de la plataforma
-	 * @param vent Ventana en la que se crear la plataforma
-	 * Añade el consumible al Contentpane de la ventana, edita su layout a flowlayout 
-	 */
-	private static void crear(Plataformas plat, JLabel label, JFrame vent) {
-		vent.getContentPane().setLayout(new FlowLayout());
-		vent.getContentPane().add(label);
-		label.setLocation(plat.getPosX(), plat.getPosY());
+	public static void stopThreads() {
+		for(Plataformas plat: listaPlat) {
+			plat.hilo.interrupt();
+		}
 	}
 	
 	/** Metodo Estatico Generar
@@ -80,12 +82,19 @@ public class Plataformas extends Graficos {
 	 */
 	public static JLabel generar(int x, int y, JFrame vent) {
 		Plataformas plat = new Plataformas(x, y);
-		listaPlat.add(plat);
 		JLabel label = new JLabel(new ImageIcon(plat.dirImg));
+		listaPlat.add(plat);
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
-		label.setLocation(plat.getPosX(), plat.getPosY());
-		//crear(plat, label, vent);
+		plat.hilo = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(!Thread.interrupted()) {
+					plat.crear(label, vent);
+				}
+			}
+		});
+		plat.hilo.start();
 		return label;
 	}
 }

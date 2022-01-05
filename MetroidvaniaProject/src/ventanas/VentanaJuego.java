@@ -40,6 +40,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
+				Plataformas.stopThreads();
 				hilo.interrupt();
 				fechaFin = new Date().getTime();
 				Usuario usuario = new Usuario(1, VentanaMenuInicio.getNombre(), fechaFin-fechaIni);
@@ -76,9 +77,8 @@ public class VentanaJuego extends JFrame {
 		JLabel label2 = Personaje.generarShoot(this);
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
 		//Hilo sin terminar
-		JLabel plataforma = Plataformas.generar(0, 500 , this);
-		JLabel plataforma2 = Plataformas.generar(0, 250 , this);
-		
+		JLabel plataforma = Plataformas.generar(0, 0 , this);
+	
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
