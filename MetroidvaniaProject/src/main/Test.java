@@ -39,7 +39,7 @@ public class Test {
 				@Override
 				public void keyReleased(KeyEvent e) {
 					Personaje.stopMover();
-				}  
+				}   
 				@Override
 				public void keyPressed(KeyEvent e) {
 					if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
