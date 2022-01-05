@@ -40,7 +40,6 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
-				Plataformas.stopThreads();
 				hilo.interrupt();
 				fechaFin = new Date().getTime();
 				Usuario usuario = new Usuario(1, VentanaMenuInicio.getNombre(), fechaFin-fechaIni);

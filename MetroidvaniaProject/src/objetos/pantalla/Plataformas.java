@@ -64,8 +64,8 @@ public class Plataformas extends Graficos {
 			}
 		});
 	}
-	
-	public static void stopThreads() {
+
+	public static void stopThread() {
 		for(Plataformas plat: listaPlat) {
 			plat.hilo.interrupt();
 		}
@@ -86,15 +86,6 @@ public class Plataformas extends Graficos {
 		listaPlat.add(plat);
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
-		plat.hilo = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while(!Thread.interrupted()) {
-					plat.crear(label, vent);
-				}
-			}
-		});
-		plat.hilo.start();
 		return label;
 	}
 }
