@@ -9,13 +9,11 @@ import java.awt.*;
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 1;
+	private static final int VEL_X = 3;
 	private static final String FRAME = "src/imagenes/plataforma.png";
 	private Thread hilo;
 	private JLabel label;
 	public static List<Plataformas> listaPlat = new ArrayList<>();
-	private static final int VEL_X = 3;
-	
-	
 	
 	/**Constructor privado de la clase Platafromas
 	 * @param x	Posicion X de la plataforma en pantalla
@@ -115,9 +113,9 @@ public class Plataformas extends Graficos {
 	public static void actualizarPos(JFrame vent, boolean bool) {
 		for(Plataformas p:listaPlat) {
 			if(bool) {
-				p.setPosX(p.getPosX()-VEL_X);	
-			}else {
-				p.setPosX(p.getPosX()+VEL_X);
+				p.setPosX(p.getPosX() - VEL_X);	
+			} else {
+				p.setPosX(p.getPosX() + VEL_X);
 			}	
 			p.startThread(vent);
 		}

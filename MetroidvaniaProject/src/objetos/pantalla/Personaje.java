@@ -76,7 +76,8 @@ public class Personaje extends Graficos {
 	 * @param label JLabel que se edita
 	 * @param vent Ventana en la que se edita
 	 * @param b boolean que indica si realizar la operacion de suma o resta
-	 * Establece y edita la posicion del label
+	 * Establece y edita la posicion del label y además si se llega al limite de la ventana
+	 * mueve las plataformas
 	 */
 	private static void labelMoveX(final Personaje pers, final JLabel label, final JFrame vent, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -86,13 +87,13 @@ public class Personaje extends Graficos {
 						if(b){
 							if(pers.getPosX()<540) {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
-							}else {
+							} else {
 								Plataformas.actualizarPos(vent, b);
 							}
 						} else {
 							if(pers.getPosX()>0) {
 								pers.setPosX(pers.getPosX() - pers.getVelX());
-							}else {
+							} else {
 								Plataformas.actualizarPos(vent, b);
 							}
 						}
@@ -333,5 +334,9 @@ public class Personaje extends Graficos {
 		} catch (NullPointerException e) {
 			return generar(x, y, vent);
 		}
+	}
+	
+	public static boolean colision(Graficos graf) {
+		return self.getPosY() == graf.getPosY() && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + 230);
 	}
 }
