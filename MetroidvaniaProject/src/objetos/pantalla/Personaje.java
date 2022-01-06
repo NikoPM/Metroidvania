@@ -306,7 +306,7 @@ public class Personaje extends Graficos {
 		stopFall();
 	}
 	
-	/** Metodo Estatico
+	/** Metodo Estatico Generar
 	 * @param x posicion en el eje X del personaje
 	 * @param y posicion en el eje Y del personaje
 	 * @param dir direccion donde se encuentra la imagen del personaje
@@ -341,7 +341,11 @@ public class Personaje extends Graficos {
 		}
 	}
 	
+	/** Metodo Estatico Colision
+	 * @param graf grafico con el que compara la colision
+	 * @return devuelve un booleano que indica si colisionan o no
+	 */
 	public static boolean colision(Graficos graf) {
-		return (self.getPosY() > graf.getPosY() && self.getPosY() <= graf.getPosY() + 10) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + 230);
+		return (self.getPosY() > graf.getPosY() && self.getPosY() <= graf.getPosY() + 10) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + graf.getHitbox());
 	}
 }

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
-	private static final int HITBOX = 1;
+	private static final int HITBOX = 230;
 	private static final int VEL_X = 3;
 	private static final String FRAME = "src/imagenes/plataforma.png";
 	private Thread hilo;
