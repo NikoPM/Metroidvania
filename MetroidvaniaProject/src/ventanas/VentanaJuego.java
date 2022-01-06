@@ -80,6 +80,8 @@ public class VentanaJuego extends JFrame {
 		JLabel plataforma = Plataformas.generar(100, 350 , this);
 		JLabel plataforma2 = Plataformas.generar(300, 300 , this);
 		JLabel plataforma3 = Plataformas.generar(500, 250, this);
+		JLabel plataforma4 = Plataformas.generar(750, 300, this);
+		JLabel plataforma5 = Plataformas.generar(1000, 350, this);
 	
 		hilo = new Thread(new Runnable() {
 			@Override

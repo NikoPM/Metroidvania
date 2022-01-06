@@ -86,10 +86,14 @@ public class Personaje extends Graficos {
 						if(b){
 							if(pers.getPosX()<540) {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
+							}else {
+								Plataformas.actualizarPos(vent, b);
 							}
 						} else {
 							if(pers.getPosX()>0) {
 								pers.setPosX(pers.getPosX() - pers.getVelX());
+							}else {
+								Plataformas.actualizarPos(vent, b);
 							}
 						}
 						label.setLocation(pers.getPosX(), pers.getPosY());

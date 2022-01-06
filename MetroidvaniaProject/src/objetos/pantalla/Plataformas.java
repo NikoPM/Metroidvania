@@ -13,6 +13,8 @@ public class Plataformas extends Graficos {
 	private Thread hilo;
 	private JLabel label;
 	public static List<Plataformas> listaPlat = new ArrayList<>();
+	private static final int VEL_X = 3;
+	
 	
 	
 	/**Constructor privado de la clase Platafromas
@@ -21,7 +23,7 @@ public class Plataformas extends Graficos {
 	 * @param dir	String con la dirección a la imagen del 
 	 */
 	private Plataformas (int x, int y) {
-		super(x, y, FRAME, 0, 0, HITBOX);
+		super(x, y, FRAME, VEL_X, 0, HITBOX);
 	}
 	
 	//Getters y setters 
@@ -104,5 +106,20 @@ public class Plataformas extends Graficos {
 		vent.getContentPane().add(label);
 		plat.startThread(vent);
 		return label;
+	}
+	/**Metodo estatico actualizar
+	 * @param vent  Ventana en la que se encuentran las plataformas
+	 * @param bool  Booleano que identifica si se avanza o se retrocede
+	 * Actualiza la posicion de las plataformas
+	 */
+	public static void actualizarPos(JFrame vent, boolean bool) {
+		for(Plataformas p:listaPlat) {
+			if(bool) {
+				p.setPosX(p.getPosX()-VEL_X);	
+			}else {
+				p.setPosX(p.getPosX()+VEL_X);
+			}	
+			p.startThread(vent);
+		}
 	}
 }
