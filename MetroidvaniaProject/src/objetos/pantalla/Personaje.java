@@ -140,14 +140,19 @@ public class Personaje extends Graficos {
 	 * @param vent ventana en la que se edita
 	 * @param b boolean que indica si sumar o restar
 	 * Establece y edita la posicion del label
-	 * En el caso de que caiga, solo lo hace si no esta saltando y si hace falta que caiga
+	 * En el caso de que caiga, solo lo hace si no esta saltando, si hace falta que caiga 
+	 * y si no colisiona con ninguna plataforma
 	 */
 	private static void LabelMoveY(final Personaje pers, final JLabel label, final JFrame vent, final boolean b) {
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
 			public void run() {
+				boolean coli = false;
+				for(Plataformas plat: Plataformas.listaPlat) {
+					coli |= colision(plat);
+				}
 				if(!b) {
-					if(pers.getPosY()<vent.getHeight()-100 && !salto) { //<vent.getHeight()-50
+					if(pers.getPosY()<vent.getHeight()-100 && !salto && !coli) { //<vent.getHeight()-50
 						pers.setPosY(pers.getPosY() + pers.getVelY());
 						fall = true;
 					}  else {
@@ -337,6 +342,6 @@ public class Personaje extends Graficos {
 	}
 	
 	public static boolean colision(Graficos graf) {
-		return self.getPosY() == graf.getPosY() && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + 230);
+		return (self.getPosY() > graf.getPosY() && self.getPosY() <= graf.getPosY() + 10) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + 230);
 	}
 }
