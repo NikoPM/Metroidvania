@@ -105,7 +105,7 @@ public class Plataformas extends Graficos {
 		plat.startThread(vent);
 		return label;
 	}
-	/**Metodo estatico actualizar
+	/**Metodo estatico actualizarPos
 	 * @param vent  Ventana en la que se encuentran las plataformas
 	 * @param bool  Booleano que identifica si se avanza o se retrocede
 	 * Actualiza la posicion de las plataformas

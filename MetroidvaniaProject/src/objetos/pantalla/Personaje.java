@@ -15,6 +15,8 @@ public class Personaje extends Graficos {
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje self; //Mismo personaje
+	private static JLabel label; //Label del personaje
+	private static JLabel labelShoot; //Label del disparo del personaje
 	private static boolean salto = false; //Boolean que indica el salto
 	private static boolean fall = false; //Boolean que indica la caida
 	private static boolean shoot = false; //Boolean que indica el disparo
@@ -34,6 +36,20 @@ public class Personaje extends Graficos {
 	 */
 	public static int getVida() {
 		return vida;
+	}
+	
+	/** Metodo Estatico GetLabel
+	 * @return se devuelve el label del personaje
+	 */
+	public static JLabel getLabel() {
+		return label;
+	}
+	
+	/** Metodo Estatico GetLabelShoot
+	 * @return se devuelve el label del disparo del personaje
+	 */
+	public static JLabel getLabelShoot() {
+		return labelShoot;
 	}
 	
 	/** Metodo DecVida
@@ -236,15 +252,13 @@ public class Personaje extends Graficos {
 	
 	/** Metodo Estatico GenerarShoot
 	 * @param vent Ventana en la que se edita
-	 * @return devuelve el label creado
 	 * Crea un label con una imagen, lo introduce en la ventana y lo vuelve invisible
 	 */
-	public static JLabel generarShoot(JFrame vent) {
-		JLabel label = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
+	public static void generarShoot(JFrame vent) {
+		labelShoot = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
 		vent.getContentPane().setLayout(new FlowLayout());
-		vent.getContentPane().add(label);
-		label.setVisible(false);
-		return label;
+		vent.getContentPane().add(labelShoot);
+		labelShoot.setVisible(false);
 	}
 	 
 	/** Metodo Estatico Shoot
@@ -311,14 +325,13 @@ public class Personaje extends Graficos {
 	 * @param y posicion en el eje Y del personaje
 	 * @param dir direccion donde se encuentra la imagen del personaje
 	 * @param vent ventana en la que se introduce el personaje
-	 * @return devuelve el label del personaje
 	 * Llama al constructor y crea un personaje, un label con la imagen del personaje
 	 * lo introduce en la ventana y crea un hilo que se encarga de las caidas del personaje
 	 */
-	public static JLabel generar(int x, int y, JFrame vent) {
+	public static void generar(int x, int y, JFrame vent) {
 		try {
 			Personaje pers = new Personaje(x, y);
-			JLabel label = new JLabel(new ImageIcon(pers.dirImg));
+			label = new JLabel(new ImageIcon(pers.dirImg));
 			vent.getContentPane().setLayout(new FlowLayout());
 			vent.getContentPane().add(label);
 			hiloY = new Thread(new Runnable() {
@@ -335,9 +348,8 @@ public class Personaje extends Graficos {
 				}
 			});
 			hiloY.start();
-			return label;
 		} catch (NullPointerException e) {
-			return generar(x, y, vent);
+			generar(x, y, vent);
 		}
 	}
 	

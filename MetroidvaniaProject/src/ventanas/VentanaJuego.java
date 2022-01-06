@@ -17,7 +17,6 @@ public class VentanaJuego extends JFrame {
 	private static JPanel barraDeVida;//Barra de vida del personaje
 	private static Container con;//Contenedor donde se meterán todos los aspectos que se muestren por pantalla
 	private static JPanel hp;
-	private VentanaJuego vent;
 	private static Thread hilo;
 	private static JProgressBar hpBar;
 	//Fecha de inicio y fin para calcular el tiempo de partida
@@ -73,10 +72,11 @@ public class VentanaJuego extends JFrame {
 		hp.add(lHp);
 		
 		//Creacion del personaje
-		JLabel label = Personaje.generar(500, 50, this);
-		JLabel label2 = Personaje.generarShoot(this);
-		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
+		Personaje.generar(500, 50, this);
+		Personaje.generarShoot(this);
 		//Hilo sin terminar
+		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
+		//Creacion de plataformas
 		Plataformas.generar(120, 380, this);
 		Plataformas.generar(300, 300 , this);
 		Plataformas.generar(500, 250, this);
@@ -112,17 +112,17 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(KeyEvent.VK_RIGHT == e.getKeyCode()) {
-					Personaje.mover(label, vent, true);
+					Personaje.mover(Personaje.getLabel(), ventana, true);
 				} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
-					Personaje.mover(label, vent, false);
+					Personaje.mover(Personaje.getLabel(), ventana, false);
 				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
-					Personaje.salto(label);
+					Personaje.salto(Personaje.getLabel());
 					Personaje.decVida(1); //Prueba de que funciona
 					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
 						dispose(); //Si llega a 0 se cierra la ventana y acaba el juego
 					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
-					Personaje.shoot(vent, label2);
+					Personaje.shoot(ventana, Personaje.getLabelShoot());
 					Thread hilo2 = new Thread(new Runnable() {
 						@Override
 						public void run() {
