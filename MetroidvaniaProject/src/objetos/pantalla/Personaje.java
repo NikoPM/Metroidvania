@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Personaje extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL_X = 5; //Velocidad en el eje X
-	private static final int VEL_Y = 3; //Velocidad en el eje Y
+	private static final int VEL_Y = 6; //Velocidad en el eje Y
 	private static final int VEL_SHOOT = 10; //Velocidad del disparo
 	private static final int DIST_SHOOT = 15; //Distancia del disparo
 	private static final int HITBOX = 1; //HitBox del personaje
