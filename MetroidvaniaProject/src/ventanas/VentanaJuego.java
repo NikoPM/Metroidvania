@@ -77,11 +77,11 @@ public class VentanaJuego extends JFrame {
 		JLabel label2 = Personaje.generarShoot(this);
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
 		//Hilo sin terminar
-		JLabel plataforma = Plataformas.generar(100, 350 , this);
-		JLabel plataforma2 = Plataformas.generar(300, 300 , this);
-		JLabel plataforma3 = Plataformas.generar(500, 250, this);
-		JLabel plataforma4 = Plataformas.generar(750, 300, this);
-		JLabel plataforma5 = Plataformas.generar(1000, 350, this);
+		Plataformas.generar(100, 350 , this);
+		Plataformas.generar(300, 300 , this);
+		Plataformas.generar(500, 250, this);
+		Plataformas.generar(750, 300, this);
+		Plataformas.generar(1000, 350, this);
 	
 		hilo = new Thread(new Runnable() {
 			@Override
