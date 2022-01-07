@@ -5,10 +5,8 @@ import java.awt.event.*;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import datos.BaseDeDatos;
 import datos.Usuario;
-
 import javax.swing.*;
 import objetos.pantalla.*;
 
