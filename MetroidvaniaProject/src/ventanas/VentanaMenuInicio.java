@@ -9,7 +9,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 import datos.*;
-import datos.Usuario;
 
 //Ventana que se mostrará al ejecutar el juego 
 //Permite iniciar la partida, ver los controles del juego, volver al escritorio y ver el ranking
@@ -24,8 +23,6 @@ public class VentanaMenuInicio extends JFrame {
 	private static JButton bRanking = new JButton("Ranking");
 	private static JButton bControles = new JButton("Controles");//
 	private static JButton bExit = new JButton("Volver al escritorio");
-	// Variables que comprueban el estado de la ventana
-	private static boolean isOpen = true;
 	// Variables para los botones
 	private static int lx = 700;
 	private static int ly = 100;
@@ -57,20 +54,17 @@ public class VentanaMenuInicio extends JFrame {
 
 			@Override
 			public void windowClosed(WindowEvent e) {
-				isOpen = false;
 				logger.log(Level.INFO, "Ventana cerrada");
 				BaseDeDatos.cerrarConexion();
 			}
 		});
-
-		new FondoPanel().dream(this);
 
 		// Características de la ventana
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(x, y));
 		this.setLocationRelativeTo(null);
-		this.setTitle("El sueerman");
+		this.setTitle("El Sueño de Kerman");
 
 		// Componentes de la pantalla
 		JPanel p = new JPanel();
@@ -84,6 +78,12 @@ public class VentanaMenuInicio extends JFrame {
 		panelBotones.setOpaque(false);
 		p.setOpaque(false);
 
+		// Borde de los botones
+		bNuevaPartida.setBorder(bordeBoton);
+		bRanking.setBorder(bordeBoton);
+		bControles.setBorder(bordeBoton);
+		bExit.setBorder(bordeBoton);
+		
 		// Situar los botones y establecer su tamaño
 		bNuevaPartida.setBounds(lx, ly, anchura, altura);
 		ly += espacio;
@@ -92,12 +92,6 @@ public class VentanaMenuInicio extends JFrame {
 		bControles.setBounds(lx, ly, anchura, altura);
 		ly += espacio;
 		bExit.setBounds(lx, ly, anchura, altura);
-
-		// Borde de los botones
-		bNuevaPartida.setBorder(bordeBoton);
-		bRanking.setBorder(bordeBoton);
-		bControles.setBorder(bordeBoton);
-		bExit.setBorder(bordeBoton);
 
 		// Fuente de los botones
 		bNuevaPartida.setFont(letra);
@@ -117,7 +111,7 @@ public class VentanaMenuInicio extends JFrame {
 		add(bControles);
 		add(bExit);
 		add(panelCentral);
-
+		
 		// ActionListeners
 		funcionBotones();
 
@@ -151,7 +145,7 @@ public class VentanaMenuInicio extends JFrame {
 				if(nombre!=null) {
 					VentanaJuego v = new VentanaJuego();
 					v.setVisible(true);
-					dispose(); 
+					dispose();
 				}
 			}
 		});
@@ -161,7 +155,6 @@ public class VentanaMenuInicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				verClasificacion();
-
 			}
 		});
 
@@ -198,7 +191,7 @@ public class VentanaMenuInicio extends JFrame {
 	}
 
 	/**
-	 * Clase externa que nos permite dibujar el fondo de la paantalla sin que este
+	 * Clase externa que nos permite dibujar el fondo de la pantalla sin que este
 	 * se dibuje encima de los demás elementos
 	 * 
 	 * @author Nicolás
@@ -216,19 +209,6 @@ public class VentanaMenuInicio extends JFrame {
 			setOpaque(false);
 			super.paint(g);
 		}
-
-		private void dream(VentanaMenuInicio vent) {
-			Thread hilo = new Thread() {
-				@Override
-				public void run() {
-					while (isOpen) {
-						vent.setTitle("El sueño de kerman");
-					}
-				}
-			};
-			hilo.start();
-		}
-
 	}
 
 	/**

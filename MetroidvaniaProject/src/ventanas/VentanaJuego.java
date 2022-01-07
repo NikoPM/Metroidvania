@@ -140,8 +140,7 @@ public class VentanaJuego extends JFrame {
 	 *  Cierra la ventana y si el jugador acepta, abre una ventana menu.
 	 */
 	private void gameOver() {
-		int opcion = JOptionPane.showConfirmDialog(con, "Juego terminado. Desea volver al menu de inicio?");
-		if(opcion == 0) new VentanaMenuInicio();
+		JOptionPane.showMessageDialog(con, "Juego terminado.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		this.dispose();
 	}
 }
