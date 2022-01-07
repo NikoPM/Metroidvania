@@ -47,6 +47,9 @@ public class VentanaJuego extends JFrame {
 				BaseDeDatos.insertarUsuario(usuario);
 				BaseDeDatos.cerrarConexion();
 				logger.log(Level.INFO, "Juego terminado");
+				
+				int opcion = JOptionPane.showConfirmDialog(con, "Juego terminado. Desea volver al menu de inicio?");
+				if(opcion==0) new VentanaMenuInicio();
 			}
 		}); 
 	
@@ -119,7 +122,7 @@ public class VentanaJuego extends JFrame {
 					Personaje.salto(Personaje.getLabel());
 					Personaje.decVida(1); //Prueba de que funciona
 					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
-						dispose(); //Si llega a 0 se cierra la ventana y acaba el juego
+						dispose();
 					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(ventana, Personaje.getLabelShoot());

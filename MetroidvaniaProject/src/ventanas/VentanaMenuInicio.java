@@ -28,7 +28,7 @@ public class VentanaMenuInicio extends JFrame {
 	// Botones
 	private static JButton bNuevaPartida = new JButton("Nueva partida");
 	private static JButton bRanking = new JButton("Ranking");
-	private static JButton bControles = new JButton("controles");//
+	private static JButton bControles = new JButton("Controles");//
 	private static JButton bExit = new JButton("Volver al escritorio");
 	// Variables que comprueban el estado de la ventana
 	private static boolean isOpen = true;
