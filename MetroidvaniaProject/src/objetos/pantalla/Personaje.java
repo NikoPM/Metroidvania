@@ -58,10 +58,10 @@ public class Personaje extends Graficos {
 	 * Decrementa la vida del personaje en i
 	 */
 	public static int decVida(int i) {
-		if(vida - 1 < 0) {
+		if(vida - i < 0) {
 			vida = 0;
 		} else {
-			vida -= 1;
+			vida -= i;
 		}
 		return vida;
 	}
@@ -72,10 +72,10 @@ public class Personaje extends Graficos {
 	 * Incrementa la vida del personaje en i
 	 */
 	public static int incVida(int i) {
-		if(vida + 1 > 100) {
+		if(vida + i > 100) {
 			vida = 100;
 		} else {
-			vida += 1;
+			vida += i;
 		}
 		return vida;
 	}
@@ -102,7 +102,7 @@ public class Personaje extends Graficos {
 				try {
 					for(Consumibles cons: Consumibles.getListaCons()) {
 						if(colision(cons)) {
-							incVida(50);
+							incVida(10);
 							vent.remove(cons.getLabel());
 						} 
 					}
