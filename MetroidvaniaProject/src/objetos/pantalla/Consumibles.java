@@ -11,8 +11,10 @@ import java.util.List;
 public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL = 1; //Velocidad del consumible
-	private static final int HITBOX = 1; //Hitbox del consumible
+	private static final int HITBOX = 5; //Hitbox del consumible
+	private static final String FRAME = "src/imagenes/ElixirVida.png";
 	private Thread hilo; //Hilo de consumible
+	private JLabel label; //Label del consumible
 	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles
  
 	/** Constructor Privado de objetos de clase Consumibles
@@ -20,8 +22,22 @@ public class Consumibles extends Graficos {
 	 * @param y Posicion Y del consumible en pantalla
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 */
-	private Consumibles(int x, int y, String dir) {
-		super(x, y, dir, VEL, VEL, HITBOX);
+	private Consumibles(int x, int y) {
+		super(x, y, FRAME, VEL, VEL, HITBOX);
+	}
+	
+	/** Metodo Estatico getListaCons
+	 * @return devuelve la lista que contiene los consumibles
+	 */
+	public static List<Consumibles> getListaCons() {
+		return listaCons;
+	}
+	
+	/** Metodo Estatico getLabel
+	 * @return devuelve el label del consumible
+	 */
+	public JLabel getLabel() {
+		return label;
 	}
 	
 	/** Metodo Estatico Privado LabelMove
@@ -99,18 +115,18 @@ public class Consumibles extends Graficos {
 	 * lo introduce en la ventana animandolo y devuelve el JLabel con la imagen y posicion del consumible
 	 * LLama al constructor y al metodo crear e introduce el consumible en la lista
 	 */
-	public static JLabel generar(int x, int y, String dir, JFrame vent) {
-		Consumibles cons = new Consumibles(x, y, dir);
+	public static void generar(int x, int y, JFrame vent) {
+		Consumibles cons = new Consumibles(x, y);
 		listaCons.add(cons);
 		JLabel label = new JLabel(new ImageIcon(cons.dirImg));
+		cons.label = label;
 		vent.getContentPane().setLayout(new FlowLayout());
-		vent.getContentPane().add(label);
+		vent.getContentPane().add(cons.label);
 		SwingUtilities.invokeLater(new Runnable() {	
 			@Override
 			public void run() {
 				cons.animar(label);
 			}
 		});
-		return label;
 	}
 }

@@ -13,7 +13,7 @@ public class Plataformas extends Graficos {
 	private static final String FRAME = "src/imagenes/plataforma.png";
 	private Thread hilo;
 	private JLabel label;
-	public static List<Plataformas> listaPlat = new ArrayList<>();
+	private static List<Plataformas> listaPlat = new ArrayList<>();
 	
 	/**Constructor privado de la clase Platafromas
 	 * @param x	Posicion X de la plataforma en pantalla
@@ -28,6 +28,10 @@ public class Plataformas extends Graficos {
 	@Override
 	public int getPosX() {
 		return super.getPosX();
+	}
+	
+	public static List<Plataformas> getListaPlat() {
+		return listaPlat;
 	}
 	
 	@Override

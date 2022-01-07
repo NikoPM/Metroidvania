@@ -38,6 +38,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
+				Consumibles.stopAll();
 				hilo.interrupt();
 				fechaFin = new Date().getTime();
 				Usuario usuario = new Usuario(1, VentanaMenuInicio.getNombre(), fechaFin-fechaIni);
@@ -72,6 +73,7 @@ public class VentanaJuego extends JFrame {
 		//Creacion del personaje
 		Personaje.generar(500, 50, this);
 		Personaje.generarShoot(this);
+		//Creacion de enemigo
 		//Hilo sin terminar
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
 		//Creacion de plataformas
@@ -80,6 +82,9 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(500, 250, this);
 		Plataformas.generar(750, 300, this);
 		Plataformas.generar(1000, 350, this);
+		//Creacion Consumibles
+		//Hilo sin terminar
+		//Consumibles.generar(90, 400, this);
 	
 		hilo = new Thread(new Runnable() {
 			@Override
@@ -124,7 +129,7 @@ public class VentanaJuego extends JFrame {
 					Thread hilo2 = new Thread(new Runnable() {
 						@Override
 						public void run() {
-							for(Plataformas plat: Plataformas.listaPlat) {
+							for(Plataformas plat: Plataformas.getListaPlat()) {
 								plat.startThread(ventana);
 							}
 						}

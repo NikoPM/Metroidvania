@@ -100,6 +100,14 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				try {
+					for(Consumibles cons: Consumibles.getListaCons()) {
+						if(colision(cons)) {
+							incVida(50);
+							vent.remove(cons.getLabel());
+							Consumibles.getListaCons().remove(cons);
+							break;
+						} 
+					}
 						if(b){
 							if(pers.getPosX()<540) {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
@@ -164,7 +172,7 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				boolean coli = false;
-				for(Plataformas plat: Plataformas.listaPlat) {
+				for(Plataformas plat: Plataformas.getListaPlat()) {
 					coli |= colision(plat);
 				}
 				if(!b) {
