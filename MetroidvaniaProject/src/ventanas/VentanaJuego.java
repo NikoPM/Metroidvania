@@ -83,8 +83,7 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(750, 300, this);
 		Plataformas.generar(1000, 350, this);
 		//Creacion Consumibles
-		//Hilo sin terminar
-		//Consumibles.generar(90, 400, this);
+		Consumibles.generar(90, 400, this);
 	
 		hilo = new Thread(new Runnable() {
 			@Override
@@ -103,9 +102,7 @@ public class VentanaJuego extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				if(KeyEvent.VK_RIGHT == e.getKeyCode() || KeyEvent.VK_LEFT == e.getKeyCode()) {
 					Personaje.stopMover();
-					logger.log(Level.INFO, "Tecla direccion izda. pulsada");
-				} else if(KeyEvent.VK_LEFT == e.getKeyCode()) {
-					logger.log(Level.INFO, "Tecla direccion izda. pulsada");
+					logger.log(Level.INFO, "Tecla direccion pulsada");
 				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 					logger.log(Level.INFO, "Tecla direccion arriba pulsada");
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {

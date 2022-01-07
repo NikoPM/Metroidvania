@@ -104,8 +104,6 @@ public class Personaje extends Graficos {
 						if(colision(cons)) {
 							incVida(50);
 							vent.remove(cons.getLabel());
-							Consumibles.getListaCons().remove(cons);
-							break;
 						} 
 					}
 						if(b){
