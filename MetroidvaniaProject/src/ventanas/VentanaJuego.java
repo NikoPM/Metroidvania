@@ -5,10 +5,8 @@ import java.awt.event.*;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import datos.BaseDeDatos;
 import datos.Usuario;
-
 import javax.swing.*;
 import objetos.pantalla.*;
 
@@ -29,9 +27,9 @@ public class VentanaJuego extends JFrame {
 	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 500));
+		setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
-		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
