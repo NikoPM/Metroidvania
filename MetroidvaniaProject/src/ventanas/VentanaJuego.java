@@ -29,6 +29,7 @@ public class VentanaJuego extends JFrame {
 	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 500));
+		setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		
