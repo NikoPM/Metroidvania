@@ -77,6 +77,8 @@ public class VentanaJuego extends JFrame {
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
 		//Creacion de enemigo
 		Enemy.generar(-300, -300, this);
+		Enemy.generar(-700, 300, this);
+		Enemy.generar(-300, -700, this);
 		//Hilo sin terminar
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
 		//Creacion Consumibles

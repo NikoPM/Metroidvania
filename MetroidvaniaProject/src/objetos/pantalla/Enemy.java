@@ -10,9 +10,8 @@ import java.util.List;
  */
 public class Enemy extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
-	private static final int VEL_X = 2; //Velocidad eje X del enemigo
-	private static final int VEL_Y = 2; //Velocidad eje Y del enemigo
-	private static final int HITBOX = 5; //Hitbox del enemigo
+	private static final int VEL = 7; //Velocidad del enemigo
+	private static final int HITBOX = 20; //Hitbox del enemigo
 	private static final String FRAME = "src/imagenes/enemigo.png"; //Imagen del enemigo
 	private Thread hilo; //Hilo de enemigo
 	private JLabel label; //Label del enemigo
@@ -24,7 +23,7 @@ public class Enemy extends Graficos {
 	 * @param dir Direccion en la que se encuentra la imagen(es) del enemigo
 	 */
 	private Enemy(int x, int y) {
-		super(x, y, FRAME, VEL_X, VEL_Y, HITBOX);
+		super(x, y, FRAME, VEL, VEL, HITBOX);
 	}
 	
 	/** Metodo Estatico getListaEne
@@ -51,17 +50,18 @@ public class Enemy extends Graficos {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				int rand = new Random().nextInt(VEL);
 				if(ene.getPosX() < Personaje.getPersonaje().getPosX()) {
-					ene.setPosX(ene.getPosX() + ene.getVelX());
+					ene.setPosX(ene.getPosX() + rand);
 				} 
 				if(ene.getPosY() < Personaje.getPersonaje().getPosY()) {
-					ene.setPosY(ene.getPosY() + ene.getVelY());
+					ene.setPosY(ene.getPosY() + rand);
 				}
 				if(ene.getPosX() > Personaje.getPersonaje().getPosX()) {
-					ene.setPosX(ene.getPosX() - ene.getVelX());
+					ene.setPosX(ene.getPosX() - rand);
 				} 
 				if(ene.getPosY() > Personaje.getPersonaje().getPosY()) {
-					ene.setPosY(ene.getPosY() - ene.getVelY());
+					ene.setPosY(ene.getPosY() - rand);
 				}
 				label.setLocation(ene.getPosX(), ene.getPosY());
 			}

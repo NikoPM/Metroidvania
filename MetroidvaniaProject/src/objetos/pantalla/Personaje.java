@@ -377,7 +377,7 @@ public class Personaje extends Graficos {
 	 * Si el grafico es una instancia de enemigo se activa la colision un poco mas facil
 	 */
 	public static boolean colisionShoot(Graficos graf) {
-		if(graf instanceof Enemy) return (labelShoot.getY() > graf.getPosY() - 10 && labelShoot.getY() <= graf.getPosY() + 20) && (labelShoot.getX() >= graf.getPosX() && labelShoot.getX() <= graf.getPosX() + graf.getHitbox());
+		if(graf instanceof Enemy) return (labelShoot.getY() >= graf.getPosY() - 20 && labelShoot.getY() <= graf.getPosY() + 20) && (labelShoot.getX() >= graf.getPosX() - graf.getHitbox() && labelShoot.getX() <= graf.getPosX() + graf.getHitbox());
 		return (labelShoot.getY() > graf.getPosY() && labelShoot.getY() <= graf.getPosY() + 10) && (labelShoot.getX() >= graf.getPosX() && labelShoot.getX() <= graf.getPosX() + graf.getHitbox());
 	}
 }
