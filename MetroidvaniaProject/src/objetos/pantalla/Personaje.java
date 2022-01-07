@@ -111,12 +111,14 @@ public class Personaje extends Graficos {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
 							} else {
 								Plataformas.actualizarPos(vent, b);
+								Consumibles.actualizarPos(vent, b);
 							}
 						} else {
 							if(pers.getPosX()>0) {
 								pers.setPosX(pers.getPosX() - pers.getVelX());
 							} else {
 								Plataformas.actualizarPos(vent, b);
+								Consumibles.actualizarPos(vent, b);
 							}
 						}
 						label.setLocation(pers.getPosX(), pers.getPosY());
@@ -362,8 +364,20 @@ public class Personaje extends Graficos {
 	/** Metodo Estatico Colision
 	 * @param graf grafico con el que compara la colision
 	 * @return devuelve un booleano que indica si colisionan o no
+	 * Si el grafico es una instancia de enemigo se activa la colision un poco mas facil
 	 */
 	public static boolean colision(Graficos graf) {
+		if(graf instanceof Enemy) return (self.getPosY() > graf.getPosY() - 10 && self.getPosY() <= graf.getPosY() + 20) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + graf.getHitbox());
 		return (self.getPosY() > graf.getPosY() && self.getPosY() <= graf.getPosY() + 10) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + graf.getHitbox());
+	}
+	
+	/** Metodo Estatico ColisionShoot
+	 * @param graf grafico con el que compara la colision
+	 * @return devuelve un booleano que indica si colisionan o no
+	 * Si el grafico es una instancia de enemigo se activa la colision un poco mas facil
+	 */
+	public static boolean colisionShoot(Graficos graf) {
+		if(graf instanceof Enemy) return (labelShoot.getY() > graf.getPosY() - 10 && labelShoot.getY() <= graf.getPosY() + 20) && (labelShoot.getX() >= graf.getPosX() && labelShoot.getX() <= graf.getPosX() + graf.getHitbox());
+		return (labelShoot.getY() > graf.getPosY() && labelShoot.getY() <= graf.getPosY() + 10) && (labelShoot.getX() >= graf.getPosX() && labelShoot.getX() <= graf.getPosX() + graf.getHitbox());
 	}
 }

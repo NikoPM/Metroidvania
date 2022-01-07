@@ -6,11 +6,12 @@ import java.util.*;
 import java.util.List;
 
 /**
- * Clase Consumibles de los objetos que aparcen por pantalla
+ * Clase Consumibles de los objetos que aparecen por pantalla
  */
 public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
-	private static final int VEL = 1; //Velocidad del consumible
+	private static final int VEL_X = 5; //Velocidad eje X del consumible
+	private static final int VEL_Y = 1; //Velocidad eje Y del consumible
 	private static final int HITBOX = 5; //Hitbox del consumible
 	private static final String FRAME = "src/imagenes/ElixirVida.png";
 	private Thread hilo; //Hilo de consumible
@@ -23,7 +24,7 @@ public class Consumibles extends Graficos {
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 */
 	private Consumibles(int x, int y) {
-		super(x, y, FRAME, VEL, VEL, HITBOX);
+		super(x, y, FRAME, VEL_X, VEL_Y, HITBOX);
 	}
 	
 	/** Metodo Estatico getListaCons
@@ -128,5 +129,20 @@ public class Consumibles extends Graficos {
 				cons.animar(label);
 			}
 		});
+	}
+	
+	/**Metodo estatico actualizarPos
+	 * @param vent  Ventana en la que se encuentran las plataformas
+	 * @param bool  Booleano que identifica si se avanza o se retrocede
+	 * Actualiza la posicion de los consumibles
+	 */
+	public static void actualizarPos(JFrame vent, boolean bool) {
+		for(Consumibles p:listaCons) {
+			if(bool) {
+				p.setPosX(p.getPosX() - VEL_X);	
+			} else {
+				p.setPosX(p.getPosX() + VEL_X);
+			}	
+		}
 	}
 }

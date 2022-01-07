@@ -39,6 +39,7 @@ public class VentanaJuego extends JFrame {
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
 				Consumibles.stopAll();
+				Enemy.stopAll();
 				hilo.interrupt();
 				fechaFin = new Date().getTime();
 				Usuario usuario = new Usuario(1, VentanaMenuInicio.getNombre(), fechaFin-fechaIni);
@@ -73,7 +74,9 @@ public class VentanaJuego extends JFrame {
 		//Creacion del personaje
 		Personaje.generar(500, 50, this);
 		Personaje.generarShoot(this);
+		Personaje.shoot(ventana, Personaje.getLabelShoot());
 		//Creacion de enemigo
+		Enemy.generar(-300, -300, this);
 		//Hilo sin terminar
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
 		//Creacion Consumibles
@@ -91,6 +94,10 @@ public class VentanaJuego extends JFrame {
 				while(!Thread.interrupted()) {
 					hpBar.setValue(Personaje.getVida());
 					repaint();
+					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
+						gameOver();
+						hilo.interrupt();
+					}
 				}
 			}
 		});
@@ -118,9 +125,6 @@ public class VentanaJuego extends JFrame {
 				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 					Personaje.salto(Personaje.getLabel());
 					Personaje.decVida(1); //Prueba de que funciona
-					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
-						gameOver();
-					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(ventana, Personaje.getLabelShoot());
 					Thread hilo2 = new Thread(new Runnable() {
