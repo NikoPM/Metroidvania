@@ -76,14 +76,14 @@ public class VentanaJuego extends JFrame {
 		//Creacion de enemigo
 		//Hilo sin terminar
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
+		//Creacion Consumibles
+		Consumibles.generar(150, 380, this);
 		//Creacion de plataformas
 		Plataformas.generar(120, 380, this);
 		Plataformas.generar(300, 300 , this);
 		Plataformas.generar(500, 250, this);
 		Plataformas.generar(750, 300, this);
 		Plataformas.generar(1000, 350, this);
-		//Creacion Consumibles
-		Consumibles.generar(90, 400, this);
 	
 		hilo = new Thread(new Runnable() {
 			@Override
