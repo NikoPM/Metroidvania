@@ -45,9 +45,6 @@ public class VentanaJuego extends JFrame {
 				BaseDeDatos.insertarUsuario(usuario);
 				BaseDeDatos.cerrarConexion();
 				logger.log(Level.INFO, "Juego terminado");
-				
-				int opcion = JOptionPane.showConfirmDialog(con, "Juego terminado. Desea volver al menu de inicio?");
-				if(opcion==0) new VentanaMenuInicio();
 			}
 		}); 
 	
@@ -120,7 +117,7 @@ public class VentanaJuego extends JFrame {
 					Personaje.salto(Personaje.getLabel());
 					Personaje.decVida(1); //Prueba de que funciona
 					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
-						dispose();
+						gameOver();
 					}
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(ventana, Personaje.getLabelShoot());
@@ -137,5 +134,14 @@ public class VentanaJuego extends JFrame {
 			}
 		});
 		this.setVisible(true);
+	}
+	
+	/** Metodo Privado GameOver
+	 *  Cierra la ventana y si el jugador acepta, abre una ventana menu.
+	 */
+	private void gameOver() {
+		int opcion = JOptionPane.showConfirmDialog(con, "Juego terminado. Desea volver al menu de inicio?");
+		if(opcion == 0) new VentanaMenuInicio();
+		this.dispose();
 	}
 }
