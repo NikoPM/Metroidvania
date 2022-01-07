@@ -61,28 +61,7 @@ public class Enemigo extends Graficos /** implements Destruible **/
 		});
 	}
 
-	private static void persecucion(final Personaje pers, final Enemigo e, final JLabel label, final JFrame vent,final boolean persiguiendo) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					if (persiguiendo) {
-						if (e.getPosX()!=pers.getPosX()&&e.getPosY()!=pers.getPosY()) {
-							e.setPosY(e.getPosX() + e.getVelX());
-							e.setPosY(e.getPosY() + e.getVelY());
-						}
-					} else {
-						e.movimientoX(e, label, vent, true);
-						e.movimientoY(e, label, vent, true);
-					}
-					label.setLocation(e.getPosX(), e.getPosY());
-					vent.repaint();
-
-				} catch (NullPointerException e) {
-				}
-
-			}
-		});
-	}
+	
 
 	private void crear(/**Personaje pers ,**/Enemigo e, JLabel label, JFrame vent) {
 		vent.getContentPane().setLayout(new FlowLayout());
