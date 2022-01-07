@@ -2,19 +2,13 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.text.*;
+import java.util.*;
+import java.util.logging.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.table.DefaultTableModel;
-
-import datos.BaseDeDatos;
+import javax.swing.table.*;
+import datos.*;
 import datos.Usuario;
 
 //Ventana que se mostrará al ejecutar el juego 
