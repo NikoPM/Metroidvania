@@ -30,7 +30,6 @@ public class VentanaJuego extends JFrame {
 		setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
-		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
