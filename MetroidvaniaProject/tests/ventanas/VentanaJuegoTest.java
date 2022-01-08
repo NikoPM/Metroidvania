@@ -8,12 +8,9 @@ import org.junit.Test;
 import ventanas.VentanaJuego;
 
 public class VentanaJuegoTest {
-	private VentanaJuego v;
+	private static VentanaJuego v = new VentanaJuego();
 	 
-	@Before
-	public void setUp() {
-		v = new VentanaJuego();
-	}
+
 	
 	@Test
 	public void probar() {

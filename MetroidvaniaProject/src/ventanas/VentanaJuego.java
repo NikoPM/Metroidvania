@@ -149,7 +149,7 @@ public class VentanaJuego extends JFrame {
 	 */
 	private void gameOver() {
 		JOptionPane.showMessageDialog(con, "Juego terminado.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
-		this.dispose();
+		dispose();
 	}
 	
 	/**Metodo privado generarEnemy
