@@ -170,7 +170,7 @@ public class Personaje extends Graficos {
 					coli |= colision(plat);
 				}
 				if(!b) {
-					if(pers.getPosY() < vent.getHeight() - 100 && !salto && !coli) { //<vent.getHeight()-50
+					if(/*pers.getPosY() < vent.getHeight() - 100 &&*/ !salto && !coli) { //Cae al vacio
 						pers.setPosY(pers.getPosY() + pers.getVelY());
 						fall = true;
 					}  else {

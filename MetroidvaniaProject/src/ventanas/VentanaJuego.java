@@ -98,7 +98,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
-					//if(Personaje.getPersonaje().getPosY() == 404) Personaje.decVida(100); //Caer al vacio
+					if(Personaje.getPersonaje().getPosY() >= 404) Personaje.decVida(100); //Caer al vacio
 					hpBar.setValue(Personaje.getVida());
 					if(Personaje.getVida() == 0) { 
 						gameOver();
