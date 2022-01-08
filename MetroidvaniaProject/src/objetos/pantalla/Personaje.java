@@ -108,16 +108,16 @@ public class Personaje extends Graficos {
 						} 
 					}
 						if(b){
-							if(pers.getPosX()<540) {
+							if(pers.getPosX()<500) {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
 							} else {
 								Plataformas.actualizarPos(vent, b);
 								Consumibles.actualizarPos(vent, b);
 							}
 						} else {
-							if(pers.getPosX()>0) {
+							if(pers.getPosX()>40) {
 								pers.setPosX(pers.getPosX() - pers.getVelX());
-							} else {
+							} else if(pers.getPosX() == 40){
 								Plataformas.actualizarPos(vent, b);
 								Consumibles.actualizarPos(vent, b);
 							}
