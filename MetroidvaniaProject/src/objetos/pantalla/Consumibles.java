@@ -12,11 +12,10 @@ public class Consumibles extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL_X = 5; //Velocidad eje X del consumible
 	private static final int VEL_Y = 1; //Velocidad eje Y del consumible
-	private static final int HITBOX = 5; //Hitbox del consumible
+	private static final int HITBOX = 20; //Hitbox del consumible
 	private static final String FRAME = "src/imagenes/ElixirVida.png";
 	private Thread hilo; //Hilo de consumible
 	private JLabel label; //Label del consumible
-	public boolean colision = false; //boolean que indica la colision con el personaje
 	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles
  
 	/** Constructor Privado de objetos de clase Consumibles
@@ -52,6 +51,12 @@ public class Consumibles extends Graficos {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				if(Personaje.colision(cons)) {
+					Personaje.incVida(10);
+					int num = new Random().nextInt(Plataformas.getListaPlat().size());
+					cons.setPosX(Plataformas.getListaPlat().get(num).getPosX() + 30 + new Random().nextInt(100));
+					cons.setPosY(Plataformas.getListaPlat().get(num).getPosY());					
+				}
 				if(b) {
 					cons.setPosY(cons.getPosY() + cons.getVelY());
 				} else {

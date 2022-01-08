@@ -100,13 +100,6 @@ public class Personaje extends Graficos {
 			@Override
 			public void run() {
 				try {
-					for(Consumibles cons: Consumibles.getListaCons()) {
-						if(colision(cons) && !cons.colision) {
-							incVida(10);
-							cons.colision = true;
-							vent.remove(cons.getLabel());
-						} 
-					}
 						if(b){
 							if(pers.getPosX()<500) {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
@@ -368,7 +361,7 @@ public class Personaje extends Graficos {
 	 * Si el grafico es una instancia de enemigo se activa la colision un poco mas facil
 	 */
 	public static boolean colision(Graficos graf) {
-		if(graf instanceof Enemy) return (self.getPosY() > graf.getPosY() - 10 && self.getPosY() <= graf.getPosY() + 20) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + graf.getHitbox());
+		if(graf instanceof Enemy) return (self.getPosY() > graf.getPosY() - 20 && self.getPosY() <= graf.getPosY() + 20) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + graf.getHitbox());
 		return (self.getPosY() > graf.getPosY() && self.getPosY() <= graf.getPosY() + 10) && (self.getPosX() >= graf.getPosX() && self.getPosX() <= graf.getPosX() + graf.getHitbox());
 	}
 	

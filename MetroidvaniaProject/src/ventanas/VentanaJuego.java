@@ -2,12 +2,9 @@ package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Date;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import datos.BaseDeDatos;
-import datos.Usuario;
+import java.util.*;
+import java.util.logging.*;
+import datos.*;
 import javax.swing.*;
 import objetos.pantalla.*;
 
@@ -22,7 +19,6 @@ public class VentanaJuego extends JFrame {
 	private static long fechaIni;
 	private static long fechaFin;
 	private JFrame ventana = this;
-	private int numEnemigos = 3;
 	
 	private static Logger logger = Logger.getLogger("VentanaJuego");
 	 
@@ -79,6 +75,8 @@ public class VentanaJuego extends JFrame {
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
 		//Creacion Enemys
 		Enemy.generar(-100, 0, this);
+		Enemy.generar(-100, -100, this);
+		Enemy.generar(1000, 100, this);
 		//Creacion Consumibles
 		Consumibles.generar(150, 380, this);
 		//Creacion de plataformas
@@ -92,7 +90,6 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
-					generarEnemy();
 					hpBar.setValue(Personaje.getVida());
 					if(Personaje.getVida() == 0) { 
 						gameOver();
@@ -139,36 +136,5 @@ public class VentanaJuego extends JFrame {
 	private void gameOver() {
 		JOptionPane.showMessageDialog(con, "Juego terminado.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		dispose();
-	}
-	
-	/**Metodo Privado GenerarEnemy
-	 * Comprueba si el numero de enemigos es el correcto, sino genera el numero de enemigos que
-	 * faltan por pantalla y resetea la posicion de los objetos en pantalla
-	 */
-	private void generarEnemy() {
-		int contador = 0;
-		for(Enemy e: Enemy.getListaEne()) {
-			if(!e.muerto) {
-				contador++;
-			}
-		}
-		if(contador<numEnemigos) {
-			for(int i =0; i<numEnemigos-contador; i++) {
-				int pos = new Random().nextInt(1500) - new Random().nextInt(1500);	
-				Enemy.generar(pos, pos, this);
-				setVisible(true);
-				for(Plataformas plat: Plataformas.getListaPlat()) {
-					plat.startThread(ventana);
-				}
-				for(Enemy ene: Enemy.getListaEne()) {
-					ene.getLabel().setLocation(ene.getPosX(), ene.getPosY());
-				}
-				for(Consumibles cons: Consumibles.getListaCons()) {
-					cons.getLabel().setLocation(cons.getPosX(), cons.getPosY());
-				}
-				Personaje.getLabelShoot().setLocation(-10000, -10000);
-				logger.log(Level.INFO, "Enemigo Generado");
-			}
-		}
 	}
 }

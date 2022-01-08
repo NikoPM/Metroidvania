@@ -143,8 +143,7 @@ public class VentanaMenuInicio extends JFrame {
 				nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
 				
 				if(nombre!=null) {
-					VentanaJuego v = new VentanaJuego();
-					v.setVisible(true);
+					new VentanaJuego();
 					dispose();
 				}
 			}
