@@ -96,7 +96,7 @@ public class VentanaJuego extends JFrame {
 				while(!Thread.interrupted()) {
 					hpBar.setValue(Personaje.getVida());
 					repaint();
-					if(Personaje.getVida() == 0) { //Decrementa la vida en 1 por cada salto
+					if(Personaje.getVida() == 0) { 
 						gameOver();
 						hilo.interrupt();
 					}
@@ -126,7 +126,7 @@ public class VentanaJuego extends JFrame {
 					Personaje.mover(Personaje.getLabel(), ventana, false);
 				} else if(KeyEvent.VK_UP == e.getKeyCode()) {
 					Personaje.salto(Personaje.getLabel());
-					Personaje.decVida(1); //Prueba de que funciona
+					//Personaje.decVida(1); 
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(ventana, Personaje.getLabelShoot());
 					Thread hilo2 = new Thread(new Runnable() {
