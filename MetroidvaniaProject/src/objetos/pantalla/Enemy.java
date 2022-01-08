@@ -87,7 +87,7 @@ public class Enemy extends Graficos {
 							muerto = true;
 							hilo.interrupt();
 						}
-						if(Personaje.colision(ene)) {
+						if(Personaje.colision(ene) && !ene.muerto) {
 							Personaje.decVida(1);
 						}
 						Thread.sleep(30);
