@@ -15,6 +15,7 @@ public class Enemy extends Graficos {
 	private static final String FRAME = "src/imagenes/enemigo.png"; //Imagen del enemigo
 	private Thread hilo; //Hilo de enemigo
 	private JLabel label; //Label del enemigo
+	public boolean muerto = false; //Booleano que indica si el enemigo esta muerto o no
 	private static List<Enemy> listaEne = new ArrayList<>(); //Lista que contiene los enemigo
  
 	/** Constructor Privado de objetos de clase Enemy
@@ -83,6 +84,7 @@ public class Enemy extends Graficos {
 						labelMove(ene, label);
 						if(Personaje.colisionShoot(ene)) {
 							vent.remove(ene.label);
+							muerto = true;
 							hilo.interrupt();
 						}
 						if(Personaje.colision(ene)) {
