@@ -70,7 +70,7 @@ public class VentanaJuego extends JFrame {
 		hp.add(lHp);
 		
 		//Creacion del personaje
-		Personaje.generar(500, 50, this);
+		Personaje.generar(150, 50, this);
 		Personaje.generarShoot(this);
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
 		//Creacion Enemys
@@ -87,11 +87,14 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(500, 250, this);
 		Plataformas.generar(750, 300, this);
 		Plataformas.generar(1000, 350, this);
+		Plataformas.generar(1200, 250, this);
+		Plataformas.generar(1400, 150, this);
 	
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
+					//if(Personaje.getPersonaje().getPosY() == 404) Personaje.decVida(100); //Caer al vacio
 					hpBar.setValue(Personaje.getVida());
 					if(Personaje.getVida() == 0) { 
 						gameOver();
