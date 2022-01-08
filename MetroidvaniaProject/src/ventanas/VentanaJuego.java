@@ -88,15 +88,6 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(500, 250, this);
 		Plataformas.generar(750, 300, this);
 		Plataformas.generar(1000, 350, this);
-		Thread hilo2 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for(Plataformas plat: Plataformas.getListaPlat()) {
-					plat.startThread(ventana);
-				}
-			}
-		});
-		hilo2.start();
 	
 		hilo = new Thread(new Runnable() {
 			@Override
@@ -154,7 +145,7 @@ public class VentanaJuego extends JFrame {
 	
 	/**Metodo privado generarEnemy
 	 * Comprueba si el numero de enemigos es el correcto, sino genera el numero de enemigos que
-	 * faltan por pantalla
+	 * faltan por pantalla y resetea la posicion de las plataformas
 	 */
 	private void generarEnemy() {
 		int contador = 0;
@@ -165,8 +156,12 @@ public class VentanaJuego extends JFrame {
 		}
 		if(contador<numEnemigos) {
 			for(int i =0; i<numEnemigos-contador; i++) {
-				int posXY = new Random().nextInt(1000);	
-				Enemy.generar(posXY, posXY, this);
+				int posX = new Random().nextInt(1000) + 1000;	
+				Enemy.generar(posX, 0, this);
+				setVisible(true);
+				for(Plataformas plat: Plataformas.getListaPlat()) {
+					plat.startThread(ventana);
+				}
 				logger.log(Level.INFO, "enemigo generado");
 			}
 		}
