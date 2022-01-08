@@ -16,6 +16,7 @@ public class Consumibles extends Graficos {
 	private static final String FRAME = "src/imagenes/ElixirVida.png";
 	private Thread hilo; //Hilo de consumible
 	private JLabel label; //Label del consumible
+	public boolean colision = false; //boolean que indica la colision con el personaje
 	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles
  
 	/** Constructor Privado de objetos de clase Consumibles

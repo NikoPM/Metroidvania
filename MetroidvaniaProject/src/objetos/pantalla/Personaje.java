@@ -101,8 +101,9 @@ public class Personaje extends Graficos {
 			public void run() {
 				try {
 					for(Consumibles cons: Consumibles.getListaCons()) {
-						if(colision(cons)) {
+						if(colision(cons) && !cons.colision) {
 							incVida(10);
+							cons.colision = true;
 							vent.remove(cons.getLabel());
 						} 
 					}
