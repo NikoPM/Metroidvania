@@ -74,9 +74,10 @@ public class VentanaJuego extends JFrame {
 		Personaje.generarShoot(this);
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
 		//Creacion Enemys
-		Enemy.generar(-100, 0, this);
+		Enemy.generar(-100, 600, this);
 		Enemy.generar(-100, -100, this);
-		Enemy.generar(1000, 100, this);
+		Enemy.generar(1000, 700, this);
+		Enemy.generar(1000, -100, this);
 		//Creacion Consumibles
 		Consumibles.generar(150, 380, this);
 		Consumibles.generar(600, 250, this);

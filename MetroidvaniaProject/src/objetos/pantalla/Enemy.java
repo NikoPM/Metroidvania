@@ -84,6 +84,7 @@ public class Enemy extends Graficos {
 						if(Personaje.colisionShoot(ene)) {
 							int pos = new Random().nextInt(1500) - new Random().nextInt(1500);	
 							ene.setPosX(pos);
+							pos = new Random().nextInt(1500) - new Random().nextInt(1500);
 							ene.setPosY(pos);
 						}
 						if(Personaje.colision(ene)) {
