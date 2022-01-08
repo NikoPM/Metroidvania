@@ -79,6 +79,7 @@ public class VentanaJuego extends JFrame {
 		Enemy.generar(1000, 100, this);
 		//Creacion Consumibles
 		Consumibles.generar(150, 380, this);
+		Consumibles.generar(600, 250, this);
 		//Creacion de plataformas
 		Plataformas.generar(120, 380, this);
 		Plataformas.generar(300, 300 , this);
