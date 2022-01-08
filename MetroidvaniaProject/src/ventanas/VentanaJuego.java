@@ -70,7 +70,7 @@ public class VentanaJuego extends JFrame {
 		hp.add(lHp);
 		
 		//Creacion del personaje
-		Personaje.generar(150, 50, this);
+		Personaje.generar(200, 50, this);
 		Personaje.generarShoot(this);
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
 		//Creacion Enemys
