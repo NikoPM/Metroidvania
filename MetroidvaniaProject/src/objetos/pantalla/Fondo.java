@@ -1,12 +1,7 @@
 package objetos.pantalla;
 
-import java.awt.FlowLayout;
-import java.awt.Frame;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 
 public class Fondo extends Graficos{
 	private static final long serialVersionUID = 1L;
@@ -65,15 +60,13 @@ public class Fondo extends Graficos{
 	 * lo inserta en la ventana que se desea poner el fondo y 
 	 * 	llama al metodo startThread() para mantenerlo en su sitio.
 	 * @param vent Ventana en la que se desea poner un Fondo.
-	 * @return JLabel con la imagen del fondo de pantalla.
 	 */
-	public static JLabel generar(JFrame vent) {
-	Fondo fond = new Fondo();
-	JLabel lab = new JLabel(new ImageIcon(fond.dirImg));
-	fond.label = lab;
-	vent.getContentPane().setLayout(new FlowLayout());
-	vent.getContentPane().add(lab);
-	fond.startThread(vent);
-	return lab;	
+	public static void generar(JFrame vent) {
+		Fondo fond = new Fondo();
+		JLabel lab = new JLabel(new ImageIcon(fond.dirImg));
+		fond.label = lab;
+		vent.getContentPane().setLayout(new FlowLayout());
+		vent.getContentPane().add(lab);
+		fond.startThread(vent);
 	}
 }

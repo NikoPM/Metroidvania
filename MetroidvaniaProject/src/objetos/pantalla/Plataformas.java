@@ -25,38 +25,8 @@ public class Plataformas extends Graficos {
 	}
 	
 	//Getters y setters 
-	@Override
-	public int getPosX() {
-		return super.getPosX();
-	}
-	
 	public static List<Plataformas> getListaPlat() {
 		return listaPlat;
-	}
-	
-	@Override
-	public int getHitbox() {
-		return super.getHitbox();
-	}
-	
-	@Override
-	public int getPosY() {
-		return super.getPosY();
-	}
-	
-	@Override
-	public void setPosY(int posY) {
-		super.setPosY(posY);
-	}
-	
-	@Override
-	public void setPosX(int posX) {
-		super.setPosX(posX);
-	}
-	
-	@Override
-	public void setHitbox(int hitbox) {
-		super.setHitbox(hitbox);
 	}
 	
 	//Metodos de la clase
@@ -95,11 +65,10 @@ public class Plataformas extends Graficos {
 	 * @param y Posicion Y de la plataforma en pantalla
 	 * @param dir Direccion en la que se encuentra la imagen(es) de la plataforma
 	 * @param vent Ventana en la que se crear la plataforma
-	 * @return Crear un objeto de la clase plataforma y un JLabel del mismo, 
-	 * lo introduce en la ventana animandolo y devuelve el JLabel con la imagen y posicion de la plataforma
+	 * Crea un objeto de la clase plataforma y un JLabel del mismo y lo introduce en la ventana animandolo
 	 * LLama al constructor y al metodo crear
 	 */
-	public static JLabel generar(int x, int y, JFrame vent) {
+	public static void generar(int x, int y, JFrame vent) {
 		Plataformas plat = new Plataformas(x, y);
 		JLabel label = new JLabel(new ImageIcon(plat.dirImg));
 		plat.label = label;
@@ -107,7 +76,6 @@ public class Plataformas extends Graficos {
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(label);
 		plat.startThread(vent);
-		return label;
 	}
 	/**Metodo estatico actualizarPos
 	 * @param vent  Ventana en la que se encuentran las plataformas

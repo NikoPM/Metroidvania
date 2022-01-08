@@ -91,7 +91,9 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(1000, 350, this);
 		Plataformas.generar(1200, 250, this);
 		Plataformas.generar(1400, 150, this);
+		//Creacion del Fondo
 		Fondo.generar(this);
+		
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {
