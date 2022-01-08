@@ -69,6 +69,8 @@ public class VentanaJuego extends JFrame {
 		con.add(hp);	
 		hp.add(lHp);
 		
+		
+		
 		//Creacion del personaje
 		Personaje.generar(200, 50, this);
 		Personaje.generarShoot(this);
@@ -89,7 +91,7 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(1000, 350, this);
 		Plataformas.generar(1200, 250, this);
 		Plataformas.generar(1400, 150, this);
-	
+		Fondo.generar(this);
 		hilo = new Thread(new Runnable() {
 			@Override
 			public void run() {

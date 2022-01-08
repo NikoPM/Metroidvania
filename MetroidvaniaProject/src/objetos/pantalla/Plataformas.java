@@ -20,7 +20,7 @@ public class Plataformas extends Graficos {
 	 * @param y	Posicion Y de la plataforma en pantalla
 	 * @param dir	String con la dirección a la imagen del 
 	 */
-	public Plataformas (int x, int y) {
+	private Plataformas (int x, int y) {
 		super(x, y, FRAME, VEL_X, 0, HITBOX);
 	}
 	
