@@ -131,7 +131,7 @@ public class VentanaJuego extends JFrame {
 	}
 	
 	/** Metodo Privado GameOver
-	 *  Cierra la ventana y si el jugador acepta, abre una ventana menu.
+	 *  Cierra la ventana.
 	 */
 	private void gameOver() {
 		JOptionPane.showMessageDialog(con, "Juego terminado.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
