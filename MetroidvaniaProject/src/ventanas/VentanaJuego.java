@@ -89,6 +89,15 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(500, 250, this);
 		Plataformas.generar(750, 300, this);
 		Plataformas.generar(1000, 350, this);
+		Thread hilo2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for(Plataformas plat: Plataformas.getListaPlat()) {
+					plat.startThread(ventana);
+				}
+			}
+		});
+		hilo2.start();
 	
 		hilo = new Thread(new Runnable() {
 			@Override
@@ -129,15 +138,6 @@ public class VentanaJuego extends JFrame {
 					//Personaje.decVida(1); 
 				} else if(KeyEvent.VK_SPACE == e.getKeyCode()) {
 					Personaje.shoot(ventana, Personaje.getLabelShoot());
-					Thread hilo2 = new Thread(new Runnable() {
-						@Override
-						public void run() {
-							for(Plataformas plat: Plataformas.getListaPlat()) {
-								plat.startThread(ventana);
-							}
-						}
-					});
-					hilo2.start();
 				}
 			}
 		});
