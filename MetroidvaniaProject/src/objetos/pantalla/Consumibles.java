@@ -113,8 +113,8 @@ public class Consumibles extends Graficos {
 	 * @param y Posicion Y del consumible en pantalla
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 * @param vent Ventana en la que se crear el consumible
-	 * @return Crear un objeto de la clase consumible y un JLabel del mismo, 
-	 * lo introduce en la ventana animandolo y devuelve el JLabel con la imagen y posicion del consumible
+	 * Crear un objeto de la clase consumible y un JLabel del mismo, 
+	 * lo introduce en la ventana animandolo
 	 * LLama al constructor y al metodo crear e introduce el consumible en la lista
 	 */
 	public static void generar(int x, int y, JFrame vent) {

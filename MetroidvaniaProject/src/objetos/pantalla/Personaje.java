@@ -294,7 +294,7 @@ public class Personaje extends Graficos {
 							shoot = false;
 						}
 					}
-					shootLabel(label, -1000);
+					labelShoot.setLocation(-10000, -10000);
 					shoot = false;
 				} 
 			}

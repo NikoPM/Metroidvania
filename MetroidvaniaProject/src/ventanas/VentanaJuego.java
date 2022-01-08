@@ -77,9 +77,8 @@ public class VentanaJuego extends JFrame {
 		Personaje.generar(500, 50, this);
 		Personaje.generarShoot(this);
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
-	
-		//Hilo sin terminar
-		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
+		//Creacion Enemys
+		Enemy.generar(-100, 0, this);
 		//Creacion Consumibles
 		Consumibles.generar(150, 380, this);
 		//Creacion de plataformas
@@ -95,7 +94,6 @@ public class VentanaJuego extends JFrame {
 				while(!Thread.interrupted()) {
 					generarEnemy();
 					hpBar.setValue(Personaje.getVida());
-					repaint();
 					if(Personaje.getVida() == 0) { 
 						gameOver();
 						hilo.interrupt();
@@ -143,9 +141,9 @@ public class VentanaJuego extends JFrame {
 		dispose();
 	}
 	
-	/**Metodo privado generarEnemy
+	/**Metodo Privado GenerarEnemy
 	 * Comprueba si el numero de enemigos es el correcto, sino genera el numero de enemigos que
-	 * faltan por pantalla y resetea la posicion de las plataformas
+	 * faltan por pantalla y resetea la posicion de los objetos en pantalla
 	 */
 	private void generarEnemy() {
 		int contador = 0;
@@ -156,13 +154,20 @@ public class VentanaJuego extends JFrame {
 		}
 		if(contador<numEnemigos) {
 			for(int i =0; i<numEnemigos-contador; i++) {
-				int posX = new Random().nextInt(1000) + 1000;	
-				Enemy.generar(posX, 0, this);
+				int pos = new Random().nextInt(1500) - new Random().nextInt(1500);	
+				Enemy.generar(pos, pos, this);
 				setVisible(true);
 				for(Plataformas plat: Plataformas.getListaPlat()) {
 					plat.startThread(ventana);
 				}
-				logger.log(Level.INFO, "enemigo generado");
+				for(Enemy ene: Enemy.getListaEne()) {
+					ene.getLabel().setLocation(ene.getPosX(), ene.getPosY());
+				}
+				for(Consumibles cons: Consumibles.getListaCons()) {
+					cons.getLabel().setLocation(cons.getPosX(), cons.getPosY());
+				}
+				Personaje.getLabelShoot().setLocation(-10000, -10000);
+				logger.log(Level.INFO, "Enemigo Generado");
 			}
 		}
 	}
