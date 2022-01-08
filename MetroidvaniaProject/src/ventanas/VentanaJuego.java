@@ -3,6 +3,7 @@ package ventanas;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Date;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import datos.BaseDeDatos;
@@ -21,6 +22,7 @@ public class VentanaJuego extends JFrame {
 	private static long fechaIni;
 	private static long fechaFin;
 	private JFrame ventana = this;
+	private int numEnemigos = 3;
 	
 	private static Logger logger = Logger.getLogger("VentanaJuego");
 	 
@@ -75,10 +77,7 @@ public class VentanaJuego extends JFrame {
 		Personaje.generar(500, 50, this);
 		Personaje.generarShoot(this);
 		Personaje.shoot(ventana, Personaje.getLabelShoot());
-		//Creacion de enemigo
-		Enemy.generar(-300, -300, this);
-		Enemy.generar(-700, 300, this);
-		Enemy.generar(-300, -700, this);
+	
 		//Hilo sin terminar
 		//JLabel label3 = Enemigo.generar(250, 0,1,1,3,"src/imagenes/enemigo.png", this);
 		//Creacion Consumibles
@@ -103,6 +102,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
+					generarEnemy();
 					hpBar.setValue(Personaje.getVida());
 					repaint();
 					if(Personaje.getVida() == 0) { 
@@ -150,5 +150,25 @@ public class VentanaJuego extends JFrame {
 	private void gameOver() {
 		JOptionPane.showMessageDialog(con, "Juego terminado.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		this.dispose();
+	}
+	
+	/**Metodo privado generarEnemy
+	 * Comprueba si el numero de enemigos es el correcto, sino genera el numero de enemigos que
+	 * faltan por pantalla
+	 */
+	private void generarEnemy() {
+		int contador = 0;
+		for(Enemy e: Enemy.getListaEne()) {
+			if(!e.muerto) {
+				contador++;
+			}
+		}
+		if(contador<numEnemigos) {
+			for(int i =0; i<numEnemigos-contador; i++) {
+				int posXY = new Random().nextInt(1000);	
+				Enemy.generar(posXY, posXY, this);
+				logger.log(Level.INFO, "enemigo generado");
+			}
+		}
 	}
 }
