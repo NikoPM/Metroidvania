@@ -141,8 +141,8 @@ public class VentanaMenuInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				logger.log(Level.INFO, "Botón accionado: Nueva Partida");
 				nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
-				
 				if(nombre!=null) {
+					if(palindromo(nombre)) JOptionPane.showMessageDialog(getContentPane(), "Vaya Flow k me llevas Broki!!");
 					new VentanaJuego();
 					dispose();
 				}
@@ -251,6 +251,17 @@ public class VentanaMenuInicio extends JFrame {
 		vRanking.setTitle("Ranking");
 		vRanking.getContentPane().add(new JScrollPane(tClasificacion), BorderLayout.CENTER);
 		vRanking.setVisible(true);
+	}
+	
+	private static boolean palindromo(String s) {
+		char[] c = s.toCharArray();
+		if(c.length == 0 || c.length == 1) return true;
+		if(c[0] == c[c.length - 1]) {
+			String str = "";
+			for(int i = 0; i<c.length - 1; i++) str += c[i];
+			return true && palindromo(str);
+		} 
+		return false;
 	}
 
 }
