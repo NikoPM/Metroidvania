@@ -52,7 +52,7 @@ public class Consumibles extends Graficos {
 			@Override
 			public void run() {
 				if(Personaje.colision(cons)) {
-					Personaje.incVida(10);
+					Personaje.incVida(30);
 					int num = new Random().nextInt(Plataformas.getListaPlat().size());
 					cons.setPosX(Plataformas.getListaPlat().get(num).getPosX() + 30 + new Random().nextInt(100));
 					cons.setPosY(Plataformas.getListaPlat().get(num).getPosY());					
