@@ -86,6 +86,7 @@ public class Enemy extends Graficos {
 							ene.setPosX(pos);
 							pos = new Random().nextInt(1500) - new Random().nextInt(1500);
 							ene.setPosY(pos);
+							Thread.sleep(2000);
 						}
 						if(Personaje.colision(ene)) {
 							Personaje.decVida(1);
