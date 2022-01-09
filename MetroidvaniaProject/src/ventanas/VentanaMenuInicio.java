@@ -258,7 +258,7 @@ public class VentanaMenuInicio extends JFrame {
 		if(c.length == 0 || c.length == 1) return true;
 		if(c[0] == c[c.length - 1]) {
 			String str = "";
-			for(int i = 0; i<c.length - 1; i++) str += c[i];
+			for(int i = 1; i<c.length - 1; i++) str += c[i];
 			return true && palindromo(str);
 		} 
 		return false;
