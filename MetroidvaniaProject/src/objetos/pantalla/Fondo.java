@@ -3,7 +3,7 @@ package objetos.pantalla;
 import java.awt.*;
 import javax.swing.*;
 
-public class Fondo extends Graficos{
+public class Fondo extends Graficos {
 	private static final long serialVersionUID = 1L;
 	protected static final String FONDO = "src/imagenes/Fondo1.jpg";
 	private Thread hilo;
