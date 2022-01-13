@@ -90,14 +90,14 @@ public class Enemigo extends Graficos /** implements Destruible **/
 	}
 
 	public void explotar() {
-		this.dirImg = "src/imagenes/explosion.png";
+		this.dirImg = "imagenes/explosion.png";
 	}
 
 	public static JLabel generar(int x, int y, int velocidadX, int velocidadY, int radioHitbox, String dir,
 			JFrame vent) {
 		//Personaje pers = new Personaje(x,y);
 		Enemigo e = new Enemigo(x, y, velocidadX, velocidadY, radioHitbox, dir);
-		JLabel label = new JLabel(new ImageIcon("src/imagenes/enemigo.png"));
+		JLabel label = new JLabel(new ImageIcon("imagenes/enemigo.png"));
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {

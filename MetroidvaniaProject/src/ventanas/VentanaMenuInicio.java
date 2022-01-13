@@ -37,7 +37,7 @@ public class VentanaMenuInicio extends JFrame {
 	private static JTable tClasificacion;
 	private static ArrayList<Usuario> listaUsu;
 	// Imagenes
-	private Image logo = new ImageIcon("src/imagenes/Hexagrama.jpg").getImage();
+	private Image logo = new ImageIcon("imagenes/Hexagrama.jpg").getImage();
 	// Logger de la ventana principal
 	private static Logger logger = Logger.getLogger("VentanaMenuInicio");
 
@@ -202,7 +202,7 @@ public class VentanaMenuInicio extends JFrame {
 		@Override
 		public void paint(Graphics g) {
 
-			imagen = new ImageIcon("src/imagenes/Fondo1.jpg").getImage();
+			imagen = new ImageIcon("imagenes/Fondo1.jpg").getImage();
 			g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
 
 			setOpaque(false);

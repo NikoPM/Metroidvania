@@ -13,7 +13,7 @@ public class Consumibles extends Graficos {
 	private static final int VEL_X = 5; //Velocidad eje X del consumible
 	private static final int VEL_Y = 1; //Velocidad eje Y del consumible
 	private static final int HITBOX = 20; //Hitbox del consumible
-	private static final String FRAME = "src/imagenes/ElixirVida.png";
+	private static final String FRAME = "imagenes/ElixirVida.png";
 	private Thread hilo; //Hilo de consumible
 	private JLabel label; //Label del consumible
 	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles

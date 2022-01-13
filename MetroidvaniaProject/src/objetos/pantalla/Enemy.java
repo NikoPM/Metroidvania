@@ -12,7 +12,7 @@ public class Enemy extends Graficos {
 	private static final long serialVersionUID = 1L; //Version Serializable
 	private static final int VEL = 7; //Velocidad del enemigo
 	private static final int HITBOX = 20; //Hitbox del enemigo
-	private static final String FRAME = "src/imagenes/enemigo.png"; //Imagen del enemigo
+	private static final String FRAME = "imagenes/enemigo.png"; //Imagen del enemigo
 	private Thread hilo; //Hilo de enemigo
 	private JLabel label; //Label del enemigo
 	private static List<Enemy> listaEne = new ArrayList<>(); //Lista que contiene los enemigo

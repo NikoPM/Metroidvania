@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Fondo extends Graficos {
 	private static final long serialVersionUID = 1L;
-	protected static final String FONDO = "src/imagenes/fondo.jpg";
+	protected static final String FONDO = "imagenes/fondo.jpg";
 	private Thread hilo;
 	private JLabel label;
 	

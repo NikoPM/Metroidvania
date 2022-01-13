@@ -11,7 +11,7 @@ public class Personaje extends Graficos {
 	private static final int DIST_SHOOT = 15; //Distancia del disparo
 	private static final int HITBOX = 1; //HitBox del personaje
 	private static final String[] FRAMES = //Direccion de las imagenes que componen la animacion del personaje
-	{"src/imagenes/pers1.png", "src/imagenes/pers2.png"};
+	{"imagenes/pers1.png", "imagenes/pers2.png"};
 	private static Thread hiloX; //Hilo para el eje X del personaje
 	private static Thread hiloY; //Hilo para el eje Y del personaje
 	private static Personaje self; //Mismo personaje
@@ -257,7 +257,7 @@ public class Personaje extends Graficos {
 	 * Crea un label con una imagen, lo introduce en la ventana y lo vuelve invisible
 	 */
 	public static void generarShoot(JFrame vent) {
-		labelShoot = new JLabel(new ImageIcon("src/imagenes/pelota.png"));
+		labelShoot = new JLabel(new ImageIcon("imagenes/pelota.png"));
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(labelShoot);
 		labelShoot.setVisible(false);

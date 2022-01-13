@@ -10,7 +10,7 @@ public class Plataformas extends Graficos {
 	private static final long serialVersionUID = 1L;
 	private static final int HITBOX = 230;
 	private static final int VEL_X = 5; 
-	private static final String FRAME = "src/imagenes/plataforma.png";
+	private static final String FRAME = "imagenes/plataforma.png";
 	private Thread hilo;
 	private JLabel label;
 	private static List<Plataformas> listaPlat = new ArrayList<>();
