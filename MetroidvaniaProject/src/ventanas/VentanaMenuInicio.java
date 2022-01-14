@@ -142,7 +142,10 @@ public class VentanaMenuInicio extends JFrame {
 				logger.log(Level.INFO, "Botón accionado: Nueva Partida");
 				nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
 				if(nombre!=null) {
-					if(palindromo(nombre)) JOptionPane.showMessageDialog(getContentPane(), "Vaya Flow k me llevas Broki!!");
+					if(palindromo(nombre)) {
+						JOptionPane.showMessageDialog(getContentPane(), "Vaya Flow k me llevas Broki!!");
+					}
+					posiblesNombres(nombre);
 					JOptionPane.showMessageDialog(getContentPane(), "Consigue el Orbe Divino", "Objetivo", JOptionPane.INFORMATION_MESSAGE);
 					new VentanaJuego();
 					dispose();
@@ -263,6 +266,26 @@ public class VentanaMenuInicio extends JFrame {
 			return true && palindromo(str);
 		} 
 		return false;
+	}
+	
+	private static void posiblesNombres(String s) {
+		posiblesNRecursivo(s.toCharArray(), s.toCharArray().length, "");
+	}
+	
+	private static void posiblesNRecursivo(char[] c, int i, String res) {
+		if(i == 0) {
+			logger.log(Level.INFO, "Otros posibles nombres con esas letras: " + res);
+		} else {
+			for(char ch: c) {
+				res += String.valueOf(ch);
+				posiblesNRecursivo(c, i - 1, res);
+				char[] cha = res.toCharArray();
+				res = "";
+				for(int j = 0; j<cha.length - 1; j++) {
+					res += String.valueOf(cha[j]);;
+				}
+			}
+		}
 	}
 
 }
