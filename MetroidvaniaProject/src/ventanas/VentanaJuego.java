@@ -154,8 +154,9 @@ public class VentanaJuego extends JFrame {
 	 *  Cierra la ventana.
 	 */
 	public static void gameWin() {
-		JOptionPane.showMessageDialog(con, "Has ganado.", "Victory", JOptionPane.INFORMATION_MESSAGE);
+		hilo.interrupt();
 		ventana.dispose();
+		JOptionPane.showMessageDialog(con, "Has ganado.", "Victory", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	/**

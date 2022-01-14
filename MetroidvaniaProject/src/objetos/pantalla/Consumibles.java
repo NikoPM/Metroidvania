@@ -60,6 +60,7 @@ public class Consumibles extends Graficos {
 				if(Personaje.colision(cons)) {
 					if(cons.victory) {
 						VentanaJuego.gameWin();
+						stopAll();
 					} else {
 						Personaje.incVida(30);
 						int num = new Random().nextInt(Plataformas.getListaPlat().size());
