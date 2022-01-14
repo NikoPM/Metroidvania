@@ -23,6 +23,6 @@ public class BaseDeDatosTest {
 	
 	@Test
 	public void testgetUsuarios() {
-		assertEquals(ret, baseDeDatos.getUsuarios());
+		assertEquals(ret, baseDeDatos.getUsuarios()); 
 	}
 }
