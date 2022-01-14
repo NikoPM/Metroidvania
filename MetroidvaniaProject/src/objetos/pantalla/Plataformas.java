@@ -14,6 +14,7 @@ public class Plataformas extends Graficos {
 	private Thread hilo;
 	private JLabel label;
 	private static List<Plataformas> listaPlat = new ArrayList<>();
+	private static int posMax = 1000;
 	
 	/**Constructor privado de la clase Platafromas
 	 * @param x	Posicion X de la plataforma en pantalla
@@ -27,6 +28,10 @@ public class Plataformas extends Graficos {
 	//Getters y setters 
 	public static List<Plataformas> getListaPlat() {
 		return listaPlat;
+	}
+	
+	public static int getPosMax() {
+		return posMax;
 	}
 	
 	//Metodos de la clase

@@ -49,7 +49,7 @@ public class VentanaMenuInicio extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				BaseDeDatos.abrirConexion("usuarios.db", false);
+				BaseDeDatos.abrirConexion("usuarios.db", true);
 			}
 
 			@Override
@@ -143,6 +143,7 @@ public class VentanaMenuInicio extends JFrame {
 				nombre = JOptionPane.showInputDialog("Nombre de usuario: ");
 				if(nombre!=null) {
 					if(palindromo(nombre)) JOptionPane.showMessageDialog(getContentPane(), "Vaya Flow k me llevas Broki!!");
+					JOptionPane.showMessageDialog(getContentPane(), "Consigue el Orbe Divino", "Objetivo", JOptionPane.INFORMATION_MESSAGE);
 					new VentanaJuego();
 					dispose();
 				}

@@ -2,6 +2,7 @@ package objetos.pantalla;
 
 import java.awt.*;
 import javax.swing.*;
+import ventanas.*;
 import java.util.*;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Consumibles extends Graficos {
 	private static final String FRAME = "imagenes/ElixirVida.png";
 	private Thread hilo; //Hilo de consumible
 	private JLabel label; //Label del consumible
+	private boolean victory; //boolean que indica el consumible de la victoria
 	private static List<Consumibles> listaCons = new ArrayList<>(); //Lista que contiene los consumibles
  
 	/** Constructor Privado de objetos de clase Consumibles
@@ -41,6 +43,10 @@ public class Consumibles extends Graficos {
 		return label;
 	}
 	
+	public boolean getVictory() {
+		return victory;
+	}
+	
 	/** Metodo Estatico Privado LabelMove
 	 * @param cons Consumible que se anima y del cual se recibe la posicion en pantalla
 	 * @param label JLabel que se edita
@@ -52,10 +58,14 @@ public class Consumibles extends Graficos {
 			@Override
 			public void run() {
 				if(Personaje.colision(cons)) {
-					Personaje.incVida(30);
-					int num = new Random().nextInt(Plataformas.getListaPlat().size());
-					cons.setPosX(Plataformas.getListaPlat().get(num).getPosX() + 30 + new Random().nextInt(100));
-					cons.setPosY(Plataformas.getListaPlat().get(num).getPosY());					
+					if(cons.victory) {
+						VentanaJuego.gameWin();
+					} else {
+						Personaje.incVida(30);
+						int num = new Random().nextInt(Plataformas.getListaPlat().size());
+						cons.setPosX(Plataformas.getListaPlat().get(num).getPosX() + 30 + new Random().nextInt(100));
+						cons.setPosY(Plataformas.getListaPlat().get(num).getPosY());		
+					}
 				}
 				if(b) {
 					cons.setPosY(cons.getPosY() + cons.getVelY());
@@ -118,14 +128,19 @@ public class Consumibles extends Graficos {
 	 * @param y Posicion Y del consumible en pantalla
 	 * @param dir Direccion en la que se encuentra la imagen(es) del consumible
 	 * @param vent Ventana en la que se crear el consumible
+	 * @param b boolean que da el valor a victory
 	 * Crear un objeto de la clase consumible y un JLabel del mismo, 
 	 * lo introduce en la ventana animandolo
 	 * LLama al constructor y al metodo crear e introduce el consumible en la lista
 	 */
-	public static void generar(int x, int y, JFrame vent) {
+	public static void generar(int x, int y, JFrame vent, boolean b) {
 		Consumibles cons = new Consumibles(x, y);
+		cons.victory = b;
 		listaCons.add(cons);
 		JLabel label = new JLabel(new ImageIcon(cons.dirImg));
+		if(b) {
+			label.setIcon(new ImageIcon("imagenes/pelota.png"));
+		}
 		cons.label = label;
 		vent.getContentPane().setLayout(new FlowLayout());
 		vent.getContentPane().add(cons.label);

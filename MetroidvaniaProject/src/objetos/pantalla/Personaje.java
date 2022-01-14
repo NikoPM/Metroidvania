@@ -101,16 +101,16 @@ public class Personaje extends Graficos {
 			public void run() {
 				try {
 						if(b){
-							if(pers.getPosX()<500) {
+							if(pers.getPosX()<400) {
 								pers.setPosX(pers.getPosX() + pers.getVelX());
 							} else {
 								Plataformas.actualizarPos(vent, b);
 								Consumibles.actualizarPos(vent, b);
 							}
 						} else {
-							if(pers.getPosX()>40) {
+							if(pers.getPosX()>100) {
 								pers.setPosX(pers.getPosX() - pers.getVelX());
-							} else if(pers.getPosX() == 40){
+							} else if(pers.getPosX() == 100){
 								Plataformas.actualizarPos(vent, b);
 								Consumibles.actualizarPos(vent, b);
 							}

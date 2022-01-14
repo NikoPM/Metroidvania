@@ -18,7 +18,7 @@ public class VentanaJuego extends JFrame {
 	//Fecha de inicio y fin para calcular el tiempo de partida
 	private static long fechaIni;
 	private static long fechaFin;
-	private JFrame ventana = this;
+	private static JFrame ventana;
 	
 	private static Logger logger = Logger.getLogger("VentanaJuego");
 	 
@@ -54,6 +54,7 @@ public class VentanaJuego extends JFrame {
 		hp = new JPanel();
 		hpBar = new JProgressBar(0,100);
 		JLabel lHp = new JLabel("HP");
+		ventana = this;
 		
 		//Atributos de los componentes
 		lHp.setFont(new Font("Cambria", Font.BOLD, 17));
@@ -81,8 +82,8 @@ public class VentanaJuego extends JFrame {
 		Enemy.generar(1000, 700, this);
 		Enemy.generar(1000, -100, this);
 		//Creacion Consumibles
-		Consumibles.generar(150, 380, this);
-		Consumibles.generar(600, 250, this);
+		Consumibles.generar(1500, 150, this, false);
+		Consumibles.generar(10100, 380, this, true);
 		//Creacion de plataformas
 		Plataformas.generar(120, 380, this);
 		Plataformas.generar(300, 300 , this);
@@ -91,6 +92,7 @@ public class VentanaJuego extends JFrame {
 		Plataformas.generar(1000, 350, this);
 		Plataformas.generar(1200, 250, this);
 		Plataformas.generar(1400, 150, this);
+		Plataformas.generar(10000, 380, this);
 		//Creacion del Fondo
 		Fondo.generar(this);
 		
@@ -98,6 +100,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
+					//generarPlat();
 					if(Personaje.getPersonaje().getPosY() >= 404) Personaje.decVida(100); //Caer al vacio
 					hpBar.setValue(Personaje.getVida());
 					if(Personaje.getVida() == 0) { 
@@ -146,4 +149,14 @@ public class VentanaJuego extends JFrame {
 		JOptionPane.showMessageDialog(con, "Juego terminado.", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		dispose();
 	}
+	
+	/** Metodo Privado GameWin
+	 *  Cierra la ventana.
+	 */
+	public static void gameWin() {
+		JOptionPane.showMessageDialog(con, "Has ganado.", "Victory", JOptionPane.INFORMATION_MESSAGE);
+		ventana.dispose();
+	}
+	
+	
 }
