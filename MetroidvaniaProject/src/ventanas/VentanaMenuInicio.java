@@ -49,7 +49,7 @@ public class VentanaMenuInicio extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				BaseDeDatos.abrirConexion("usuarios.db", true);
+				BaseDeDatos.abrirConexion("usuarios.db", false);
 			}
 
 			@Override
