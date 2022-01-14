@@ -1,12 +1,10 @@
 package objetos.pantalla;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
- 
 import objetos.pantalla.Graficos;
-//TODO EDITAR LOS TESTS RELATIVOS A 3 NUEVOS ATRIBUTOS CAMBIOS 
+
 public class GraficosTest {
 	
 	private Graficos graficos;
