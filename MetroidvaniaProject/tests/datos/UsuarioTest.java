@@ -1,10 +1,7 @@
 package datos;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
-import objetos.pantalla.Graficos;
 
 public class UsuarioTest {
 
