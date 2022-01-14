@@ -33,7 +33,7 @@ public class VentanaJuego extends JFrame {
 			public void windowOpened(WindowEvent e) {
 				fechaIni = new Date().getTime();
 			}
-			@Override
+			@Override 
 			public void windowClosed(WindowEvent e) {
 				Personaje.stopAll();
 				Consumibles.stopAll();
@@ -100,7 +100,7 @@ public class VentanaJuego extends JFrame {
 			@Override
 			public void run() {
 				while(!Thread.interrupted()) {
-					//generarPlat();
+					generarPlat();
 					if(Personaje.getPersonaje().getPosY() >= 404) Personaje.decVida(100); //Caer al vacio
 					hpBar.setValue(Personaje.getVida());
 					if(Personaje.getVida() == 0) { 
@@ -158,5 +158,25 @@ public class VentanaJuego extends JFrame {
 		ventana.dispose();
 	}
 	
+	/**
+	 * Medoto generarPlat
+	 * Cambia la posicion de las plataformas al llegar al extremo izquierdo. 
+	 */
+	private void generarPlat() {
+		for(Plataformas p: Plataformas.getListaPlat()) {
+			if(p.getPosX() <= -500) {
+				p.setPosX(Plataformas.getPosMax() + new Random().nextInt(40) - new Random().nextInt(40));
+				p.setPosY(p.getPosY() + new Random().nextInt(20) - new Random().nextInt(10));
+				if(p.getPosY() > 380) p.setPosY(380);
+			}
+		}
+		for(Consumibles cons: Consumibles.getListaCons()) {
+			if(cons.getPosX() <= -10) {
+				int num = new Random().nextInt(Plataformas.getListaPlat().size());
+				cons.setPosX(Plataformas.getListaPlat().get(num).getPosX() + 30 + new Random().nextInt(100));
+				cons.setPosY(Plataformas.getListaPlat().get(num).getPosY());
+			}
+		}
+	}
 	
 }
