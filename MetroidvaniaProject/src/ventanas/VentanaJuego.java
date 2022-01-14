@@ -172,7 +172,7 @@ public class VentanaJuego extends JFrame {
 		}
 		for(Consumibles cons: Consumibles.getListaCons()) {
 			if(cons.getPosX() <= -10) {
-				int num = new Random().nextInt(Plataformas.getListaPlat().size());
+				int num = Plataformas.getListaPlat().size() - new Random().nextInt(3);
 				cons.setPosX(Plataformas.getListaPlat().get(num).getPosX() + 30 + new Random().nextInt(100));
 				cons.setPosY(Plataformas.getListaPlat().get(num).getPosY());
 			}
